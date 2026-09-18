@@ -1,0 +1,558 @@
+-- ============================================================================
+-- ĐỀ TÀI: XÂY DỰNG HỆ THỐNG THƯ VIỆN TRỰC TUYẾN
+-- TÁC GIẢ LAB: TRẦN TUẤN MINH - MSSV: 1250080116
+-- HỆ QUẢN TRỊ CSDL: MICROSOFT SQL SERVER (T-SQL)
+-- ============================================================================
+
+USE master;
+GO
+
+IF EXISTS (SELECT name FROM sys.databases WHERE name = N'QuanLyThuVienTrucTuyen')
+BEGIN
+    ALTER DATABASE QuanLyThuVienTrucTuyen SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE QuanLyThuVienTrucTuyen;
+END
+GO
+
+CREATE DATABASE QuanLyThuVienTrucTuyen
+COLLATE Vietnamese_CI_AS;
+GO
+
+USE QuanLyThuVienTrucTuyen;
+GO
+
+-- ============================================================================
+-- 1. BẢNG PHÂN QUYỀN & TÀI KHOẢN NGƯỜI DÙNG (FR09, FR10)
+-- ============================================================================
+
+CREATE TABLE VaiTro (
+    MaVaiTro VARCHAR(20) PRIMARY KEY,       -- 'DOC_GIA', 'THU_THU', 'ADMIN'
+    TenVaiTro NVARCHAR(50) NOT NULL,
+    MoTa NVARCHAR(255) NULL
+);
+GO
+
+CREATE TABLE TaiKhoan (
+    MaTaiKhoan INT IDENTITY(1,1) PRIMARY KEY,
+    TenDangNhap VARCHAR(50) NOT NULL UNIQUE,
+    MatKhauHash VARCHAR(255) NOT NULL,       -- Mật khẩu được mã hóa an toàn
+    HoTen NVARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    SoDienThoai VARCHAR(15) NULL,
+    MaVaiTro VARCHAR(20) NOT NULL DEFAULT 'DOC_GIA',
+    TrangThai BIT NOT NULL DEFAULT 1,        -- 1: Hoạt động, 0: Bị khóa
+    NgayTao DATETIME2 DEFAULT SYSDATETIME(),
+    LanDangNhapCuoi DATETIME2 NULL,
+    CONSTRAINT FK_TaiKhoan_VaiTro FOREIGN KEY (MaVaiTro) REFERENCES VaiTro(MaVaiTro)
+);
+GO
+
+-- ============================================================================
+-- 2. BẢNG THẺ THƯ VIỆN & THÔNG TIN ĐỘC GIẢ (FR04, FR05, UC06)
+-- ============================================================================
+
+CREATE TABLE TheThuVien (
+    MaThe VARCHAR(20) PRIMARY KEY,          -- Mã thẻ duy nhất in trên thẻ
+    MaTaiKhoan INT NULL,                    -- Độc giả có thể có tài khoản web hoặc chỉ có thẻ
+    LoaiDocGia NVARCHAR(50) NOT NULL,      -- 'SinhVien', 'GiangVien', 'NhanVien'
+    KhoaPhongBan NVARCHAR(100) NULL,
+    NgayCap DATE NOT NULL DEFAULT CAST(SYSDATETIME() AS DATE),
+    NgayHetHan DATE NOT NULL,
+    TrangThai NVARCHAR(30) NOT NULL DEFAULT N'Hoạt động', -- 'Hoạt động', 'Tạm khóa', 'Hết hạn'
+    SoSachToiDa INT NOT NULL DEFAULT 5,     -- Hạn mức số sách được mượn cùng lúc
+    GhiChu NVARCHAR(255) NULL,
+    CONSTRAINT FK_TheThuVien_TaiKhoan FOREIGN KEY (MaTaiKhoan) REFERENCES TaiKhoan(MaTaiKhoan)
+);
+GO
+
+-- ============================================================================
+-- 3. BẢNG DANH MỤC TÀI LIỆU & TÁC GIẢ, NXB (FR01, FR02, FR14)
+-- ============================================================================
+
+CREATE TABLE TheLoai (
+    MaTheLoai INT IDENTITY(1,1) PRIMARY KEY,
+    TenTheLoai NVARCHAR(100) NOT NULL UNIQUE,
+    MoTa NVARCHAR(255) NULL
+);
+GO
+
+CREATE TABLE TacGia (
+    MaTacGia INT IDENTITY(1,1) PRIMARY KEY,
+    TenTacGia NVARCHAR(100) NOT NULL,
+    TieuSu NVARCHAR(MAX) NULL
+);
+GO
+
+CREATE TABLE NhaXuatBan (
+    MaNXB INT IDENTITY(1,1) PRIMARY KEY,
+    TenNXB NVARCHAR(150) NOT NULL UNIQUE,
+    DiaChi NVARCHAR(255) NULL,
+    Email VARCHAR(100) NULL
+);
+GO
+
+CREATE TABLE DauSach (
+    MaDauSach INT IDENTITY(1,1) PRIMARY KEY,
+    ISBN VARCHAR(20) NULL UNIQUE,
+    TuaDe NVARCHAR(255) NOT NULL,
+    MaTheLoai INT NOT NULL,
+    MaNXB INT NULL,
+    NamXuatBan INT NULL CHECK (NamXuatBan <= YEAR(SYSDATETIME())),
+    LoaiTaiLieu VARCHAR(20) NOT NULL,       -- 'SachIn', 'SachDienTu', 'CaHai'
+    HinhAnhBia VARCHAR(255) NULL,           -- Đường dẫn ảnh bìa sách
+    MoTaNoiDung NVARCHAR(MAX) NULL,
+    TongSoBan INT NOT NULL DEFAULT 0 CHECK (TongSoBan >= 0),
+    SoBanKhaDung INT NOT NULL DEFAULT 0 CHECK (SoBanKhaDung >= 0),
+    TrangThai NVARCHAR(30) NOT NULL DEFAULT N'Đang lưu hành', -- 'Đang lưu hành', 'Ngừng lưu hành'
+    NgayTao DATETIME2 DEFAULT SYSDATETIME(),
+    CONSTRAINT FK_DauSach_TheLoai FOREIGN KEY (MaTheLoai) REFERENCES TheLoai(MaTheLoai),
+    CONSTRAINT FK_DauSach_NXB FOREIGN KEY (MaNXB) REFERENCES NhaXuatBan(MaNXB),
+    CONSTRAINT CK_SoBanKhaDung CHECK (SoBanKhaDung <= TongSoBan)
+);
+GO
+
+-- Quan hệ nhiều - nhiều giữa Đầu sách và Tác giả
+CREATE TABLE DauSach_TacGia (
+    MaDauSach INT NOT NULL,
+    MaTacGia INT NOT NULL,
+    VaiTro NVARCHAR(50) DEFAULT N'Chủ biên',
+    PRIMARY KEY (MaDauSach, MaTacGia),
+    CONSTRAINT FK_DSTG_DauSach FOREIGN KEY (MaDauSach) REFERENCES DauSach(MaDauSach) ON DELETE CASCADE,
+    CONSTRAINT FK_DSTG_TacGia FOREIGN KEY (MaTacGia) REFERENCES TacGia(MaTacGia) ON DELETE CASCADE
+);
+GO
+
+-- ============================================================================
+-- 4. BẢNG SÁCH ĐIỆN TỬ & SÁCH BẢN IN TRONG KHO (FR02, FR03, FR04, UC04)
+-- ============================================================================
+
+-- Bảng tài nguyên Sách điện tử (E-Book)
+CREATE TABLE SachDienTu (
+    MaSachDienTu INT IDENTITY(1,1) PRIMARY KEY,
+    MaDauSach INT NOT NULL UNIQUE,
+    DuongDanFile VARCHAR(500) NOT NULL,
+    DinhDang VARCHAR(10) NOT NULL DEFAULT 'PDF', -- 'PDF', 'EPUB'
+    DungLuongMB DECIMAL(6,2) NULL,
+    ChoPhepTai BIT NOT NULL DEFAULT 1,          -- 1: Cho phép tải về sau khi nhập thẻ, 0: Chỉ đọc online
+    SoLuotDoc INT NOT NULL DEFAULT 0,
+    SoLuotTai INT NOT NULL DEFAULT 0,
+    NgayCapNhat DATETIME2 DEFAULT SYSDATETIME(),
+    CONSTRAINT FK_SachDienTu_DauSach FOREIGN KEY (MaDauSach) REFERENCES DauSach(MaDauSach) ON DELETE CASCADE
+);
+GO
+
+-- Bảng Bản sao sách vật lý (Physical Copy) trong kho
+CREATE TABLE BanSaoSach (
+    MaBanSao VARCHAR(30) PRIMARY KEY,           -- Mã vạch / Barcode duy nhất dán trên gáy sách
+    MaDauSach INT NOT NULL,
+    ViTriKeSach NVARCHAR(100) NULL,             -- Vị trí: Khu A, Kệ 03, Ngăn 2
+    TinhTrang NVARCHAR(50) NOT NULL DEFAULT N'Mới', -- 'Mới', 'Tốt', 'Cũ', 'Rách nhẹ', 'Hỏng'
+    TrangThai NVARCHAR(30) NOT NULL DEFAULT N'Sẵn sàng', -- 'Sẵn sàng', 'Đã giữ chỗ', 'Đang mượn', 'Thanh lý'
+    NgayNhapKho DATE NOT NULL DEFAULT CAST(SYSDATETIME() AS DATE),
+    CONSTRAINT FK_BanSaoSach_DauSach FOREIGN KEY (MaDauSach) REFERENCES DauSach(MaDauSach)
+);
+GO
+
+-- ============================================================================
+-- 5. BẢNG ĐĂNG KÝ MƯỢN / GIỮ CHỖ (FR05, UC05)
+-- ============================================================================
+
+CREATE TABLE DangKyMuon (
+    MaDangKy INT IDENTITY(1,1) PRIMARY KEY,
+    MaThe VARCHAR(20) NOT NULL,
+    MaDauSach INT NOT NULL,
+    MaBanSao VARCHAR(30) NULL,                  -- Có thể gán cụ thể bản sao hoặc hệ thống tự chỉ định
+    NgayDangKy DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+    HanNhanSach DATETIME2 NOT NULL,             -- Thời hạn đến nhận sách (thường trong 24h-48h)
+    TrangThai NVARCHAR(30) NOT NULL DEFAULT N'Chờ nhận sách', -- 'Chờ nhận sách', 'Đã nhận', 'Đã hủy/Hết hạn'
+    GhiChu NVARCHAR(255) NULL,
+    CONSTRAINT FK_DangKy_The FOREIGN KEY (MaThe) REFERENCES TheThuVien(MaThe),
+    CONSTRAINT FK_DangKy_DauSach FOREIGN KEY (MaDauSach) REFERENCES DauSach(MaDauSach),
+    CONSTRAINT FK_DangKy_BanSao FOREIGN KEY (MaBanSao) REFERENCES BanSaoSach(MaBanSao)
+);
+GO
+
+-- ============================================================================
+-- 6. BẢNG PHIẾU MƯỢN & CHI TIẾT MƯỢN TRẢ (FR06, FR07, FR08, FR16, UC11, UC12, UC17)
+-- ============================================================================
+
+CREATE TABLE PhieuMuon (
+    MaPhieuMuon INT IDENTITY(1,1) PRIMARY KEY,
+    MaThe VARCHAR(20) NOT NULL,
+    MaThuThuLap INT NOT NULL,                   -- Thủ thư thực hiện tạo phiếu mượn
+    NgayMuon DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+    TrangThai NVARCHAR(30) NOT NULL DEFAULT N'Đang mượn', -- 'Đang mượn', 'Đã hoàn tất', 'Quá hạn'
+    GhiChu NVARCHAR(255) NULL,
+    CONSTRAINT FK_PhieuMuon_The FOREIGN KEY (MaThe) REFERENCES TheThuVien(MaThe),
+    CONSTRAINT FK_PhieuMuon_ThuThu FOREIGN KEY (MaThuThuLap) REFERENCES TaiKhoan(MaTaiKhoan)
+);
+GO
+
+CREATE TABLE ChiTietPhieuMuon (
+    MaChiTiet INT IDENTITY(1,1) PRIMARY KEY,
+    MaPhieuMuon INT NOT NULL,
+    MaBanSao VARCHAR(30) NOT NULL,
+    HanTra DATE NOT NULL,
+    NgayTraThucTe DATETIME2 NULL,
+    TinhTrangKhiTra NVARCHAR(100) NULL,
+    TienPhatQuaHan DECIMAL(18,2) NOT NULL DEFAULT 0 CHECK (TienPhatQuaHan >= 0),
+    TienPhatHuHong DECIMAL(18,2) NOT NULL DEFAULT 0 CHECK (TienPhatHuHong >= 0),
+    DaNopPhat BIT NOT NULL DEFAULT 0,
+    DaNhacEmail BIT NOT NULL DEFAULT 0,         -- Cờ đánh dấu đã gửi email trước hạn 3 ngày (UC17)
+    NgayGuiNhac DATETIME2 NULL,
+    MaThuThuNhanSach INT NULL,                  -- Thủ thư tiếp nhận lúc trả sách
+    TrangThai NVARCHAR(30) NOT NULL DEFAULT N'Đang mượn', -- 'Đang mượn', 'Đã trả', 'Mất sách'
+    CONSTRAINT FK_CTPM_PhieuMuon FOREIGN KEY (MaPhieuMuon) REFERENCES PhieuMuon(MaPhieuMuon) ON DELETE CASCADE,
+    CONSTRAINT FK_CTPM_BanSao FOREIGN KEY (MaBanSao) REFERENCES BanSaoSach(MaBanSao),
+    CONSTRAINT FK_CTPM_ThuThuTra FOREIGN KEY (MaThuThuNhanSach) REFERENCES TaiKhoan(MaTaiKhoan)
+);
+GO
+
+-- ============================================================================
+-- 7. BẢNG ĐẶT MUA TÀI LIỆU ĐIỆN TỬ (FR11, FR12, FR13, UC09, UC15)
+-- ============================================================================
+
+CREATE TABLE YeuCauDatMua (
+    MaYeuCau INT IDENTITY(1,1) PRIMARY KEY,
+    MaTaiKhoan INT NOT NULL,                    -- Độc giả gửi đề xuất (phải đăng nhập)
+    TenSach NVARCHAR(255) NOT NULL,
+    TacGia NVARCHAR(150) NOT NULL,
+    NhaXuatBan NVARCHAR(150) NULL,
+    NamXuatBan INT NULL,
+    ISBN VARCHAR(20) NULL,
+    LyDoDeXuat NVARCHAR(MAX) NULL,
+    NgayGui DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+    TrangThai NVARCHAR(30) NOT NULL DEFAULT N'Chờ duyệt', -- 'Chờ duyệt', 'Chấp nhận', 'Từ chối'
+    MaThuThuDuyet INT NULL,
+    NgayDuyet DATETIME2 NULL,
+    LyDoTuChoi NVARCHAR(MAX) NULL,
+    CONSTRAINT FK_YeuCau_TaiKhoan FOREIGN KEY (MaTaiKhoan) REFERENCES TaiKhoan(MaTaiKhoan),
+    CONSTRAINT FK_YeuCau_ThuThu FOREIGN KEY (MaThuThuDuyet) REFERENCES TaiKhoan(MaTaiKhoan)
+);
+GO
+
+-- ============================================================================
+-- 8. BẢNG NHẬT KÝ HỆ THỐNG & NHẬT KÝ EMAIL (FR14, FR16, UC14, UC17)
+-- ============================================================================
+
+-- Ghi nhận lịch sử gửi email tự động (UC17)
+CREATE TABLE NhatKyGuiEmail (
+    MaLog INT IDENTITY(1,1) PRIMARY KEY,
+    MaChiTietPM INT NOT NULL,
+    EmailNguoiNhan VARCHAR(100) NOT NULL,
+    TieuDe NVARCHAR(255) NOT NULL,
+    NoiDung NVARCHAR(MAX) NULL,
+    ThoiGianGui DATETIME2 DEFAULT SYSDATETIME(),
+    TrangThai NVARCHAR(30) NOT NULL,            -- 'Thành công', 'Thất bại', 'Đang chờ'
+    SoLanThu INT NOT NULL DEFAULT 1,
+    LoiChiTiet NVARCHAR(MAX) NULL,
+    CONSTRAINT FK_EmailLog_CTPM FOREIGN KEY (MaChiTietPM) REFERENCES ChiTietPhieuMuon(MaChiTiet)
+);
+GO
+
+-- Ghi nhận audit log thêm/sửa/xóa danh mục tài liệu (UC14)
+CREATE TABLE NhatKyHeThong (
+    MaLog BIGINT IDENTITY(1,1) PRIMARY KEY,
+    MaTaiKhoan INT NOT NULL,
+    ThaoTac NVARCHAR(50) NOT NULL,              -- 'THÊM', 'SỬA', 'XÓA'
+    TenBang NVARCHAR(50) NOT NULL,              -- 'DauSach', 'BanSaoSach', 'SachDienTu'
+    KhoaBanGhi VARCHAR(50) NOT NULL,
+    DuLieuCu NVARCHAR(MAX) NULL,
+    DuLieuMoi NVARCHAR(MAX) NULL,
+    ThoiGianThucHien DATETIME2 DEFAULT SYSDATETIME(),
+    DiaChiIP VARCHAR(45) NULL,
+    CONSTRAINT FK_NhatKy_TaiKhoan FOREIGN KEY (MaTaiKhoan) REFERENCES TaiKhoan(MaTaiKhoan)
+);
+GO
+
+-- ============================================================================
+-- 9. TỐI ƯU HÓA TRUY VẤN (INDEXES) PHỤC VỤ TÌM KIẾM & BÁO CÁO (FR01, FR08, FR15)
+-- ============================================================================
+
+CREATE NONCLUSTERED INDEX IX_DauSach_TuaDe ON DauSach(TuaDe);
+CREATE NONCLUSTERED INDEX IX_DauSach_LoaiTaiLieu ON DauSach(LoaiTaiLieu);
+CREATE NONCLUSTERED INDEX IX_TheThuVien_TrangThai ON TheThuVien(TrangThai);
+CREATE NONCLUSTERED INDEX IX_ChiTietPhieuMuon_HanTra_TrangThai 
+ON ChiTietPhieuMuon(HanTra, TrangThai) 
+INCLUDE (DaNhacEmail, MaBanSao);
+GO
+
+-- ============================================================================
+-- 10. STORED PROCEDURES & TRIGGERS NGHIỆP VỤ QUAN TRỌNG
+-- ============================================================================
+
+-- Trigger: Tự động cập nhật số bản khả dụng khi thêm/bớt bản sao sách vật lý
+CREATE OR ALTER TRIGGER TRG_CapNhatSoBanSao
+ON BanSaoSach
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    -- Cập nhật lại cho các đầu sách bị ảnh hưởng
+    UPDATE ds
+    SET 
+        TongSoBan = (SELECT COUNT(*) FROM BanSaoSach b WHERE b.MaDauSach = ds.MaDauSach AND b.TrangThai != N'Thanh lý'),
+        SoBanKhaDung = (SELECT COUNT(*) FROM BanSaoSach b WHERE b.MaDauSach = ds.MaDauSach AND b.TrangThai = N'Sẵn sàng')
+    FROM DauSach ds
+    WHERE ds.MaDauSach IN (
+        SELECT DISTINCT MaDauSach FROM inserted
+        UNION
+        SELECT DISTINCT MaDauSach FROM deleted
+    );
+END;
+GO
+
+-- Procedure 1: Đăng ký mượn sách giữ chỗ (UC05 - Đăng ký mượn sách)
+CREATE OR ALTER PROCEDURE sp_DangKyMuonSach
+    @MaThe VARCHAR(20),
+    @MaDauSach INT,
+    @MaDangKy INT OUTPUT,
+    @ThongBao NVARCHAR(255) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRANSACTION;
+
+    BEGIN TRY
+        -- 1. Kiểm tra hiệu lực thẻ thư viện
+        IF NOT EXISTS (SELECT 1 FROM TheThuVien WHERE MaThe = @MaThe AND TrangThai = N'Hoạt động' AND NgayHetHan >= CAST(SYSDATETIME() AS DATE))
+        BEGIN
+            SET @ThongBao = N'Mã thẻ thư viện không tồn tại hoặc đã hết hiệu lực!';
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        -- 2. Kiểm tra độc giả có sách quá hạn không
+        IF EXISTS (
+            SELECT 1 
+            FROM PhieuMuon pm
+            JOIN ChiTietPhieuMuon ct ON pm.MaPhieuMuon = ct.MaPhieuMuon
+            WHERE pm.MaThe = @MaThe 
+              AND ct.TrangThai = N'Đang mượn' 
+              AND ct.HanTra < CAST(SYSDATETIME() AS DATE)
+        )
+        BEGIN
+            SET @ThongBao = N'Độc giả đang có sách quá hạn chưa trả, không thể đăng ký mượn tiếp!';
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        -- 3. Kiểm tra số sách đang mượn + đang giữ chỗ với hạn mức cho phép
+        DECLARE @SoLuongHienTai INT, @SoLuongToiDa INT;
+        SELECT @SoLuongToiDa = SoSachToiDa FROM TheThuVien WHERE MaThe = @MaThe;
+        
+        SELECT @SoLuongHienTai = (
+            SELECT COUNT(*) FROM ChiTietPhieuMuon ct 
+            JOIN PhieuMuon pm ON ct.MaPhieuMuon = pm.MaPhieuMuon 
+            WHERE pm.MaThe = @MaThe AND ct.TrangThai = N'Đang mượn'
+        ) + (
+            SELECT COUNT(*) FROM DangKyMuon dk 
+            WHERE dk.MaThe = @MaThe AND dk.TrangThai = N'Chờ nhận sách'
+        );
+
+        IF (@SoLuongHienTai >= @SoLuongToiDa)
+        BEGIN
+            SET @ThongBao = N'Độc giả đã đạt số lượng sách tối đa được phép mượn!';
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        -- 4. Kiểm tra số bản khả dụng và lấy 1 cuốn có trạng thái 'Sẵn sàng'
+        DECLARE @MaBanSaoChon VARCHAR(30);
+        SELECT TOP 1 @MaBanSaoChon = MaBanSao 
+        FROM BanSaoSach WITH (UPDLOCK, ROWLOCK)
+        WHERE MaDauSach = @MaDauSach AND TrangThai = N'Sẵn sàng';
+
+        IF @MaBanSaoChon IS NULL
+        BEGIN
+            SET @ThongBao = N'Đầu sách này hiện tại đã hết bản in khả dụng!';
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        -- 5. Cập nhật bản sao sang 'Đã giữ chỗ'
+        UPDATE BanSaoSach 
+        SET TrangThai = N'Đã giữ chỗ' 
+        WHERE MaBanSao = @MaBanSaoChon;
+
+        UPDATE DauSach 
+        SET SoBanKhaDung = SoBanKhaDung - 1 
+        WHERE MaDauSach = @MaDauSach;
+
+        -- 6. Tạo đơn đăng ký (Hạn nhận sách: 48 tiếng)
+        INSERT INTO DangKyMuon (MaThe, MaDauSach, MaBanSao, NgayDangKy, HanNhanSach, TrangThai)
+        VALUES (@MaThe, @MaDauSach, @MaBanSaoChon, SYSDATETIME(), DATEADD(HOUR, 48, SYSDATETIME()), N'Chờ nhận sách');
+
+        SET @MaDangKy = SCOPE_IDENTITY();
+        SET @ThongBao = N'Đăng ký giữ chỗ thành công!';
+        
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        SET @ThongBao = ERROR_MESSAGE();
+    END CATCH
+END;
+GO
+
+-- Procedure 2: Lấy danh sách cần gửi email nhắc nhở trước hạn 3 ngày (UC17 - Gửi email nhắc hạn trả)
+CREATE OR ALTER PROCEDURE sp_LayDanhSachCanNhacHanTra
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Lọc các phiếu có hạn trả đúng 3 ngày tới và chưa được nhắc
+    SELECT 
+        ct.MaChiTiet,
+        pm.MaPhieuMuon,
+        tk.HoTen AS TenDocGia,
+        tk.Email AS EmailDocGia,
+        ds.TuaDe AS TenSach,
+        ct.MaBanSao,
+        ct.HanTra
+    FROM ChiTietPhieuMuon ct
+    JOIN PhieuMuon pm ON ct.MaPhieuMuon = pm.MaPhieuMuon
+    JOIN TheThuVien tv ON pm.MaThe = tv.MaThe
+    JOIN TaiKhoan tk ON tv.MaTaiKhoan = tk.MaTaiKhoan
+    JOIN BanSaoSach bss ON ct.MaBanSao = bss.MaBanSao
+    JOIN DauSach ds ON bss.MaDauSach = ds.MaDauSach
+    WHERE ct.TrangThai = N'Đang mượn'
+      AND ct.DaNhacEmail = 0
+      AND DATEDIFF(DAY, CAST(SYSDATETIME() AS DATE), ct.HanTra) = 3
+      AND tk.Email IS NOT NULL 
+      AND tk.Email LIKE '%_@__%.__%';
+END;
+GO
+
+-- Procedure 3: Ghi nhận trả sách và tự động tính tiền phạt quá hạn (UC12 - Ghi nhận trả sách)
+CREATE OR ALTER PROCEDURE sp_GhiNhanTraSach
+    @MaChiTietPM INT,
+    @MaThuThuNhan INT,
+    @TinhTrangKhiTra NVARCHAR(100),
+    @TienPhatHuHong DECIMAL(18,2) = 0,
+    @KetQua NVARCHAR(255) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRANSACTION;
+
+    BEGIN TRY
+        DECLARE @MaBanSao VARCHAR(30), @MaDauSach INT, @HanTra DATE, @NgayTra DATE;
+        SET @NgayTra = CAST(SYSDATETIME() AS DATE);
+
+        SELECT 
+            @MaBanSao = ct.MaBanSao, 
+            @MaDauSach = bss.MaDauSach,
+            @HanTra = ct.HanTra
+        FROM ChiTietPhieuMuon ct
+        JOIN BanSaoSach bss ON ct.MaBanSao = bss.MaBanSao
+        WHERE ct.MaChiTiet = @MaChiTietPM AND ct.TrangThai = N'Đang mượn';
+
+        IF @MaBanSao IS NULL
+        BEGIN
+            SET @KetQua = N'Không tìm thấy chi tiết mượn hoặc sách đã được trả!';
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        -- Tính số ngày quá hạn và tiền phạt (ví dụ: 5.000 VNĐ / ngày trễ)
+        DECLARE @SoNgayTre INT = DATEDIFF(DAY, @HanTra, @NgayTra);
+        DECLARE @TienPhatTre DECIMAL(18,2) = 0;
+
+        IF @SoNgayTre > 0
+            SET @TienPhatTre = @SoNgayTre * 5000;
+
+        -- Cập nhật chi tiết phiếu mượn
+        UPDATE ChiTietPhieuMuon
+        SET 
+            NgayTraThucTe = SYSDATETIME(),
+            TinhTrangKhiTra = @TinhTrangKhiTra,
+            TienPhatQuaHan = @TienPhatTre,
+            TienPhatHuHong = @TienPhatHuHong,
+            MaThuThuNhanSach = @MaThuThuNhan,
+            TrangThai = N'Đã trả'
+        WHERE MaChiTiet = @MaChiTietPM;
+
+        -- Cập nhật lại bản sao sách
+        UPDATE BanSaoSach
+        SET 
+            TrangThai = CASE WHEN @TinhTrangKhiTra = N'Hỏng' THEN N'Thanh lý' ELSE N'Sẵn sàng' END,
+            TinhTrang = @TinhTrangKhiTra
+        WHERE MaBanSao = @MaBanSao;
+
+        -- Cập nhật lại số bản khả dụng của đầu sách
+        IF @TinhTrangKhiTra != N'Hỏng'
+        BEGIN
+            UPDATE DauSach
+            SET SoBanKhaDung = SoBanKhaDung + 1
+            WHERE MaDauSach = @MaDauSach;
+        END
+
+        SET @KetQua = N'Tiếp nhận trả sách thành công! Tiền phạt trễ hạn: ' + CAST(@TienPhatTre AS NVARCHAR(20)) + N' VNĐ.';
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        SET @KetQua = ERROR_MESSAGE();
+    END CATCH
+END;
+GO
+
+-- ============================================================================
+-- 11. DỮ LIỆU MẪU ĐỂ KIỂM THỬ HỆ THỐNG (SEED DATA)
+-- ============================================================================
+
+-- 11.1 Vai trò
+INSERT INTO VaiTro (MaVaiTro, TenVaiTro, MoTa) VALUES
+('ADMIN', N'Quản trị viên', N'Toàn quyền quản trị hệ thống'),
+('THU_THU', N'Thủ thư', N'Quản lý danh mục, mượn trả và duyệt đề xuất'),
+('DOC_GIA', N'Độc giả', N'Giảng viên, sinh viên sử dụng thư viện');
+
+-- 11.2 Tài khoản mẫu (Mật khẩu mô phỏng chuỗi mã hóa bcrypt/sha256)
+INSERT INTO TaiKhoan (TenDangNhap, MatKhauHash, HoTen, Email, SoDienThoai, MaVaiTro) VALUES
+('admin', 'e10adc3949ba59abbe56e057f20f883e', N'Quản Trị Viên', 'admin@dhtm.edu.vn', '0901234567', 'ADMIN'),
+('thuthu01', 'e10adc3949ba59abbe56e057f20f883e', N'Thủ Thư Nguyễn Văn An', 'thuthu01@dhtm.edu.vn', '0902345678', 'THU_THU'),
+('1250080116', 'e10adc3949ba59abbe56e057f20f883e', N'Trần Tuấn Minh', 'tuanminh.12cnpm2@dhtm.edu.vn', '0903456789', 'DOC_GIA');
+
+-- 11.3 Thẻ thư viện
+INSERT INTO TheThuVien (MaThe, MaTaiKhoan, LoaiDocGia, KhoaPhongBan, NgayCap, NgayHetHan, TrangThai, SoSachToiDa) VALUES
+('TV-1250080116', 3, N'SinhVien', N'Khoa Công Nghệ Thông Tin', '2026-09-01', '2030-09-01', N'Hoạt động', 5);
+
+-- 11.4 Thể loại & Tác giả & Nhà xuất bản
+INSERT INTO TheLoai (TenTheLoai, MoTa) VALUES
+(N'Công nghệ thông tin', N'Sách chuyên ngành phần mềm, CSDL, AI'),
+(N'Kinh tế tài chính', N'Tài chính ngân hàng, quản trị kinh doanh');
+
+INSERT INTO TacGia (TenTacGia, TieuSu) VALUES
+(N'Phạm Trọng Huynh', N'Thạc sĩ, Giảng viên Bộ môn CNPM'),
+(N'Robert C. Martin', N'Tác giả nổi tiếng về Clean Code và Software Architecture');
+
+INSERT INTO NhaXuatBan (TenNXB, DiaChi, Email) VALUES
+(N'NXB Đại học Quốc gia TP.HCM', N'Linh Trung, Thủ Đức, TP.HCM', 'nxb@vnuhcm.edu.vn'),
+(N'NXB Thông tin và Truyền thông', N'Hà Nội', 'nxb.tttt@mic.gov.vn');
+
+-- 11.5 Đầu sách (1 Sách in & 1 Sách điện tử)
+INSERT INTO DauSach (ISBN, TuaDe, MaTheLoai, MaNXB, NamXuatBan, LoaiTaiLieu, TongSoBan, SoBanKhaDung) VALUES
+('978-604-58-1234-1', N'Phát triển phần mềm hướng đối tượng', 1, 1, 2024, 'SachIn', 3, 3),
+('978-013-23-5088-4', N'Clean Architecture: A Craftsman Guide', 1, 2, 2023, 'SachDienTu', 0, 0);
+
+-- Gán tác giả cho đầu sách
+INSERT INTO DauSach_TacGia (MaDauSach, MaTacGia, VaiTro) VALUES
+(1, 1, N'Chủ biên'),
+(2, 2, N'Tác giả chính');
+
+-- 11.6 Bản sao sách vật lý trong kho
+INSERT INTO BanSaoSach (MaBanSao, MaDauSach, ViTriKeSach, TinhTrang, TrangThai) VALUES
+('BC-CNPM-001', 1, N'Kệ A1 - Ngăn 1', N'Mới', N'Sẵn sàng'),
+('BC-CNPM-002', 1, N'Kệ A1 - Ngăn 1', N'Mới', N'Sẵn sàng'),
+('BC-CNPM-003', 1, N'Kệ A1 - Ngăn 2', N'Tốt', N'Sẵn sàng');
+
+-- 11.7 File Sách điện tử
+INSERT INTO SachDienTu (MaDauSach, DuongDanFile, DinhDang, DungLuongMB, ChoPhepTai, SoLuotDoc, SoLuotTai) VALUES
+(2, '/uploads/ebooks/clean-architecture.pdf', 'PDF', 14.50, 1, 120, 45);
+
+-- 11.8 Dữ liệu đề xuất mua sách (FR11)
+INSERT INTO YeuCauDatMua (MaTaiKhoan, TenSach, TacGia, NhaXuatBan, NamXuatBan, ISBN, LyDoDeXuat, TrangThai) VALUES
+(3, N'Machine Learning for Financial Risk Management', N'Abdullah Karasan', N'O Reilly Media', 2022, '978-1492085355', N'Phục vụ nghiên cứu đồ án môn học', N'Chờ duyệt');
+GO
