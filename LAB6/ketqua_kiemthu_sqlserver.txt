@@ -1,0 +1,20 @@
+﻿KẾT QUẢ: 18/18 ca đạt
+ĐẠT | Kết nối SQL Server
+ĐẠT | Dữ liệu mẫu có HS0001
+ĐẠT | Đăng ký điện thoại sai
+ĐẠT | Đăng ký tạo hồ sơ và phí năm
+ĐẠT | Gia hạn trùng năm bị từ chối
+ĐẠT | Đặt lịch định kỳ quý này
+ĐẠT | Lịch định kỳ thứ hai trong quý bị từ chối
+ĐẠT | Tiếp nhận lịch tạo lượt khám định kỳ
+ĐẠT | Ghi triệu chứng
+ĐẠT | Lập chỉ định xét nghiệm
+ĐẠT | Không kê toa khi còn xét nghiệm chờ
+ĐẠT | Trả kết quả xét nghiệm
+ĐẠT | Bác sĩ khác không được kê toa
+ĐẠT | Bác sĩ phụ trách ký toa
+ĐẠT | Khám định kỳ không thu viện phí
+ĐẠT | Hoàn tất miễn phí và lưu lịch sử
+ĐẠT | Tra cứu toa và xét nghiệm
+ĐẠT | Ghi nhận và tra cứu phản ứng thuốc
+Hồ sơ kiểm thử: HS000010; lịch: LH000010; lượt khám: LK000010; toa: TO000010
