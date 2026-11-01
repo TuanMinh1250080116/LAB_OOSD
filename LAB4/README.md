@@ -1,83 +1,39 @@
-# LAB 04 – Hệ thống cửa hàng online e-SHOPPING
+﻿# LAB 4 - e-SHOPPING
 
-**Thực hiện:** Trần Tuấn Minh
+**Sinh viên:** Trần Tuấn Minh - 1250080116
 
-Dự án thực hiện phân tích, thiết kế hướng đối tượng và triển khai cho đề tài `Bai_9_GOC` (hệ thống cửa hàng ABC bán hàng online mùa Giáng Sinh). Hệ thống sử dụng CSDL Oracle và ứng dụng WinForms kết nối trực tiếp vào CSDL này.
+Bài này dùng `LAB4.docx` làm bản thiết kế và `Eshopping.sql` làm dữ liệu. Ứng dụng trong `EShopping.WinForms` là Windows Forms trên .NET 9, kết nối SQL Server LocalDB `(localdb)\MSSQLLocalDB` tới database `EShopping_LAB4`.
 
-## 1. Cấu trúc thư mục và tập tin
+## Các giao diện đã làm
 
-* `BaoCao_LAB04_EShopping.docx`: Báo cáo dự án bao gồm tóm tắt yêu cầu (FR/NFR), tác nhân, quy tắc nghiệp vụ, quyết định triển khai, các sơ đồ UML (use case, phân rã, đặc tả, lớp phân tích/chi tiết, trạng thái, tuần tự), ERD, script SQL, thiết kế giao diện và kết quả kiểm thử.
+| Hình trong báo cáo | Màn hình | Nội dung |
+| --- | --- | --- |
+| UI01 | Tra cứu sản phẩm | Nhóm, từ khóa, sản phẩm, giá; tìm và xem chi tiết từ database |
+| UI02 | Giỏ hàng | Mã sản phẩm, số lượng, đơn giá, thành tiền; hiển thị giỏ mẫu và tính tổng |
+| UI03 | Đăng ký và đăng nhập | Họ tên, email, tên đăng nhập, mật khẩu |
+| UI04 | Đặt hàng | Người nhận, địa chỉ, tỉnh, loại phiếu, phí giao; tính phí bằng hàm SQL |
+| UI05 | Thanh toán | Loại thẻ, thông tin thẻ, tổng thanh toán |
+| UI06 | Tra cứu đơn hàng | Mã đơn, ngày đặt, trạng thái, tổng trị giá; tìm và xem chi tiết đơn mẫu |
 
+Đây là bài **thiết kế giao diện**. Các nút tạo tài khoản, thay đổi giỏ, thêm hàng và xác nhận thanh toán được hiển thị nhưng vô hiệu hóa. Ứng dụng chỉ đọc dữ liệu, tính phí giao và chuyển giữa các màn hình; không tạo đơn hay thu tiền. Ô thông tin thẻ chỉ để minh họa, không nhập dữ liệu thẻ thật.
 
-* `EShopping.sql`: Script khởi tạo Oracle DDL/DML gồm 18 bảng, 7 sequence, hàm `FN_TinhPhiGiao`, các trigger, 2 view và dữ liệu mẫu.
+## Chuẩn bị database
 
+Cần có .NET SDK 9, SQL Server LocalDB và `sqlcmd`. Chạy PowerShell từ thư mục `LAB4`:
 
-* `EShopping/`: Source code ứng dụng WinForms (.NET Framework 4.7.2, ODP.NET Managed) chứa 8 form, thiết kế theo kiến trúc 4 layer: Forms, Services, Gateways và Data.
-
-
-* `plantuml/`: Chứa mã nguồn `.puml` và ảnh render PNG của 13 sơ đồ (được ignore khỏi git).
-
-
-* `_build/`: Các script tự động sinh sơ đồ, form, project và báo cáo (được ignore khỏi git).
-
-
-
-## 2. Hướng dẫn triển khai (Deployment)
-
-1. Khởi động các dịch vụ: `OracleServiceORCL` và `OracleOraDB19Home1TNSListener`.
-
-
-2. Đăng nhập bằng tài khoản DBA để cấp quyền và tạo user:
-```sql
-CREATE USER ESHOP IDENTIFIED BY <mật_khẩu> DEFAULT TABLESPACE USERS QUOTA UNLIMITED ON USERS;
-GRANT CONNECT, RESOURCE, CREATE VIEW, CREATE PROCEDURE, CREATE TRIGGER, CREATE SEQUENCE TO ESHOP;
-
+```powershell
+SqlLocalDB start MSSQLLocalDB
+sqlcmd -S '(localdb)\MSSQLLocalDB' -E -Q "CREATE DATABASE EShopping_LAB4"
+sqlcmd -b -I -S '(localdb)\MSSQLLocalDB' -E -d EShopping_LAB4 -i .\Eshopping.sql -f 65001
 ```
 
+Chỉ tạo database nếu chưa có. `Eshopping.sql` xóa rồi tạo lại 18 bảng cùng dữ liệu mẫu **trong database được chọn**; chạy lại sẽ mất dữ liệu đã có trong database đó. Trên máy thực hiện bài, database `EShopping_LAB4` đã được tạo và nạp thành công: 5 nhóm, 16 sản phẩm, 2 khách hàng, 2 đơn và 12 mức phí giao.
 
-3. Thực thi script SQL (cần set `NLS_LANG` để tránh lỗi encoding tiếng Việt):
-```bash
-set NLS_LANG=AMERICAN_AMERICA.AL32UTF8
-sqlplus ESHOP/<mật_khẩu>@localhost:1521/ORCL @EShopping.sql
+## Chạy ứng dụng
 
+```powershell
+dotnet restore .\EShopping.WinForms\EShopping.WinForms.csproj
+dotnet run --project .\EShopping.WinForms\EShopping.WinForms.csproj
 ```
 
-
-4. Copy file `EShopping/EShopping/App.config.example` thành `App.config`, cấu hình mật khẩu cho user `ESHOP` (file `App.config` không đẩy lên git).
-
-
-5. Mở file solution `EShopping/EShopping.sln` bằng Visual Studio 2022 và nhấn F5 để chạy ứng dụng.
-
-
-
-## 3. Dữ liệu và môi trường kiểm thử (Testing)
-
-* **Tài khoản hệ thống** (Mật khẩu mặc định: `Eshop@123`):
-* User khách hàng: `an.nv`, `binh.tt`.
-
-
-* User nhân viên: `admin`, `banhang`.
-
-
-
-
-* **Cổng thanh toán giả lập**:
-* VISA `4111 1111 1111 1111`: Giao dịch Accept (được chấp thuận).
-
-
-* VISA `4000 0000 0000 0002`: Giao dịch Deny (bị từ chối do không đủ khả năng thanh toán).
-
-
-* AmEx: `3782 822463 10005`.
-
-
-
-
-* **Mail Server Local**: Email xác nhận hệ thống gửi đi được dump dưới dạng file `.eml` tại thư mục `bin\Debug\MailPickup`.
-
-
-* **Command Line Interface (CLI)**:
-* Chạy test tự động: `EShopping.exe /kiemthu ketqua.txt` (Thực thi 26 test case end-to-end trên CSDL, sau đó tự động clean up dữ liệu thử).
-
-
-* Chụp ảnh màn hình: `EShopping.exe /chupanh <thư_mục>` (Tự động capture các form phục vụ làm báo cáo).
+Có thể mở `EShopping.WinForms.csproj` bằng Visual Studio và chạy F5. Chuỗi kết nối nằm trong `ShopRepository.cs` nếu muốn dùng tên instance hoặc database khác. Khi chưa kết nối được LocalDB, giao diện sẽ hiện thông báo lỗi kèm chi tiết.
