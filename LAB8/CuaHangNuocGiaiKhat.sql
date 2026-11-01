@@ -1,0 +1,225 @@
+-- LAB 8 - Cua hang nuoc giai khat
+-- Tran Tuan Minh - 1250080116
+-- SQL Server LocalDB. Chay lai an toan: chi tao doi tuong va mau khi chua co.
+IF DB_ID(N'LAB8_NuocGiaiKhat') IS NULL
+    CREATE DATABASE LAB8_NuocGiaiKhat;
+GO
+USE LAB8_NuocGiaiKhat;
+GO
+
+-- 1. Danh muc
+IF OBJECT_ID(N'dbo.NhaCungUng', N'U') IS NULL
+CREATE TABLE dbo.NhaCungUng (
+    MaNCU VARCHAR(12) NOT NULL PRIMARY KEY,
+    TenNCU NVARCHAR(120) NOT NULL,
+    DiaChi NVARCHAR(200) NOT NULL,
+    DienThoai VARCHAR(20) NOT NULL,
+    CONSTRAINT CK_NCU_Ten CHECK (LEN(TRIM(TenNCU)) > 0),
+    CONSTRAINT CK_NCU_LienHe CHECK (LEN(TRIM(DiaChi)) > 0 AND LEN(TRIM(DienThoai)) > 0)
+);
+GO
+IF OBJECT_ID(N'dbo.LoaiNGK', N'U') IS NULL
+CREATE TABLE dbo.LoaiNGK (
+    MaLoai VARCHAR(12) NOT NULL PRIMARY KEY,
+    TenLoai NVARCHAR(80) NOT NULL UNIQUE,
+    MaNCU VARCHAR(12) NOT NULL REFERENCES dbo.NhaCungUng(MaNCU),
+    CONSTRAINT CK_Loai_Ten CHECK (LEN(TRIM(TenLoai)) > 0)
+);
+GO
+IF OBJECT_ID(N'dbo.NuocGiaiKhat', N'U') IS NULL
+CREATE TABLE dbo.NuocGiaiKhat (
+    MaNGK VARCHAR(12) NOT NULL PRIMARY KEY,
+    TenNGK NVARCHAR(100) NOT NULL,
+    DonViTinh NVARCHAR(20) NOT NULL,
+    MaLoai VARCHAR(12) NOT NULL REFERENCES dbo.LoaiNGK(MaLoai),
+    CONSTRAINT CK_NGK_Ten CHECK (LEN(TRIM(TenNGK)) > 0 AND LEN(TRIM(DonViTinh)) > 0)
+);
+GO
+IF OBJECT_ID(N'dbo.NhanVien', N'U') IS NULL
+CREATE TABLE dbo.NhanVien (
+    MaNV VARCHAR(12) NOT NULL PRIMARY KEY,
+    HoTen NVARCHAR(100) NOT NULL,
+    CONSTRAINT CK_NV_HoTen CHECK (LEN(TRIM(HoTen)) > 0)
+);
+GO
+IF OBJECT_ID(N'dbo.KhachHang', N'U') IS NULL
+CREATE TABLE dbo.KhachHang (
+    MaKH VARCHAR(12) NOT NULL PRIMARY KEY,
+    HoTen NVARCHAR(100) NOT NULL,
+    LoaiKhach VARCHAR(8) NOT NULL CONSTRAINT DF_KH_Loai DEFAULT 'VANG_LAI',
+    DiaChi NVARCHAR(200) NULL,
+    DienThoai VARCHAR(20) NULL,
+    CONSTRAINT CK_KH_Loai CHECK (LoaiKhach IN ('QUEN', 'VANG_LAI')),
+    CONSTRAINT CK_KH_HoTen CHECK (LEN(TRIM(HoTen)) > 0)
+);
+GO
+
+-- 2. Dat hang va nhan hang. Moi phieu giao tham chieu dung mot don.
+IF OBJECT_ID(N'dbo.DonDatHang', N'U') IS NULL
+CREATE TABLE dbo.DonDatHang (
+    MaDDH VARCHAR(12) NOT NULL PRIMARY KEY,
+    MaNCU VARCHAR(12) NOT NULL REFERENCES dbo.NhaCungUng(MaNCU),
+    MaNV VARCHAR(12) NOT NULL REFERENCES dbo.NhanVien(MaNV),
+    NgayDat DATE NOT NULL,
+    NgayNhanDuKien DATE NOT NULL,
+    CONSTRAINT CK_DDH_Ngay CHECK (NgayNhanDuKien >= NgayDat)
+);
+GO
+IF OBJECT_ID(N'dbo.CTDonDatHang', N'U') IS NULL
+CREATE TABLE dbo.CTDonDatHang (
+    MaDDH VARCHAR(12) NOT NULL REFERENCES dbo.DonDatHang(MaDDH),
+    MaNGK VARCHAR(12) NOT NULL REFERENCES dbo.NuocGiaiKhat(MaNGK),
+    SoLuongDat INT NOT NULL,
+    CONSTRAINT PK_CTDDH PRIMARY KEY (MaDDH, MaNGK),
+    CONSTRAINT CK_CTDDH_SoLuong CHECK (SoLuongDat > 0)
+);
+GO
+IF OBJECT_ID(N'dbo.PhieuGiaoHang', N'U') IS NULL
+CREATE TABLE dbo.PhieuGiaoHang (
+    MaPGH VARCHAR(12) NOT NULL PRIMARY KEY,
+    MaDDH VARCHAR(12) NOT NULL REFERENCES dbo.DonDatHang(MaDDH),
+    MaNV VARCHAR(12) NOT NULL REFERENCES dbo.NhanVien(MaNV),
+    NgayGiao DATE NOT NULL,
+    SoTienPhaiTra DECIMAL(18,2) NOT NULL,
+    CONSTRAINT UQ_PGH_Don UNIQUE (MaPGH, MaDDH),
+    CONSTRAINT CK_PGH_Tien CHECK (SoTienPhaiTra >= 0)
+);
+GO
+IF OBJECT_ID(N'dbo.CTPhieuGiaoHang', N'U') IS NULL
+CREATE TABLE dbo.CTPhieuGiaoHang (
+    MaPGH VARCHAR(12) NOT NULL,
+    MaNGK VARCHAR(12) NOT NULL,
+    MaDDH VARCHAR(12) NOT NULL,
+    SoLuongGiao INT NOT NULL,
+    CONSTRAINT PK_CTPGH PRIMARY KEY (MaPGH, MaNGK),
+    CONSTRAINT FK_CTPGH_Phieu FOREIGN KEY (MaPGH, MaDDH) REFERENCES dbo.PhieuGiaoHang(MaPGH, MaDDH),
+    CONSTRAINT FK_CTPGH_DongDat FOREIGN KEY (MaDDH, MaNGK) REFERENCES dbo.CTDonDatHang(MaDDH, MaNGK),
+    CONSTRAINT CK_CTPGH_SoLuong CHECK (SoLuongGiao > 0)
+);
+GO
+
+-- 3. Ban, hen giao va ghi no ban dau
+IF OBJECT_ID(N'dbo.HoaDon', N'U') IS NULL
+CREATE TABLE dbo.HoaDon (
+    MaHD VARCHAR(12) NOT NULL PRIMARY KEY,
+    MaKH VARCHAR(12) NOT NULL REFERENCES dbo.KhachHang(MaKH),
+    MaNV VARCHAR(12) NOT NULL REFERENCES dbo.NhanVien(MaNV),
+    NgayLap DATE NOT NULL,
+    SoTienDaTra DECIMAL(18,2) NOT NULL CONSTRAINT DF_HD_DaTra DEFAULT 0,
+    CONSTRAINT CK_HD_DaTra CHECK (SoTienDaTra >= 0)
+);
+GO
+IF OBJECT_ID(N'dbo.CTHoaDon', N'U') IS NULL
+CREATE TABLE dbo.CTHoaDon (
+    MaHD VARCHAR(12) NOT NULL REFERENCES dbo.HoaDon(MaHD),
+    MaNGK VARCHAR(12) NOT NULL REFERENCES dbo.NuocGiaiKhat(MaNGK),
+    SoLuongMua INT NOT NULL,
+    DonGiaBan DECIMAL(18,2) NOT NULL,
+    SoLuongGiaoNgay INT NOT NULL CONSTRAINT DF_CTHD_GiaoNgay DEFAULT 0,
+    CONSTRAINT PK_CTHD PRIMARY KEY (MaHD, MaNGK),
+    CONSTRAINT CK_CTHD_SoLuong CHECK (SoLuongMua > 0 AND SoLuongGiaoNgay BETWEEN 0 AND SoLuongMua),
+    CONSTRAINT CK_CTHD_DonGia CHECK (DonGiaBan > 0)
+);
+GO
+IF OBJECT_ID(N'dbo.PhieuHen', N'U') IS NULL
+CREATE TABLE dbo.PhieuHen (
+    MaPH VARCHAR(12) NOT NULL PRIMARY KEY,
+    MaHD VARCHAR(12) NOT NULL REFERENCES dbo.HoaDon(MaHD),
+    NgayHen DATE NOT NULL,
+    NgayGiaoThucTe DATE NULL,
+    TrangThai VARCHAR(8) NOT NULL CONSTRAINT DF_PH_TrangThai DEFAULT 'CHO_GIAO',
+    CONSTRAINT UQ_PH_HoaDon UNIQUE (MaPH, MaHD),
+    CONSTRAINT CK_PH_TrangThai CHECK (
+        (TrangThai = 'CHO_GIAO' AND NgayGiaoThucTe IS NULL) OR
+        (TrangThai = 'DA_GIAO' AND NgayGiaoThucTe IS NOT NULL))
+);
+GO
+IF OBJECT_ID(N'dbo.CTPhieuHen', N'U') IS NULL
+CREATE TABLE dbo.CTPhieuHen (
+    MaPH VARCHAR(12) NOT NULL,
+    MaNGK VARCHAR(12) NOT NULL,
+    MaHD VARCHAR(12) NOT NULL,
+    SoLuongHen INT NOT NULL,
+    CONSTRAINT PK_CTPH PRIMARY KEY (MaPH, MaNGK),
+    CONSTRAINT FK_CTPH_Phieu FOREIGN KEY (MaPH, MaHD) REFERENCES dbo.PhieuHen(MaPH, MaHD),
+    CONSTRAINT FK_CTPH_DongHoaDon FOREIGN KEY (MaHD, MaNGK) REFERENCES dbo.CTHoaDon(MaHD, MaNGK),
+    CONSTRAINT CK_CTPH_SoLuong CHECK (SoLuongHen > 0)
+);
+GO
+IF OBJECT_ID(N'dbo.PhieuGhiNo', N'U') IS NULL
+CREATE TABLE dbo.PhieuGhiNo (
+    MaPGN VARCHAR(12) NOT NULL PRIMARY KEY,
+    MaHD VARCHAR(12) NOT NULL UNIQUE REFERENCES dbo.HoaDon(MaHD),
+    MaNV VARCHAR(12) NOT NULL REFERENCES dbo.NhanVien(MaNV),
+    NgayLap DATE NOT NULL,
+    SoTienNo DECIMAL(18,2) NOT NULL,
+    NgayDuKienTra DATE NOT NULL,
+    LyDo NVARCHAR(250) NOT NULL,
+    CONSTRAINT CK_PGN_SoTien CHECK (SoTienNo > 0),
+    CONSTRAINT CK_PGN_Ngay CHECK (NgayDuKienTra >= NgayLap),
+    CONSTRAINT CK_PGN_LyDo CHECK (LEN(TRIM(LyDo)) > 0)
+);
+GO
+
+-- Ton kho duoc tinh tu hang da nhan tru hang thuc giao, khong luu cot ton.
+CREATE OR ALTER VIEW dbo.V_TonKho AS
+SELECT n.MaNGK, n.TenNGK, n.DonViTinh,
+       COALESCE(nhap.SoLuong, 0) - COALESCE(giaoNgay.SoLuong, 0) - COALESCE(giaoHen.SoLuong, 0) AS SoLuongTon
+FROM dbo.NuocGiaiKhat AS n
+OUTER APPLY (SELECT SUM(c.SoLuongGiao) AS SoLuong FROM dbo.CTPhieuGiaoHang AS c WHERE c.MaNGK = n.MaNGK) AS nhap
+OUTER APPLY (SELECT SUM(c.SoLuongGiaoNgay) AS SoLuong FROM dbo.CTHoaDon AS c WHERE c.MaNGK = n.MaNGK) AS giaoNgay
+OUTER APPLY (SELECT SUM(c.SoLuongHen) AS SoLuong FROM dbo.CTPhieuHen AS c
+             JOIN dbo.PhieuHen AS p ON p.MaPH = c.MaPH
+             WHERE c.MaNGK = n.MaNGK AND p.TrangThai = 'DA_GIAO') AS giaoHen;
+GO
+CREATE OR ALTER VIEW dbo.V_HoaDonTong AS
+SELECT h.MaHD, h.MaKH, h.MaNV, h.NgayLap, h.SoTienDaTra,
+       COALESCE(SUM(CAST(c.SoLuongMua AS DECIMAL(18,2)) * c.DonGiaBan), 0) AS TongTien,
+       COALESCE(SUM(CAST(c.SoLuongMua AS DECIMAL(18,2)) * c.DonGiaBan), 0) - h.SoTienDaTra AS ConNo
+FROM dbo.HoaDon AS h LEFT JOIN dbo.CTHoaDon AS c ON c.MaHD = h.MaHD
+GROUP BY h.MaHD, h.MaKH, h.MaNV, h.NgayLap, h.SoTienDaTra;
+GO
+
+-- Du lieu mau phu hop mockup F01-F06: 100 dat, 80 nhan, 80 giao ngay, 20 hen.
+IF NOT EXISTS (SELECT 1 FROM dbo.NhaCungUng WHERE MaNCU = 'NCU01')
+    INSERT dbo.NhaCungUng VALUES ('NCU01', N'Công ty Pepsi Việt Nam', N'TP. Hồ Chí Minh', '02838220000');
+IF NOT EXISTS (SELECT 1 FROM dbo.NhaCungUng WHERE MaNCU = 'NCU02')
+    INSERT dbo.NhaCungUng VALUES ('NCU02', N'Công ty Coca Cola Việt Nam', N'TP. Hồ Chí Minh', '02838221111');
+IF NOT EXISTS (SELECT 1 FROM dbo.LoaiNGK WHERE MaLoai = 'L01')
+    INSERT dbo.LoaiNGK VALUES ('L01', N'Pepsi', 'NCU01');
+IF NOT EXISTS (SELECT 1 FROM dbo.LoaiNGK WHERE MaLoai = 'L02')
+    INSERT dbo.LoaiNGK VALUES ('L02', N'Coca Cola', 'NCU02');
+IF NOT EXISTS (SELECT 1 FROM dbo.NuocGiaiKhat WHERE MaNGK = 'NGK01')
+    INSERT dbo.NuocGiaiKhat VALUES ('NGK01', N'Pepsi lon 330ml', N'Lon', 'L01');
+IF NOT EXISTS (SELECT 1 FROM dbo.NuocGiaiKhat WHERE MaNGK = 'NGK02')
+    INSERT dbo.NuocGiaiKhat VALUES ('NGK02', N'Coca Cola lon 330ml', N'Lon', 'L02');
+IF NOT EXISTS (SELECT 1 FROM dbo.NhanVien WHERE MaNV = 'NV01')
+    INSERT dbo.NhanVien VALUES ('NV01', N'Nguyễn Văn Bình');
+IF NOT EXISTS (SELECT 1 FROM dbo.KhachHang WHERE MaKH = 'KH01')
+    INSERT dbo.KhachHang VALUES ('KH01', N'Trần Thị Lan', 'QUEN', N'12 Nguyễn Huệ, TP. Hồ Chí Minh', '0901234567');
+IF NOT EXISTS (SELECT 1 FROM dbo.KhachHang WHERE MaKH = 'KH02')
+    INSERT dbo.KhachHang VALUES ('KH02', N'Khách vãng lai', 'VANG_LAI', NULL, NULL);
+IF NOT EXISTS (SELECT 1 FROM dbo.DonDatHang WHERE MaDDH = 'DDH001')
+    INSERT dbo.DonDatHang VALUES ('DDH001', 'NCU01', 'NV01', '2026-11-01', '2026-11-02');
+IF NOT EXISTS (SELECT 1 FROM dbo.CTDonDatHang WHERE MaDDH = 'DDH001' AND MaNGK = 'NGK01')
+    INSERT dbo.CTDonDatHang VALUES ('DDH001', 'NGK01', 100);
+IF NOT EXISTS (SELECT 1 FROM dbo.PhieuGiaoHang WHERE MaPGH = 'PGH001')
+    INSERT dbo.PhieuGiaoHang VALUES ('PGH001', 'DDH001', 'NV01', '2026-11-01', 800000);
+IF NOT EXISTS (SELECT 1 FROM dbo.CTPhieuGiaoHang WHERE MaPGH = 'PGH001' AND MaNGK = 'NGK01')
+    INSERT dbo.CTPhieuGiaoHang VALUES ('PGH001', 'NGK01', 'DDH001', 80);
+IF NOT EXISTS (SELECT 1 FROM dbo.HoaDon WHERE MaHD = 'HD001')
+    INSERT dbo.HoaDon VALUES ('HD001', 'KH01', 'NV01', '2026-11-01', 400000);
+IF NOT EXISTS (SELECT 1 FROM dbo.CTHoaDon WHERE MaHD = 'HD001' AND MaNGK = 'NGK01')
+    INSERT dbo.CTHoaDon VALUES ('HD001', 'NGK01', 100, 10000, 80);
+IF NOT EXISTS (SELECT 1 FROM dbo.PhieuHen WHERE MaPH = 'PH001')
+    INSERT dbo.PhieuHen VALUES ('PH001', 'HD001', '2026-11-02', NULL, 'CHO_GIAO');
+IF NOT EXISTS (SELECT 1 FROM dbo.CTPhieuHen WHERE MaPH = 'PH001' AND MaNGK = 'NGK01')
+    INSERT dbo.CTPhieuHen VALUES ('PH001', 'NGK01', 'HD001', 20);
+IF NOT EXISTS (SELECT 1 FROM dbo.PhieuGhiNo WHERE MaPGN = 'PGN001')
+    INSERT dbo.PhieuGhiNo VALUES ('PGN001', 'HD001', 'NV01', '2026-11-01', 600000, '2026-11-05', N'Khách đề nghị trả chậm');
+GO
+
+SELECT (SELECT COUNT(*) FROM sys.tables) AS SoBang,
+       (SELECT SoLuongTon FROM dbo.V_TonKho WHERE MaNGK = 'NGK01') AS TonNGK01,
+       (SELECT ConNo FROM dbo.V_HoaDonTong WHERE MaHD = 'HD001') AS NoBanDauHD001;
+GO
