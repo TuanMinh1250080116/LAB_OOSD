@@ -1,0 +1,49 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+class DanhMucService {
+ +luu(dto) : KetQuaDTO
+ +xoa(nhom, ma) : KetQuaDTO
+}
+class NhapHangService {
+ +lapDon(dto : DonDTO) : KetQuaDTO
+ +nhanHang(dto : NhanDTO) : KetQuaDTO
+}
+class BanHangService {
+ +banHang(dto : BanDTO) : KetQuaDTO
+ +lapHen(dto : HenDTO) : KetQuaDTO
+ +xacNhanGiao(maPH, ngay) : KetQuaDTO
+}
+class CongNoService {
+ +kiemTraNo(hd) : Decimal
+ +lapPhieu(dto : NoDTO) : KetQuaDTO
+}
+class KhoService {
+ +ton(maNGK) : int
+}
+class TraCuuService {
+ +traCuu(dto : TraCuuDTO) : KetQuaDTO
+}
+class CuaHangRepository {
+ +begin()
+ +lock(loai, ma)
+ +load(loai, ma)
+ +query(dto : QueryDTO)
+ +save(aggregate)
+ +commit()
+ +rollback()
+}
+DanhMucService ..> CuaHangRepository
+NhapHangService ..> CuaHangRepository
+BanHangService ..> CuaHangRepository
+CongNoService ..> CuaHangRepository
+KhoService ..> CuaHangRepository
+TraCuuService ..> CuaHangRepository
+BanHangService ..> KhoService
+
+@enduml

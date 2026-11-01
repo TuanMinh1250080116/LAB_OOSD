@@ -1,0 +1,15 @@
+@startuml
+title UC11 - Lap phieu muon (Activity)
+|Thu thu|
+start
+:Tim thong tin dang ky (ma dang ky);
+|He thong|
+:Hien thi yeu cau dang ky;
+|Thu thu|
+:Xac nhan giao sach;
+|He thong|
+:Tao phieu muon;
+:Luu ngay muon + han tra + trang thai "Dang muon";
+:Hoan tat;
+stop
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+skinparam backgroundColor white
+|Bệnh nhân|
+start
+:Đăng ký khám / cung cấp mã hồ sơ;
+|Tiếp nhận|
+:Tra cứu hồ sơ;
+if (Đã có hồ sơ?) then (không)
+  :Lập phiếu đăng ký;
+  |Thu ngân|
+  :Thu lệ phí năm;
+  |Tiếp nhận|
+  :Cấp hồ sơ bệnh án;
+endif
+if (Khám định kỳ?) then (có)
+  :Kiểm tra lệ phí năm và quyền lợi theo quý;
+  if (Hợp lệ?) then (không)
+    :Thông báo cần hoàn tất lệ phí / đổi lịch;
+    stop
+  endif
+endif
+:Tạo lượt khám và chuyển bác sĩ;
+|Bác sĩ|
+:Xem lịch sử và phản ứng thuốc;
+:Khám, ghi triệu chứng / chẩn đoán;
+if (Cần xét nghiệm?) then (có)
+  :Lập chỉ định xét nghiệm;
+  |Kỹ thuật viên XN|
+  :Thực hiện và nhập kết quả;
+  |Bác sĩ|
+  :Đọc kết quả, cập nhật chẩn đoán;
+endif
+if (Cần dùng thuốc?) then (có)
+  :Chọn thuốc, liều, số ngày;
+  :Kiểm tra phản ứng thuốc và ký toa;
+  |Bệnh nhân|
+  :Nhận toa thuốc;
+else (không)
+  |Bác sĩ|
+  :Ghi lời dặn, không lập toa;
+endif
+stop
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+title UC06 - Kiem tra ma the thu vien (Sequence)
+participant "UC05 - Dang ky muon" as UC05
+participant "UC06 - Kiem tra the" as UC06
+database "CSDL" as DB
+
+UC05 -> UC06 : Kiem tra ma the
+UC06 -> DB : Truy van du lieu the
+DB --> UC06 : Thong tin the (ton tai / hieu luc)
+UC06 --> UC05 : Hop le / Khong hop le
+@enduml

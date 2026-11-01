@@ -1,0 +1,24 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+actor "Nhân viên" as NV
+boundary FrmDatPhong as F
+control DatPhongService as S
+database "SQL Server / Db" as DB
+NV -> F : Nhập và yêu cầu xử lý
+F -> S : TaoDatPhong(...)
+S -> S : Kiểm tra ngày, sức chứa và PhongTrungLich
+alt Dữ liệu hợp lệ
+ S -> DB : Lưu PhieuDatPhong, ChiTietDatPhong và cập nhật phòng
+ DB --> S : Kết quả
+ S --> F : Thành công / dữ liệu
+else Không hợp lệ hoặc lỗi
+ S --> F : Thông báo lỗi; không ghi dở dang
+end
+F --> NV : Hiển thị kết quả
+@enduml

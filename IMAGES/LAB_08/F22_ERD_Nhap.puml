@@ -1,0 +1,67 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide circle
+entity NhaCungUng {
+  MaNCU : VARCHAR(12) <<PK>>
+  TenNCU : NVARCHAR(120)
+  DiaChi : NVARCHAR(200)
+  DienThoai : VARCHAR(20)
+}
+entity LoaiNGK {
+  MaLoai : VARCHAR(12) <<PK>>
+  TenLoai : NVARCHAR(80)
+  MaNCU : VARCHAR(12) <<FK>>
+}
+entity NuocGiaiKhat {
+  MaNGK : VARCHAR(12) <<PK>>
+  TenNGK : NVARCHAR(100)
+  DonViTinh : NVARCHAR(20)
+  MaLoai : VARCHAR(12) <<FK>>
+}
+entity DonDatHang {
+  MaDDH : VARCHAR(12) <<PK>>
+  MaNCU : VARCHAR(12) <<FK>>
+  MaNV : VARCHAR(12) <<FK>>
+  NgayDat : DATE
+  NgayNhanDuKien : DATE
+}
+entity CTDonDatHang {
+  MaDDH : VARCHAR(12) <<PK/FK>>
+  MaNGK : VARCHAR(12) <<PK/FK>>
+  SoLuongDat : INT
+}
+entity PhieuGiaoHang {
+  MaPGH : VARCHAR(12) <<PK>>
+  MaDDH : VARCHAR(12) <<FK>>
+  MaNV : VARCHAR(12) <<FK>>
+  NgayGiao : DATE
+  SoTienPhaiTra : DECIMAL(18,2)
+}
+entity CTPhieuGiaoHang {
+  MaPGH : VARCHAR(12) <<PK/FK>>
+  MaNGK : VARCHAR(12) <<PK/FK>>
+  MaDDH : VARCHAR(12) <<FK>>
+  SoLuongGiao : INT
+}
+entity NhanVien {
+  MaNV : VARCHAR(12) <<PK>>
+  HoTen : NVARCHAR(100)
+}
+NhaCungUng "1" -- "0..*" LoaiNGK
+LoaiNGK "1" -- "0..*" NuocGiaiKhat
+NhaCungUng "1" -- "0..*" DonDatHang
+NhanVien "1" -- "0..*" DonDatHang
+DonDatHang "1" -- "1..*" CTDonDatHang
+NuocGiaiKhat "1" -- "0..*" CTDonDatHang
+DonDatHang "1" -- "0..3" PhieuGiaoHang
+NhanVien "1" -- "0..*" PhieuGiaoHang
+PhieuGiaoHang "1" -- "1..*" CTPhieuGiaoHang
+CTDonDatHang "1" -- "0..3" CTPhieuGiaoHang
+
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide circle
+class NhaCungUng {
+  MaNCU : VARCHAR(12) <<PK>>
+  TenNCU : NVARCHAR(120)
+  DiaChi : NVARCHAR(200)
+  DienThoai : VARCHAR(20)
+  --
+  +capNhatLienHe(dto)
+}
+class LoaiNGK {
+  MaLoai : VARCHAR(12) <<PK>>
+  TenLoai : NVARCHAR(80)
+  MaNCU : VARCHAR(12) <<FK>>
+  --
+  +capNhatTen(ten)
+}
+class NuocGiaiKhat {
+  MaNGK : VARCHAR(12) <<PK>>
+  TenNGK : NVARCHAR(100)
+  DonViTinh : NVARCHAR(20)
+  MaLoai : VARCHAR(12) <<FK>>
+  --
+  +capNhatThongTin(dto)
+}
+class KhachHang {
+  MaKH : VARCHAR(12) <<PK>>
+  HoTen : NVARCHAR(100)
+  LoaiKhach : VARCHAR(8)
+  DiaChi : NVARCHAR(200)
+  DienThoai : VARCHAR(20)
+  --
+  +laKhachQuen() : boolean
+  +capNhatLienHe(dto)
+}
+NhaCungUng "1" -- "0..*" LoaiNGK
+LoaiNGK "1" -- "0..*" NuocGiaiKhat
+
+@enduml

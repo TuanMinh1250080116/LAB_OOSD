@@ -1,0 +1,14 @@
+@startuml
+title UC02 - Xem chi tiet tai lieu (Sequence)
+actor "Doc gia" as DG
+participant "Giao dien" as UI
+participant "He thong" as HT
+database "CSDL" as DB
+
+DG -> UI : Chon tai lieu
+UI -> HT : Yeu cau chi tiet
+HT -> DB : Lay thong tin + so ban kha dung
+DB --> HT : Tra du lieu
+HT --> UI : Chi tiet tai lieu
+UI --> DG : Hien thi chi tiet + so ban
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+skinparam dpi 180
+salt
+{+
+{* Đăng ký mượn }
+{
+Mã thẻ | "                         "
+Tài liệu | "                         "
+Số lượng | "                         "
+Ngày dự kiến nhận | "                         "
+}
+{ [Kiểm tra] | [Đăng ký] | [Hủy] }
+}
+@enduml

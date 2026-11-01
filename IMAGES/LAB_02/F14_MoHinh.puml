@@ -1,0 +1,19 @@
+@startuml
+title UC11 - Lap phieu muon (Sequence)
+actor "Thu thu" as TT
+participant "Giao dien" as UI
+participant "Loan System" as LS
+database "CSDL" as DB
+
+TT -> UI : Tim thong tin dang ky
+UI -> LS : Yeu cau chi tiet dang ky
+LS -> DB : Lay thong tin
+DB --> LS : Du lieu dang ky
+LS --> UI : Hien thi yeu cau
+TT -> UI : Xac nhan giao sach
+UI -> LS : Gui xac nhan
+LS -> DB : Tao phieu muon (ngay muon, han tra, "Dang muon")
+DB --> LS : Thanh cong
+LS --> UI : Thong bao hoan tat
+UI --> TT : Xac nhan
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+skinparam backgroundColor white
+[*] --> DA_HEN : CSKH đặt lịch
+DA_HEN --> DA_DEN : Tiếp nhận tạo lượt khám
+DA_HEN --> HUY : Bệnh nhân hủy / dời lịch
+DA_DEN --> [*]
+HUY --> [*]
+note right of DA_HEN
+  Với khám định kỳ: phí năm đã đóng,
+  chưa có lịch khác trong cùng quý.
+end note
+@enduml

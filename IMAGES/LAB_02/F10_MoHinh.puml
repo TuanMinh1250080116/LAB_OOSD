@@ -1,0 +1,58 @@
+@startuml
+title UC05 - Dang ky muon sach (Sequence)
+actor "Doc gia" as DG
+participant "Giao dien muon sach" as UI
+participant "Module muon sach" as MMS
+participant "Module kiem tra the (UC06)" as UC06
+database "CSDL" as DB
+
+DG -> UI : Chon "Dang ky muon"
+UI -> MMS : Gui yeu cau
+MMS -> DB : Kiem tra so ban kha dung
+
+alt Het sach
+    MMS --> UI : Thong bao het sach
+    UI --> DG : Hien thi + goi y dang ky sau
+else Con sach
+    MMS --> UI : Hien thi form
+    UI --> DG : Yeu cau nhap ma the
+    DG -> UI : Nhap ma the + Xac nhan
+    UI -> MMS : Gui ma the
+
+    ref over MMS, UC06 : Kiem tra ma the thu vien (UC06)
+    MMS -> UC06 : Kiem tra ma the
+    UC06 -> DB : Truy van the
+    DB --> UC06 : Thong tin the
+    UC06 --> MMS : Hop le / Khong hop le
+
+    alt Ma the khong hop le
+        MMS --> UI : "Ma the khong hop le"
+        UI --> DG : Yeu cau nhap lai (khoa sau 3 lan sai)
+    else Ma the hop le
+        MMS -> DB : Kiem tra so sach dang muon
+        MMS -> DB : Kiem tra phieu qua han
+
+        alt Vuot han muc
+            MMS --> UI : Tu choi dang ky
+            UI --> DG : Thong bao tu choi
+        else Co phieu qua han
+            MMS --> UI : Tu choi + nhac tra sach
+            UI --> DG : Thong bao
+        else Du dieu kien
+            MMS -> DB : Tao yeu cau muon
+            alt Loi ghi du lieu
+                DB --> MMS : Loi
+                MMS -> DB : Rollback so ban kha dung
+                MMS --> UI : Thong bao loi
+                UI --> DG : Hien thi loi
+            else Thanh cong
+                DB --> MMS : Luu thanh cong
+                MMS -> DB : Cap nhat so ban kha dung
+                MMS -> MMS : Tao ma dang ky + han nhan sach
+                MMS --> UI : Ma dang ky + han nhan
+                UI --> DG : Hien thi ma dang ky
+            end
+        end
+    end
+end
+@enduml

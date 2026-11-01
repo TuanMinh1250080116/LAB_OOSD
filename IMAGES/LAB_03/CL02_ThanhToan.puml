@@ -1,0 +1,104 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide circle
+class PhieuDatPhong {
+ SoPhieuDat <<ID>>
+ MaKhach
+ MaNVLeTan
+ NgayLap
+ NgayNhan
+ NgayTraDuKien
+ TienCoc
+ KenhDat
+ TrangThai
+ NgayNhanThucTe
+ NgayTraThucTe
+}
+class DichVu {
+ MaDV <<ID>>
+ TenDV
+ DonViTinh
+ DonGia
+}
+class PhieuSuDungDV {
+ SoPhieuSDDV <<ID>>
+ SoPhieuDat
+ SoPhong
+ NgaySuDung
+ MaNV
+}
+class ChiTietPhieuSuDungDV {
+ SoPhieuSDDV <<ID>>
+ MaDV <<ID>>
+ SoLuong
+ DonGia
+ ThanhTien
+}
+class QuyDinhDenBu {
+ MaQuyDinh <<ID>>
+ MaLoaiTN
+ MucDoThietHai
+ MucDenBu
+}
+class PhieuDenBu {
+ SoPhieuDenBu <<ID>>
+ SoPhieuDat
+ SoPhong
+ NgayLap
+ MaNV
+ TongTien
+}
+class ChiTietPhieuDenBu {
+ SoPhieuDenBu <<ID>>
+ MaTienNghi <<ID>>
+ MucDoThietHai
+ SoTien
+}
+class HoaDon {
+ SoHoaDon <<ID>>
+ SoPhieuDat
+ NgayLap
+ MaNV
+ SoNgayTinhTien
+ TienPhong
+ TienDichVu
+ TongTien
+ TrangThai
+}
+class ThanhToan {
+ MaThanhToan <<ID>>
+ SoHoaDon
+ NgayThanhToan
+ HinhThuc
+ SoTien
+}
+class TienNghi {
+ MaTienNghi <<ID>>
+ MaLoaiTN
+ SoThuTu
+ TinhTrangHienTai
+}
+class NhanVien {
+ MaNV <<ID>>
+ HoTen
+ VaiTro
+ SoDienThoai
+}
+NhanVien "1" -- "0..*" PhieuDatPhong : MaNVLeTan
+NhanVien "1" -- "0..*" PhieuSuDungDV : MaNV
+PhieuSuDungDV "1" -- "0..*" ChiTietPhieuSuDungDV : SoPhieuSDDV
+DichVu "1" -- "0..*" ChiTietPhieuSuDungDV : MaDV
+NhanVien "1" -- "0..*" PhieuDenBu : MaNV
+PhieuDenBu "1" -- "0..*" ChiTietPhieuDenBu : SoPhieuDenBu
+TienNghi "1" -- "0..*" ChiTietPhieuDenBu : MaTienNghi
+PhieuDatPhong "1" -- "0..1" HoaDon : SoPhieuDat
+NhanVien "1" -- "0..*" HoaDon : MaNV
+HoaDon "1" -- "0..*" ThanhToan : SoHoaDon
+
+@enduml

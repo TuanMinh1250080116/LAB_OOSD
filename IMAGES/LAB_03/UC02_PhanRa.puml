@@ -1,0 +1,20 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+left to right direction
+actor "Nhân viên khách sạn" as NV
+rectangle "Phòng và tiện nghi" {
+usecase "Quản lý phòng" as UC0
+usecase "Quản lý tiện nghi" as UC1
+usecase "Lập phiếu lắp đặt" as UC2
+}
+NV -- UC0
+NV -- UC1
+NV -- UC2
+
+@enduml

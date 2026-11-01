@@ -1,0 +1,20 @@
+@startuml
+title UC08 - Dang nhap (Sequence)
+actor "Nguoi dung" as ND
+participant "Login UI" as UI
+participant "Authentication System" as AUTH
+database "CSDL" as DB
+
+ND -> UI : Nhap username / password
+UI -> AUTH : Xac thuc
+AUTH -> DB : Lay tai khoan
+DB --> AUTH : Du lieu tai khoan
+AUTH -> AUTH : Kiem tra mat khau
+alt Hop le
+    AUTH --> UI : Dang nhap thanh cong
+    UI --> ND : Cho phep truy cap
+else Khong hop le
+    AUTH --> UI : Loi xac thuc
+    UI --> ND : Thong bao loi
+end
+@enduml

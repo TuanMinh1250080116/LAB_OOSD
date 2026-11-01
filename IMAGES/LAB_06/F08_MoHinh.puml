@@ -1,0 +1,47 @@
+@startuml
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+left to right direction
+package "Boundary - WinForms" {
+ class MainForm <<boundary>> {
+  +BuildRegister()
+  +BuildRecords()
+  +BuildAppointment()
+  +BuildVisit()
+  +BuildTests()
+  +BuildPrescription()
+  +BuildFinish()
+  +BuildReaction()
+ }
+}
+package "Control - nghiệp vụ" {
+ class ClinicService <<control>> {
+  +Register(...): string
+  +RenewFee(...): string
+  +Search(...): DataTable
+  +History(...): DataTable
+  +Appointment(...): string
+  +StartVisit(...): string
+  +Symptom(...): void
+  +OrderTest(...): string
+  +TestResult(...): string
+  +Prescribe(...): string
+  +Finish(...): void
+  +AdverseReaction(...): string
+ }
+}
+package "Data - SqlClient" {
+ class Db <<data>> {
+  +Open(): SqlConnection
+  +Query(sql,params): DataTable
+  +Scalar(sql,params): object
+  +Atomic(action): T
+  +Id(sequence,prefix): string
+  +Exec(sql,params): void
+ }
+ class "SQL Server Express LocalDB QuanLyBenhAn" as SqlServer <<database>>
+}
+MainForm --> ClinicService : gọi nghiệp vụ
+ClinicService --> Db : truy vấn / transaction
+Db --> SqlServer : SQL bind variables
+@enduml

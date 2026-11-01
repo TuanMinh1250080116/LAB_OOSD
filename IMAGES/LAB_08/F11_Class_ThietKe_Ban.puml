@@ -1,0 +1,51 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide circle
+class HoaDon {
+  MaHD : VARCHAR(12) <<PK>>
+  MaKH : VARCHAR(12) <<FK>>
+  MaNV : VARCHAR(12) <<FK>>
+  NgayLap : DATE
+  SoTienDaTra : DECIMAL(18,2)
+  --
+  +conPhaiTra(tong) : Decimal
+}
+class CTHoaDon {
+  MaHD : VARCHAR(12) <<PK/FK>>
+  MaNGK : VARCHAR(12) <<PK/FK>>
+  SoLuongMua : INT
+  DonGiaBan : DECIMAL(18,2)
+  SoLuongGiaoNgay : INT
+  --
+  +thanhTien() : Decimal
+}
+class PhieuHen {
+  MaPH : VARCHAR(12) <<PK>>
+  MaHD : VARCHAR(12) <<FK>>
+  NgayHen : DATE
+  NgayGiaoThucTe : DATE
+  TrangThai : VARCHAR(8)
+  --
+  +xacNhanGiao(ngay)
+  +doiNgayHen(ngay)
+}
+class CTPhieuHen {
+  MaPH : VARCHAR(12) <<PK/FK>>
+  MaNGK : VARCHAR(12) <<PK/FK>>
+  MaHD : VARCHAR(12) <<FK>>
+  SoLuongHen : INT
+  --
+  +kiemTraSoLuong() : boolean
+}
+HoaDon "1" -- "1..*" CTHoaDon
+HoaDon "1" -- "0..*" PhieuHen
+PhieuHen "1" -- "1..*" CTPhieuHen
+CTHoaDon "1" -- "0..*" CTPhieuHen
+
+@enduml

@@ -1,0 +1,70 @@
+@startuml
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam dpi 140
+skinparam shadowing true
+skinparam BackgroundColor #FFFFFF
+skinparam ArrowColor #8B0000
+skinparam ActorBorderColor #8B0000
+skinparam ActorBackgroundColor #FFFFCC
+skinparam UsecaseBackgroundColor #FFFFCC
+skinparam UsecaseBorderColor #8B0000
+skinparam ClassBackgroundColor #FFFFCC
+skinparam ClassBorderColor #8B0000
+skinparam ClassHeaderBackgroundColor #FFF2A8
+skinparam PackageBackgroundColor #FAFAF0
+skinparam PackageBorderColor #8B0000
+skinparam StateBackgroundColor #FFFFCC
+skinparam StateBorderColor #8B0000
+skinparam ActivityBackgroundColor #FFFFCC
+skinparam ActivityBorderColor #8B0000
+skinparam PartitionBorderColor #8B0000
+skinparam ParticipantBackgroundColor #FFFFCC
+skinparam ParticipantBorderColor #8B0000
+skinparam SequenceLifeLineBorderColor #8B0000
+skinparam NoteBackgroundColor #E8F4FF
+skinparam RectangleBorderColor #8B0000
+left to right direction
+title Sơ đồ use case tổng quát - chia theo phân hệ
+actor "Khách hàng" as KH
+actor "NV kinh doanh" as KD
+actor "NV điều hành" as DH
+actor "Hướng dẫn viên" as HDV
+actor "Kế toán" as KT
+actor "Website" as WEB <<external>>
+actor "Cty bảo hiểm" as BH <<external>>
+actor "Mail server" as MAIL <<external>>
+package "Phân hệ Tour" {
+  usecase "Xem tour" as U1
+  usecase "Quản lý tour" as U2
+  usecase "Quản lý lịch chuyến" as U3
+}
+package "Phân hệ Bán hàng" {
+  usecase "Đăng ký tour" as U4
+  usecase "Quản lý khách" as U5
+  usecase "Khảo sát khách" as U6
+}
+package "Phân hệ Điều hành" {
+  usecase "Phân công HDV" as U7
+  usecase "Theo dõi tour" as U8
+}
+package "Phân hệ Kế toán" {
+  usecase "Thanh toán đoàn" as U9
+  usecase "Bảng lương" as U10
+}
+KH --> U1
+KH --> U4
+KD --> U4
+KD --> U5
+KD --> U6
+DH --> U2
+DH --> U3
+DH --> U7
+DH --> U8
+HDV --> U8
+KT --> U9
+KT --> U10
+U1 --> WEB
+U4 --> BH
+U6 --> MAIL
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+title Biểu đồ tuần tự – UC03.1 Thêm sản phẩm vào giỏ hàng
+autonumber
+actor "Khách" as U
+boundary "FrmSanPham" as F
+control "GioHangService" as C
+boundary "IHeThongQuanLySanPham" as SP
+entity "GioHang" as G
+database "SQL Server ESHOP" as DB
+U -> F : Chọn nhóm sản phẩm
+F -> SP : LayDanhSach(maNhom)
+SP --> F : danh sách SanPham
+U -> F : Chọn sản phẩm, nhập số lượng,\nbấm "Thêm vào giỏ"
+F -> C : ThemVaoGio(maGioHang, maSP, soLuong)
+C -> SP : LaySanPham(maSP)
+SP --> C : SanPham(giaBan, tinhTrang)
+alt tinhTrang = "Hết hàng"
+  C --> F : Fail("Sản phẩm đã hết hàng")
+  F --> U : Thông báo
+else Còn hàng
+  opt Chưa có giỏ hàng (phiên mới)
+    C -> DB : INSERT GioHang (MaKH có thể NULL)
+    C -> G ** : new GioHang
+  end
+  C -> DB : MERGE ChiTietGioHang\n(có rồi thì cộng dồn số lượng)
+  DB --> C : OK
+  C --> F : Ok(tổng số lượng trong giỏ)
+  F --> U : Cập nhật biểu tượng "Giỏ hàng (n)"
+end
+@enduml

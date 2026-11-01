@@ -1,0 +1,48 @@
+@startuml
+title UC15 - Duyet yeu cau dat mua (Activity)
+|Thu thu / Quan ly thu vien|
+start
+:Mo danh sach yeu cau;
+|He thong|
+:Hien thi yeu cau "Cho duyet";
+|Thu thu / Quan ly thu vien|
+:Chon yeu cau;
+:Xem chi tiet;
+
+if (Chap nhan hay Tu choi?) then (Chap nhan)
+  |He thong|
+  :Cap nhat trang thai "Chap nhan";
+  :Ghi nhan ma thu thu duyet;
+  :Kich hoat dich vu email;
+  |Mail Server|
+  :Gui email cho doc gia;
+  |He thong|
+  if (Mail server loi?) then (co)
+    :Van luu trang thai duyet;
+    :Dua tac vu email vao hang doi nen;
+    :Thu gui lai sau;
+    stop
+  else (khong)
+    :Bao xu ly thanh cong;
+    stop
+  endif
+else (Tu choi)
+  |He thong|
+  :Yeu cau ly do;
+  |Thu thu / Quan ly thu vien|
+  :Nhap ly do;
+  :Nhan "Xac nhan tu choi";
+  |He thong|
+  :Cap nhat trang thai "Tu choi";
+  :Luu ly do;
+  |Mail Server|
+  :Gui email kem ly do cho doc gia;
+  |He thong|
+  if (Mail server loi?) then (co)
+    :Van luu trang thai + dua vao hang doi nen;
+    stop
+  else (khong)
+    stop
+  endif
+endif
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+title UC09 - Gui yeu cau dat mua (Activity)
+|Doc gia (da dang nhap)|
+start
+:Mo "De xuat dat mua sach";
+|He thong|
+:Hien thi form;
+|Doc gia|
+:Nhap ten sach, tac gia, NXB, nam XB, ISBN, ly do de xuat;
+:Nhan "Gui yeu cau";
+|He thong|
+:Kiem tra tinh hop le du lieu;
+
+if (Du lieu hop le?) then (khong)
+  :Danh dau truong loi;
+  :Yeu cau nhap lai;
+  stop
+else (co)
+  :Kiem tra sach da ton tai trong danh muc;
+
+  if (Da ton tai?) then (chua)
+    :Luu yeu cau, trang thai "Cho duyet";
+    :Tao ma theo doi;
+    :Hien thi thanh cong;
+    stop
+  else (da ton tai)
+    :Hien thi canh bao + lien ket tai lieu dang co;
+    :Hoi nguoi dung co muon tiep tuc gui de xuat mua them ban in?;
+    note right: Tai lieu KHONG dac ta tiep flow sau buoc nay
+    stop
+  endif
+endif
+@enduml

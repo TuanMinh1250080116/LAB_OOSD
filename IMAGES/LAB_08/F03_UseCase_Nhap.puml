@@ -1,0 +1,23 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+left to right direction
+actor "Nhân viên cửa hàng" as NV
+rectangle "Tiếp nhận hàng theo đơn" {
+usecase "Tiếp nhận hàng nhập" as UC03
+usecase "Đối chiếu đơn và dòng hàng" as DC
+usecase "Lưu phiếu giao và chi tiết" as PGH
+}
+NV -- UC03
+UC03 ..> DC : <<include>>
+UC03 ..> PGH : <<include>>
+note bottom of DC
+Đúng mặt hàng; nhận dồn không vượt đặt
+Không quá 3 phiếu trên một đơn
+end note
+@enduml

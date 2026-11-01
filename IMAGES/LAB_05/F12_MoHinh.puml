@@ -1,0 +1,87 @@
+@startchen
+title ERD theo ký hiệu Chen
+entity TOUR {
+  MaTour <<key>>
+  TenTour
+  SoNgay
+  DonGia
+}
+entity DIA_DANH {
+  MaDiaDanh <<key>>
+  TenDiaDanh
+}
+entity DIEM_THAM_QUAN {
+  MaDTQ <<key>>
+  TenDTQ
+}
+entity KHACH_DOAN {
+  MaKD <<key>>
+  TenCoQuan
+}
+entity PHIEU_DOAN {
+  SoPhieu <<key>>
+  NgayDi
+  SoNguoi
+  TienCoc
+}
+entity NGUOI_DI_CUNG <<weak>> {
+  STT <<key>>
+  HoTen
+}
+entity CHUYEN_DI {
+  MaChuyen <<key>>
+  NgayDi
+  SoCho
+}
+entity KHACH_LE {
+  MaKL <<key>>
+  HoTen
+}
+entity NHAN_VIEN {
+  MaNV <<key>>
+  HoTen
+  LuongCanBan
+}
+relationship DUNG_CHAN {
+  ThuTu
+  KhachSan
+}
+relationship CO_DIEM {
+}
+relationship DANG_KY {
+}
+relationship THEO_TOUR {
+}
+relationship GOM <<identifying>> {
+}
+relationship CO_LICH {
+}
+relationship MUA_VE {
+  SoNguoi
+  ThanhTien
+}
+relationship DAN_DOAN {
+  LuongTour
+}
+relationship DAN_CHUYEN {
+  LuongTour
+}
+TOUR -N- DUNG_CHAN
+DUNG_CHAN -M- DIA_DANH
+TOUR -N- CO_DIEM
+CO_DIEM -M- DIEM_THAM_QUAN
+KHACH_DOAN -1- DANG_KY
+DANG_KY -N- PHIEU_DOAN
+PHIEU_DOAN -N- THEO_TOUR
+THEO_TOUR -1- TOUR
+PHIEU_DOAN -1- GOM
+GOM =N= NGUOI_DI_CUNG
+TOUR -1- CO_LICH
+CO_LICH -N- CHUYEN_DI
+KHACH_LE -M- MUA_VE
+MUA_VE -N- CHUYEN_DI
+NHAN_VIEN -M- DAN_DOAN
+DAN_DOAN -N- PHIEU_DOAN
+NHAN_VIEN -1- DAN_CHUYEN
+DAN_CHUYEN -N- CHUYEN_DI
+@endchen

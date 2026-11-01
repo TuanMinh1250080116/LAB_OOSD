@@ -1,0 +1,91 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide circle
+class NhanVien {
+ MaNV <<ID>>
+ HoTen
+ VaiTro
+ SoDienThoai
+}
+class KhuVuc {
+ MaKhuVuc <<ID>>
+ TenKhuVuc
+}
+class Phong {
+ SoPhong <<ID>>
+ MaKhuVuc
+ SoNguoiToiDa
+ DonGiaNgay
+ TrangThai
+}
+class LoaiTienNghi {
+ MaLoaiTN <<ID>>
+ TenLoaiTN
+}
+class TienNghi {
+ MaTienNghi <<ID>>
+ MaLoaiTN
+ SoThuTu
+ TinhTrangHienTai
+}
+class PhieuLapDat {
+ SoPhieuLapDat <<ID>>
+ MaTienNghi
+ SoPhong
+ NgayLap
+ TinhTrang
+ MaNV
+ GhiChu
+}
+class KhachHang {
+ MaKhach <<ID>>
+ HoTen
+ SoCMND
+ QuocTich
+ SoDienThoai
+}
+class PhieuDatPhong {
+ SoPhieuDat <<ID>>
+ MaKhach
+ MaNVLeTan
+ NgayLap
+ NgayNhan
+ NgayTraDuKien
+ TienCoc
+ KenhDat
+ TrangThai
+ NgayNhanThucTe
+ NgayTraThucTe
+}
+class ChiTietDatPhong {
+ SoPhieuDat <<ID>>
+ SoPhong <<ID>>
+ SoNguoi
+ DonGiaApDung
+}
+class NguoiLuuTru {
+ MaNguoiLT <<ID>>
+ SoPhieuDat
+ SoPhong
+ HoTen
+ SoCMND
+ QuocTich
+}
+KhuVuc "1" -- "0..*" Phong : MaKhuVuc
+LoaiTienNghi "1" -- "0..*" TienNghi : MaLoaiTN
+TienNghi "1" -- "0..*" PhieuLapDat : MaTienNghi
+Phong "1" -- "0..*" PhieuLapDat : SoPhong
+NhanVien "1" -- "0..*" PhieuLapDat : MaNV
+KhachHang "1" -- "0..*" PhieuDatPhong : MaKhach
+NhanVien "1" -- "0..*" PhieuDatPhong : MaNVLeTan
+PhieuDatPhong "1" -- "0..*" ChiTietDatPhong : SoPhieuDat
+Phong "1" -- "0..*" ChiTietDatPhong : SoPhong
+ChiTietDatPhong "1" -- "0..*" NguoiLuuTru : SoPhieuDat, SoPhong
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+salt
+{+
+{* F04 · BÁN HÀNG VÀ GIAO HẸN }
+{
+Khách hàng | ^KH001 - QUEN^
+Ngày bán | "01/11/2026"
+Tiền đã trả | "400000"
+Ngày hẹn | "02/11/2026"
+Phiếu hẹn | ^PH001 - CHO_GIAO^
+}
+{#
+NGK | Mua | Giá | Giao ngay | Tồn
+NGK01 | 100 | 10000 | 80 | 80
+}
+{ [Lưu HĐ] | [Lập hẹn] | [Đổi ngày] | [Xác nhận giao] }
+}
+
+@enduml

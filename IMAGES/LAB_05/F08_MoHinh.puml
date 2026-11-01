@@ -1,0 +1,42 @@
+@startuml
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam dpi 140
+skinparam shadowing true
+skinparam BackgroundColor #FFFFFF
+skinparam ArrowColor #8B0000
+skinparam ActorBorderColor #8B0000
+skinparam ActorBackgroundColor #FFFFCC
+skinparam UsecaseBackgroundColor #FFFFCC
+skinparam UsecaseBorderColor #8B0000
+skinparam ClassBackgroundColor #FFFFCC
+skinparam ClassBorderColor #8B0000
+skinparam ClassHeaderBackgroundColor #FFF2A8
+skinparam PackageBackgroundColor #FAFAF0
+skinparam PackageBorderColor #8B0000
+skinparam StateBackgroundColor #FFFFCC
+skinparam StateBorderColor #8B0000
+skinparam ActivityBackgroundColor #FFFFCC
+skinparam ActivityBorderColor #8B0000
+skinparam PartitionBorderColor #8B0000
+skinparam ParticipantBackgroundColor #FFFFCC
+skinparam ParticipantBorderColor #8B0000
+skinparam SequenceLifeLineBorderColor #8B0000
+skinparam NoteBackgroundColor #E8F4FF
+skinparam RectangleBorderColor #8B0000
+title Máy trạng thái của ChuyenDi
+[*] --> MoBan : lập lịch
+state "Mở bán" as MoBan
+MoBan : entry / hiển thị trên website
+MoBan : do / bán vé, nhận phân công HDV
+state "Đang đi" as DangDi
+DangDi : do / HDV dẫn đoàn qua các nơi dừng chân
+state "Kết thúc" as KetThuc
+KetThuc : entry / tạo phiếu khảo sát cho từng vé
+state "Hủy" as Huy
+MoBan --> DangDi : khởi hành [có 1 HDV]
+MoBan --> Huy : hủy chuyến
+DangDi --> KetThuc : về TP.HCM
+KetThuc --> [*]
+Huy --> [*]
+@enduml

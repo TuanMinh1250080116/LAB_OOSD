@@ -1,0 +1,51 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+left to right direction
+title Phân rã use case UC07 – Đặt hàng và thanh toán
+actor "Khách hàng" as KH
+actor "Hệ thống dịch vụ\nthanh toán trực tuyến" <<Hệ thống ngoài>> as HTTT
+actor "Hệ thống Email" <<Hệ thống ngoài>> as MAIL
+rectangle "UC07 Đặt hàng và thanh toán" {
+  usecase "UC07 Đặt hàng và\nthanh toán" as UC07
+  usecase "UC05 Đăng nhập" as DN
+  usecase "UC04 Đăng ký\ntài khoản" as DK
+  usecase "UC07.1 Chọn loại\nphiếu đặt hàng" as U1
+  usecase "UC07.2 Nhập thông tin\nngười nhận" as U2
+  usecase "UC07.3 Tính phí\ngiao hàng" as U3
+  usecase "UC07.4 Nhập thông tin\nthẻ tín dụng" as U4
+  usecase "UC07.5 Xác thực thẻ\nvà khả năng thanh toán" as U5
+  usecase "UC07.6 Ghi nhận\nđơn đặt hàng" as U6
+  usecase "UC07.7 Gửi email\nxác nhận" as U7
+  usecase "Áp dụng miễn phí\nchuyển phát" as MP
+}
+KH --> UC07
+UC07 ..> DN : <<include>>
+DK ..> DN : <<extend>>\n[chưa có tài khoản]
+UC07 ..> U1 : <<include>>
+UC07 ..> U2 : <<include>>
+UC07 ..> U3 : <<include>>
+UC07 ..> U4 : <<include>>
+UC07 ..> U5 : <<include>>
+UC07 ..> U6 : <<include>>
+MP ..> U3 : <<extend>>\n[tổng ≥ ngưỡng miễn phí]
+U7 ..> U6 : <<extend>>\n[khách có email]
+U5 --> HTTT
+U7 --> MAIL
+@enduml

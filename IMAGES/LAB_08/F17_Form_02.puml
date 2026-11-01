@@ -1,0 +1,26 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+salt
+{+
+{* F02 · LẬP ĐƠN ĐẶT HÀNG }
+{
+Nhà cung ứng | ^NCU01^
+Ngày đặt | "01/11/2026"
+Ngày nhận dự kiến | "02/11/2026"
+Người lập | NV01
+Số đơn | Tự sinh sau lưu
+}
+{#
+NGK | Số lượng đặt
+NGK01 | 100
+}
+{ [Thêm dòng] | [Bỏ dòng] | [Lưu đơn] | [Xuất đơn] }
+}
+
+@enduml

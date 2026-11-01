@@ -1,0 +1,34 @@
+@startuml
+title UC04 - Tai sach dien tu (Activity)
+|Doc gia|
+start
+:Chon "Tai xuong";
+|He thong|
+:Kiem tra quyen truy cap;
+:Kiem tra file tren may chu;
+
+if (Chua dang nhap / tai khoan bi khoa?) then (co)
+  :Chuyen huong toi dang nhap + canh bao;
+  stop
+elseif (Tai lieu chi cho doc online?) then (co)
+  :Hien thi "Tai lieu nay chi ho tro doc truc tuyen";
+  stop
+else (du dieu kien)
+  :Tao download stream an toan;
+  :Truyen file ve thiet bi;
+  |Thiet bi doc gia|
+  :Nhan file;
+  :Luu file;
+  |He thong|
+  if (Mat mang / file server khong phan hoi?) then (co)
+    :Huy phien tai;
+    :Hien thi loi;
+    :Khong tang luot tai;
+    stop
+  else (thanh cong)
+    :Tang luot tai len 1;
+    :Ghi nhat ky tai;
+    stop
+  endif
+endif
+@enduml

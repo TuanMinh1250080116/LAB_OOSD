@@ -1,0 +1,1325 @@
+[
+  {
+    "lab": 1,
+    "document": "01_Bai1_XayDungHeThongThuVienTrucTuyen.docx",
+    "image_index": 0,
+    "source": "IMAGES/LAB_01/F01_UseCase_ThuVien.drawio",
+    "sha256": "e391a2516c44e93fb5a09a763785da42438b584569dc79960628ce271b873d0d",
+    "caption": "Hình 1. Sơ đồ UC của hệ thống xử lý thư viện",
+    "provenance": "Khôi phục mô hình draw.io nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 1,
+    "document": "01_Bai2_XayDungHeThongQuanLyCuaHangNuocGiaiKhat.docx",
+    "image_index": 0,
+    "source": "IMAGES/LAB_01/F01_UseCase_NGK.drawio",
+    "sha256": "c0117d8c6000d6f9ed368189f05ba9095c3eefef9cc74c48d726f8ad9aeb483a",
+    "caption": "Hình 1.1: Sơ đồ UC hệ thống hỗ trợ cửa hàng nước giải khát",
+    "provenance": "Khôi phục mô hình draw.io nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 1,
+    "document": "01_Bai2_XayDungHeThongQuanLyCuaHangNuocGiaiKhat.docx",
+    "image_index": 1,
+    "source": "IMAGES/LAB_01/F02_Class_NGK.puml",
+    "sha256": "2ba652b96fe3dffa1dc9bec4bcb4091258b084f7e0dcf7d22f9bc6d248b03029",
+    "caption": "Hình 1.2: Sơ đồ Class",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 0,
+    "source": "IMAGES/LAB_02/F01_MoHinh.puml",
+    "sha256": "393b3b293ed374164e7fb3278465000f021d390f7b212a9b0383bc7532d7c690",
+    "caption": "Hình 1.1: Sơ đồ UC01 bởi Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 1,
+    "source": "IMAGES/LAB_02/F02_MoHinh.puml",
+    "sha256": "60b9c9aba4d2600a1a217a10ae70e72dd738cce782e2901ff5d9b60309484302",
+    "caption": "Hình 1.2: Sơ đồ UC01 - Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 2,
+    "source": "IMAGES/LAB_02/F03_MoHinh.puml",
+    "sha256": "6c2ab2b6cce5ac0df495e085fb247c44d40e9e0df94663415d8ba54a621ee422",
+    "caption": "Hình 1.3: Sơ đồ UC02 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 3,
+    "source": "IMAGES/LAB_02/F04_MoHinh.puml",
+    "sha256": "b4788f7aadb237552b35a6cb722f58cfb17e4f799d61f5aa93c13a0049228c78",
+    "caption": "Hình 1.4: Sơ đồ UC02 - Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 4,
+    "source": "IMAGES/LAB_02/F05_MoHinh.puml",
+    "sha256": "18cecaba44f5da93ddaa34e3c30d4cab0f1b46b48335f6cfec756ebd4b116e2e",
+    "caption": "Hình 1.5: Sơ đồ UC03 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 5,
+    "source": "IMAGES/LAB_02/F06_MoHinh.puml",
+    "sha256": "2734a5de3cca40849436618203df0730fbbf3712c501e39d278a9dee3991dded",
+    "caption": "Hình 1.6. Sơ đồ UC03 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 6,
+    "source": "IMAGES/LAB_02/F07_MoHinh.puml",
+    "sha256": "f70be376fbe24cec5c5632738051445fb3a4365fbddd89db27a9474d33492131",
+    "caption": "1.7. Sơ đồ UC04 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 7,
+    "source": "IMAGES/LAB_02/F08_MoHinh.puml",
+    "sha256": "ecf864a24edaa4d16a3da68d20458d8cfb48ff7d5ee3321bb2b0ddf47ac54e3c",
+    "caption": "1.8. Sơ đồ UC04 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 8,
+    "source": "IMAGES/LAB_02/F09_MoHinh.puml",
+    "sha256": "e911b9ee43c347f02e4198fd25f8584b25e94e65c426e135f9a4f097c6b2a798",
+    "caption": "1.9: Sơ đồ UC05 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 9,
+    "source": "IMAGES/LAB_02/F10_MoHinh.puml",
+    "sha256": "70a8b1aae948041b596b82ebcf30bdd35e8577b5ae9a03f55dac9474e5215ae2",
+    "caption": "1.10. Sơ đồ UC05 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 10,
+    "source": "IMAGES/LAB_02/F11_MoHinh.puml",
+    "sha256": "addd73a046b02b6bc82f29d9416099241e9bff8d4090d569e901307bb988e2bf",
+    "caption": "1.11: Sơ đồ UC06 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 11,
+    "source": "IMAGES/LAB_02/F12_MoHinh.puml",
+    "sha256": "6ad472b1b2e0ddecc0c21550c5b5ec2a80c14217e1acc9e9363413c81fcbb5bb",
+    "caption": "1.12: Sơ đồ UC06 - Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 12,
+    "source": "IMAGES/LAB_02/F13_MoHinh.puml",
+    "sha256": "d99b8949739edf99541e9b3cf6bf6d235b1ec43d3a0bc851d441e6fabcb64023",
+    "caption": "1.13: Sơ đồ UC11 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 13,
+    "source": "IMAGES/LAB_02/F14_MoHinh.puml",
+    "sha256": "c6590d6295a5fe625c54842db79f2b365bc66a151552af144c2a0273c4117ce6",
+    "caption": "1.14: Sơ đồ UC11 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 14,
+    "source": "IMAGES/LAB_02/F15_MoHinh.puml",
+    "sha256": "1e2363230c89ad89eb7527771331ee9f94e5c7b361b9ef03eb25fa650c7c67da",
+    "caption": "Hình 1.15: Sơ đồ UC12 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 15,
+    "source": "IMAGES/LAB_02/F16_MoHinh.puml",
+    "sha256": "7d9379661ea9907488a52dd6d566c62bc3b2c0f6dc7b3164c117ba9e64d83939",
+    "caption": "Hình 1.16: Sơ đồ UC12 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 16,
+    "source": "IMAGES/LAB_02/F17_MoHinh.puml",
+    "sha256": "acab77d14529859ab64e6d81b320950941574dcbf0389efa80ac8c89ff649c24",
+    "caption": "Hình 1.17: Sơ đồ UC13 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 17,
+    "source": "IMAGES/LAB_02/F18_MoHinh.puml",
+    "sha256": "babcd4efd48b5f2955c0ee5ebaf91f2b150b1f437786a5e7e91fc53f74fff302",
+    "caption": "Hình 1.18: Sơ đồ UC13 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 18,
+    "source": "IMAGES/LAB_02/F19_MoHinh.puml",
+    "sha256": "4a304310606aa3197c2776a7d634838323d0b33caeb2df0ca0dd2f8fff19889f",
+    "caption": "Hình 1.19: Sơ đồ UC07 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 19,
+    "source": "IMAGES/LAB_02/F20_MoHinh.puml",
+    "sha256": "822bb303582dee12d57c285efe642a15defa182f60a637387d05da2df29c4685",
+    "caption": "Hình 1.20: Sơ đồ UC07 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 20,
+    "source": "IMAGES/LAB_02/F21_MoHinh.puml",
+    "sha256": "f33b078ce416e3f39cbe723eecf63fd204e07955c093f8d5cc9131e96d32c1b5",
+    "caption": "Hình 1.21: Sơ đồ UC08 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 21,
+    "source": "IMAGES/LAB_02/F22_MoHinh.puml",
+    "sha256": "171cce6a620b08cc8bb0244c3c961d093071e6322f8130a31ea656a78bb3f8ea",
+    "caption": "Hình 1.22: Sơ đồ UC08 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 22,
+    "source": "IMAGES/LAB_02/F23_MoHinh.puml",
+    "sha256": "762181bacf5a0c32446ade37e1131a916749ec49491a9c2c374cb74a52b2fc95",
+    "caption": "Hình 1.23: Sơ đồ UC09 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 23,
+    "source": "IMAGES/LAB_02/F24_MoHinh.puml",
+    "sha256": "3ae3d6171a652f650945d04e88cc849e9d372a8710257d196505b9b111ba7fc9",
+    "caption": "Hình 1.24: Sơ đồ UC09 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 24,
+    "source": "IMAGES/LAB_02/F25_MoHinh.puml",
+    "sha256": "3cf3114cda568763767c994fd5038d4848ab10b3fa5447343cff742e80814e63",
+    "caption": "Hình 1.25: Sơ đồ UC10 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 25,
+    "source": "IMAGES/LAB_02/F26_MoHinh.puml",
+    "sha256": "94dd753a8a9f670ac7dc3c8b35eb3f4eb31677491c9300bbeb59026eca73076a",
+    "caption": "Hình 1.26: Sơ đồ UC10 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 26,
+    "source": "IMAGES/LAB_02/F27_MoHinh.puml",
+    "sha256": "74f30cff942948a7a8739152a510defdbf9ed86b73a12387103422d87a9e8922",
+    "caption": "Hình 1.27: Sơ đồ UC15 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 27,
+    "source": "IMAGES/LAB_02/F28_MoHinh.puml",
+    "sha256": "f3b4c17a2904b6e0bc8326fa840ffa73a0fb453e3a7c6f949b699b50a2ea0fb9",
+    "caption": "Hình 1.28: Sơ đồ UC15 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 28,
+    "source": "IMAGES/LAB_02/F29_MoHinh.puml",
+    "sha256": "d6011b91ae05460da91585ded8b2bf4ef44e60dc2a29d76daa565c1db31fc52e",
+    "caption": "Hình 1.29: Sơ đồ UC14 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 29,
+    "source": "IMAGES/LAB_02/F30_MoHinh.puml",
+    "sha256": "af9406f78e83ff115eddca00d4245537c05289b0506d992215f355d3528d15a3",
+    "caption": "Hình 1.30: Sơ đồ UC14 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 30,
+    "source": "IMAGES/LAB_02/F31_MoHinh.puml",
+    "sha256": "0ed9a1a07d7b992995c432c1a9c28f8662632cc8612bfbb9bf64b613a64d6e66",
+    "caption": "Hình 1.31: Sơ đồ UC16 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 31,
+    "source": "IMAGES/LAB_02/F32_MoHinh.puml",
+    "sha256": "7d9beb9a78e4a661fc218344629c019c3191ca0e4551687997a103d87a55678e",
+    "caption": "Hình 1.32: Sơ đồ UC16 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 32,
+    "source": "IMAGES/LAB_02/F33_MoHinh.puml",
+    "sha256": "de4dd95ebfec55c37780faf79a97251f3b8774fc4221f2c0c23dcd3d8213f947",
+    "caption": "Hình 1.33: Sơ đồ UC17 – Activity",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 33,
+    "source": "IMAGES/LAB_02/F34_MoHinh.puml",
+    "sha256": "d0b24f9a45eac36b94836e6d5866005df5d8cd9101639d8c2f58b624aa3ac29f",
+    "caption": "Hình 1.34: Sơ đồ UC17 – Sequence",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 34,
+    "source": "IMAGES/LAB_02/UI01_ThietKe.puml",
+    "sha256": "6d9a434fee6c3b4fddd95d5b8f93d01d8eea772d8279078af16350826a3f015f",
+    "caption": "Thiết kế giao diện – Đăng nhập",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 35,
+    "source": "IMAGES/LAB_02/UI02_ThietKe.puml",
+    "sha256": "2f3d7d67e90654749ac6d47701cb4f69613684bd0af87bd95869719cd36b4c4b",
+    "caption": "Thiết kế giao diện – Đăng ký tài khoản",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 36,
+    "source": "IMAGES/LAB_02/UI03_ThietKe.puml",
+    "sha256": "be26136b66dfb9c9aaf40be42831282653cd9d8e65db6b9d7d95876dd3c77103",
+    "caption": "Thiết kế giao diện – Trang chủ",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 37,
+    "source": "IMAGES/LAB_02/UI04_ThietKe.puml",
+    "sha256": "59e8e0122e3882b576c7584254c5006d116033a69d79f6de6d99b1de5059f76f",
+    "caption": "Thiết kế giao diện – Tìm kiếm và xem chi tiết",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 38,
+    "source": "IMAGES/LAB_02/UI05_ThietKe.puml",
+    "sha256": "92567dff72041e1d38d9027bc0ff4352d5b282a61f864fd3ae67eff8268bee23",
+    "caption": "Thiết kế giao diện – Đọc trực tuyến",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 39,
+    "source": "IMAGES/LAB_02/UI06_ThietKe.puml",
+    "sha256": "223db9d22920dbabf26aa58cdd2fc891c69f9859e5c70e8cfc9ff7f32f5a90f8",
+    "caption": "Thiết kế giao diện – Kiểm tra mã thẻ",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 40,
+    "source": "IMAGES/LAB_02/UI07_ThietKe.puml",
+    "sha256": "9bc6747e46f1d0935a00063fed3d0a127cc099154ff53fce6c08d9fecc8910b8",
+    "caption": "Thiết kế giao diện – Đăng ký mượn",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 41,
+    "source": "IMAGES/LAB_02/UI08_ThietKe.puml",
+    "sha256": "b7069a185204756dfd4306fd0dfbb48b2d70762c9e7677076e091077032539e1",
+    "caption": "Thiết kế giao diện – Lập phiếu mượn",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 42,
+    "source": "IMAGES/LAB_02/UI09_ThietKe.puml",
+    "sha256": "d13afb1a321df3825190b07502ce9fe2032be51324497d671492195056408a92",
+    "caption": "Thiết kế giao diện – Tiếp nhận trả sách",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 43,
+    "source": "IMAGES/LAB_02/UI10_ThietKe.puml",
+    "sha256": "9ea2fbb55fbc3269181f91d119f5e3d5ac126254a194d88f0e64206cce03420e",
+    "caption": "Thiết kế giao diện – Tình trạng mượn",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 44,
+    "source": "IMAGES/LAB_02/UI11_ThietKe.puml",
+    "sha256": "c9921215071309b4eade4b938dad8a7cb9cfa3f4d3b5754e92d4afc6f046fae9",
+    "caption": "Thiết kế giao diện – Danh mục tài liệu",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 45,
+    "source": "IMAGES/LAB_02/UI12_ThietKe.puml",
+    "sha256": "d4e18b8ca15d6ea3d9b774bdefdb71b1925b11c49e937dea2da289abd5f5a772",
+    "caption": "Thiết kế giao diện – Đề xuất đặt mua",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 46,
+    "source": "IMAGES/LAB_02/UI13_ThietKe.puml",
+    "sha256": "66d2f3729dcca9c20fc508217377914675df93c4cab4b031820770062630eaed",
+    "caption": "Thiết kế giao diện – Theo dõi yêu cầu đặt mua",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 47,
+    "source": "IMAGES/LAB_02/UI14_ThietKe.puml",
+    "sha256": "4c945670e8e5cad4a25a6eebf69a5f0ed330fec9414a3c6f36d46eac57098410",
+    "caption": "Thiết kế giao diện – Duyệt yêu cầu đặt mua",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 48,
+    "source": "IMAGES/LAB_02/UI15_ThietKe.puml",
+    "sha256": "e72b56888ffcdac567f13ee80ce2ac7ec178b73babc2e790ee44547bf33bc340",
+    "caption": "Thiết kế giao diện – Báo cáo thống kê",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 2,
+    "document": "02_LAB2.docx",
+    "image_index": 49,
+    "source": "IMAGES/LAB_02/UI16_ThietKe.puml",
+    "sha256": "900ea36162c28535d13adc4989601f52f5cc2009e948287a9b2a792652f06644",
+    "caption": "Thiết kế giao diện – Nhật ký nhắc hạn",
+    "provenance": "Vẽ lại wireframe bằng PlantUML/SALT theo mô tả control trong Word"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 0,
+    "source": "IMAGES/LAB_03/AD01_DatPhong.puml",
+    "sha256": "26e1fa640bbd60acc9616deefe23a30abeb7fbbfa49cb202d59a44e8eda4f000",
+    "caption": "AD01_DatPhong",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 1,
+    "source": "IMAGES/LAB_03/CL01_PhongDat.puml",
+    "sha256": "cf47505207556135bb7fee7b6e8b54f1aedb5336c3b50fc22dc3aaa596f9a2a5",
+    "caption": "CL01_PhongDat",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 2,
+    "source": "IMAGES/LAB_03/CL02_ThanhToan.puml",
+    "sha256": "f6d99223e2b2095abc03241955797844ea49f267a0dd31996a90058823a7d5ad",
+    "caption": "CL02_ThanhToan",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 3,
+    "source": "IMAGES/LAB_03/CL03_ThietKe.puml",
+    "sha256": "c8772e557586b4daeb0c761aaf3eeeadecfddcac70d63ad0a1ef498178479ba1",
+    "caption": "CL03_ThietKe",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 4,
+    "source": "IMAGES/LAB_03/ERD01_PhongDat.puml",
+    "sha256": "af06239d5f0e3f4f7dec6423d56c5dd716565efcc52da4a6b7602f7170b065d7",
+    "caption": "ERD01_PhongDat",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 5,
+    "source": "IMAGES/LAB_03/ERD02_ThanhToan.puml",
+    "sha256": "4d7cba3748220b3041047dd48fc2f9b28be62f470984a861b6b054238a4d9d0a",
+    "caption": "ERD02_ThanhToan",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 6,
+    "source": "IMAGES/LAB_03/SD01_DatPhong.puml",
+    "sha256": "5aedbf3fabb24a29c1c332d7c384a3b5a001ba86a86c2ab13ba66b71ae31779c",
+    "caption": "SD01_DatPhong",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 7,
+    "source": "IMAGES/LAB_03/SD02_NhanPhong.puml",
+    "sha256": "97420ebb87484af6d739eb7d37ebe787ef2276aa15c6aa4202b91c82208cc252",
+    "caption": "SD02_NhanPhong",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 8,
+    "source": "IMAGES/LAB_03/SD03_LapDat.puml",
+    "sha256": "83a79ccac7b434cf4ee9757255c1a59c0caa7cc7e212fc089abe88453daa9b10",
+    "caption": "SD03_LapDat",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 9,
+    "source": "IMAGES/LAB_03/SD04_DichVu.puml",
+    "sha256": "5596229c65b4a4e863e64618875ad122e181125eb6aadb592b7373dd800b564c",
+    "caption": "SD04_DichVu",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 10,
+    "source": "IMAGES/LAB_03/SD05_TraPhong.puml",
+    "sha256": "893e37c7fe1e4a4d41383e46cfadad3bed46f8a77816ccaf649319cca36a815d",
+    "caption": "SD05_TraPhong",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 11,
+    "source": "IMAGES/LAB_03/SD06_ThongKe.puml",
+    "sha256": "25bb152a652d52bedf1e5f7e241814df89ee7c124bd94abd4c84097e4d261682",
+    "caption": "SD06_ThongKe",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 12,
+    "source": "IMAGES/LAB_03/ST01_PhieuDat.puml",
+    "sha256": "5df511c17541f703e8fb8cae3b42e5d7f9078294c23b7ea614855a18e97b2efa",
+    "caption": "ST01_PhieuDat",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 13,
+    "source": "IMAGES/LAB_03/ST02_HoaDon.puml",
+    "sha256": "5270863ce3b60ef8d22d6ba2eeec6425962ee5462f96d6277d6e5f466cefba76",
+    "caption": "ST02_HoaDon",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 14,
+    "source": "IMAGES/LAB_03/UC01_TongQuat.puml",
+    "sha256": "e5080263a323d1076d049edbf235b5248a82267741f182a35399489f36d04d01",
+    "caption": "UC01_TongQuat",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 15,
+    "source": "IMAGES/LAB_03/UC02_PhanRa.puml",
+    "sha256": "9f3ab917433ee27557d0153c9b179094a4a69efd58c6dbcde965421cdb5fc9ce",
+    "caption": "UC02_PhanRa",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 16,
+    "source": "IMAGES/LAB_03/UC03_PhanRa.puml",
+    "sha256": "23efd31033aafbccbd5487bfb0c3cc5dd50f90b247cb9f633c8b0e54f413a4a4",
+    "caption": "UC03_PhanRa",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 17,
+    "source": "IMAGES/LAB_03/UC04_PhanRa.puml",
+    "sha256": "6b5210b95280253bc530939d5082774ab7947f24b0917549190a3161769f6a37",
+    "caption": "UC04_PhanRa",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 18,
+    "source": "IMAGES/LAB_03/UI01_ThietKe.puml",
+    "sha256": "b0032c8a106c6fbea421490753e74c7922b617aec746812b4c78a41f43f4d0ce",
+    "caption": "Thiết kế giao diện – Danh mục",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 19,
+    "source": "IMAGES/LAB_03/UI02_ThietKe.puml",
+    "sha256": "b43c32dfcf85fb01a20b23772f51f5ea290433632db465bb7135ae829cc55268",
+    "caption": "Thiết kế giao diện – Phòng và tiện nghi",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 20,
+    "source": "IMAGES/LAB_03/UI03_ThietKe.puml",
+    "sha256": "953840651b1ef2da808ab36802272823969b4bcb48b589df1c0165e1271e756f",
+    "caption": "Thiết kế giao diện – Đặt và nhận phòng",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 21,
+    "source": "IMAGES/LAB_03/UI04_ThietKe.puml",
+    "sha256": "37217eae81bc455fc2f53f1a3b917e9a3c6543b66f94d4a9039cb9c585e55cb0",
+    "caption": "Thiết kế giao diện – Người lưu trú",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 22,
+    "source": "IMAGES/LAB_03/UI05_ThietKe.puml",
+    "sha256": "d32e5ff0e12c384b4688e86b82078e996a2d260343875dda65e9ab42187e493e",
+    "caption": "Thiết kế giao diện – Ghi nhận dịch vụ",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 23,
+    "source": "IMAGES/LAB_03/UI06_ThietKe.puml",
+    "sha256": "bb98c4d1fd78f0371905a7a8183016545be83a9d8cbace1e6a3ee51a9607b7af",
+    "caption": "Thiết kế giao diện – Trả phòng và thanh toán",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 3,
+    "document": "03_BoSung.docx",
+    "image_index": 24,
+    "source": "IMAGES/LAB_03/UI07_ThietKe.puml",
+    "sha256": "761a29d56ba36a3d2af0c782a10681c4a41895aee60c4cca301bdbe639e04e88",
+    "caption": "Thiết kế giao diện – Thống kê",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 0,
+    "source": "IMAGES/LAB_04/CL01_PhanTich.puml",
+    "sha256": "dfe47171c01414a772b4a69c0b1cd5601ef70a6c138430211f15e7fe7ca91a81",
+    "caption": "CL01_PhanTich",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 1,
+    "source": "IMAGES/LAB_04/CL02_LopThucThe.puml",
+    "sha256": "203c723e968effb0584515bb7ad6772a2e1fb8975afca56b52c0082a4fd04965",
+    "caption": "CL02_LopThucThe",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 2,
+    "source": "IMAGES/LAB_04/CL03_ChiTiet.puml",
+    "sha256": "c4b54d13f723a9f659dd722aeaf25b1fcf04c190ab3c0b9e19b64f2d4e920c5a",
+    "caption": "CL03_ChiTiet",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 3,
+    "source": "IMAGES/LAB_04/SD01_DangKy.puml",
+    "sha256": "f6d756464aff5106368c560753d5f46104cde0d1a37e9e5fde2c0e1691ebc217",
+    "caption": "SD01_DangKy",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 4,
+    "source": "IMAGES/LAB_04/SD02_ThemVaoGio.puml",
+    "sha256": "4b0b2be38add5a25e2070a26c31294e9dd2d0a024ff51148deec9970fea84156",
+    "caption": "SD02_ThemVaoGio",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 5,
+    "source": "IMAGES/LAB_04/SD03_DatHang.puml",
+    "sha256": "e012ba16886c0a7a1b6ec5babfeca7509e4f3d4cf6c4d890c1737a742934aed7",
+    "caption": "SD03_DatHang",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 6,
+    "source": "IMAGES/LAB_04/SD04_DangNhap.puml",
+    "sha256": "bc4ab8cd2902ec3f2fa4c1ad1a42cb17ed982a6a227fe68f5bc2413bc3e4e9b9",
+    "caption": "SD04_DangNhap",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 7,
+    "source": "IMAGES/LAB_04/ST01_DonDatHang.puml",
+    "sha256": "7f20783ed7aa03c75efaf89bcfbe1a3d2ab4b6c10fdb7f3ebef89c27b1af76a3",
+    "caption": "ST01_DonDatHang",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 8,
+    "source": "IMAGES/LAB_04/ST02_GioHang.puml",
+    "sha256": "6027040631f64bd9b6b43f6e8c9042b349c1bcf362b66bdf0071618c24acb6e7",
+    "caption": "ST02_GioHang",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 9,
+    "source": "IMAGES/LAB_04/UC01_TongQuat.puml",
+    "sha256": "1508be19b1e4e259f9add4a9145e80ce8bf9fbe4bc5f510ea830eed0337a3efe",
+    "caption": "UC01_TongQuat",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 10,
+    "source": "IMAGES/LAB_04/UC02_DatHang.puml",
+    "sha256": "f5d6140fcb6367ee08e55b24c2c3be5db37b0928ec5729b373d9ef6c0b814781",
+    "caption": "UC02_DatHang",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 11,
+    "source": "IMAGES/LAB_04/UC03_GioHang.puml",
+    "sha256": "66875abf82fed2caf9f6de8a9094a3f435e8392823bf4654a502a5845557c86b",
+    "caption": "UC03_GioHang",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 12,
+    "source": "IMAGES/LAB_04/ERD01_SanPham_GioHang.puml",
+    "sha256": "3d1ace4dfea3ed98dd9680a921fb710d512da54ab0892f227a4bdf62409a5617",
+    "caption": "ERD01_SanPham_GioHang",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 13,
+    "source": "IMAGES/LAB_04/ERD02_DonHang_ThanhToan.puml",
+    "sha256": "9d7ba44c24ecf340c703a57ae48f8533b6bb82e90c52b8ce9f682239f4b11ec7",
+    "caption": "ERD02_DonHang_ThanhToan",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 14,
+    "source": "IMAGES/LAB_04/UI01_ThietKe.puml",
+    "sha256": "d16798fcd8d947674b597c39cd8a219e7afbc458446835f1235498b1b7d5e75e",
+    "caption": "Thiết kế giao diện – Tra cứu sản phẩm",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 15,
+    "source": "IMAGES/LAB_04/UI02_ThietKe.puml",
+    "sha256": "89962767475010a4d42b537aeaf9aa4800f6da39a4e0a2fc585d22f3d04d39c7",
+    "caption": "Thiết kế giao diện – Giỏ hàng",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 16,
+    "source": "IMAGES/LAB_04/UI03_ThietKe.puml",
+    "sha256": "137e1e0f284fff4f316be90a8a6041a6fc792b738562da7eb0805e54d5849ac8",
+    "caption": "Thiết kế giao diện – Đăng ký và đăng nhập",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 17,
+    "source": "IMAGES/LAB_04/UI04_ThietKe.puml",
+    "sha256": "c784554ee3778cfadaf08eb906dfa29f894be53433f7805b80e8db64aa7db089",
+    "caption": "Thiết kế giao diện – Đặt hàng",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 18,
+    "source": "IMAGES/LAB_04/UI05_ThietKe.puml",
+    "sha256": "f9b2bda7e554713c4311c34723a75224eb432421479dfd767fb1ba509284c9b1",
+    "caption": "Thiết kế giao diện – Thanh toán",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 4,
+    "document": "04_BoSung.docx",
+    "image_index": 19,
+    "source": "IMAGES/LAB_04/UI06_ThietKe.puml",
+    "sha256": "8b7cbdedbc9c6524b8420d33f0ec5943c73c1f7e91843e1530f1e29f85ba397c",
+    "caption": "Thiết kế giao diện – Tra cứu đơn hàng",
+    "provenance": "Bổ sung từ bài cùng đề, đối chiếu với SQL và mã nguồn trong thư mục của Trần Tuấn Minh"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 0,
+    "source": "IMAGES/LAB_05/F01_MoHinh.puml",
+    "sha256": "377c580d5e88bc5a51a364d56c811992d2577e8730c2ffae51592d422223b368",
+    "caption": "Hình 1. Class Diagram chia theo gói nghiệp vụ",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 1,
+    "source": "IMAGES/LAB_05/F02_MoHinh.puml",
+    "sha256": "a2856828740e41ce1b709b3a9998dee03677a285f8370ef3ba68a066b9e9be9f",
+    "caption": "Hình 2. Use Case tổng quát chia theo phân hệ",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 2,
+    "source": "IMAGES/LAB_05/F03_MoHinh.puml",
+    "sha256": "11f36138afe16095fcc11af1d3592db791dab93e1ab29eaa9e6d5c196457c10e",
+    "caption": "Hình 3. Phân rã Đăng ký tour → Thực hiện tour (có tổng quát hóa use case)",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 3,
+    "source": "IMAGES/LAB_05/F04_MoHinh.puml",
+    "sha256": "df4129eaad4ffcbe92406322b5f13fdaf9a7749874802884f410ab504838b586",
+    "caption": "Hình 4. Phân rã chi tiết use case Đăng ký theo đoàn",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 4,
+    "source": "IMAGES/LAB_05/F05_MoHinh.puml",
+    "sha256": "f4dc3de912f1050a7429868dc46ad1e854fb2ee423fb3064b05e1fbf30df3c9f",
+    "caption": "Hình 5. Activity Diagram – vòng đời một lần đi tour",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 5,
+    "source": "IMAGES/LAB_05/F06_MoHinh.puml",
+    "sha256": "dfe80e5018f110776221584d973249ee1bcacb71c95a06d19d913bce761df802",
+    "caption": "Hình 6. System Sequence Diagram – Lập phiếu đăng ký theo đoàn",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 6,
+    "source": "IMAGES/LAB_05/F07_MoHinh.puml",
+    "sha256": "ea6ea9e644cfd0fa464c9c9c8925d524be290284f9aac4d8c1d1526c6e5f29b9",
+    "caption": "Hình 7. Sequence Diagram – Kết thúc tour, khảo sát và thanh toán đoàn",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 7,
+    "source": "IMAGES/LAB_05/F08_MoHinh.puml",
+    "sha256": "33341076361150a4ad92f0d372ecae2a3e354aea37d009f7a3a4420451840275",
+    "caption": "Hình 8. Máy trạng thái của ChuyenDi (có hành động entry/do)",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 8,
+    "source": "IMAGES/LAB_05/F09_MoHinh.puml",
+    "sha256": "00c425733b8195dad95da015c47020bbbeff2b17f413e523f210a89fb65c88c3",
+    "caption": "Hình 9. Máy trạng thái của Tour",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 9,
+    "source": "IMAGES/LAB_05/F10_MoHinh.puml",
+    "sha256": "dfd8dfee03901765fbe732ead69d3ec86b679ac6f3dd1de2dbcf08402863b9ae",
+    "caption": "Hình 10. Thành phần của chương trình và nơi triển khai",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 10,
+    "source": "IMAGES/LAB_05/F11_MoHinh.puml",
+    "sha256": "a0ceb6965786d906b2a305cd5ca20c6afb36873a1534a63b0891c8188350356f",
+    "caption": "Hình 11. Lớp chi tiết – mô-đun chuyến đi và bán vé",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 5,
+    "document": "05_BaoCao_QuanLyDuLich_TranTuanMinh.docx",
+    "image_index": 11,
+    "source": "IMAGES/LAB_05/F12_MoHinh.puml",
+    "sha256": "2b04e2ab88aba9fa6af7f913556405acdb222508bee1198fa76d8a1e3af88974",
+    "caption": "Hình 12. ERD theo ký hiệu Chen",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 6,
+    "document": "06_BaoCao_LAB06_QuanLyBenhAn.docx",
+    "image_index": 0,
+    "source": "IMAGES/LAB_06/F01_MoHinh.puml",
+    "sha256": "2fb8e17b94a20ef98163d33e956fd9f7c5b7594ae955e67ac2912cbdb2d35b51",
+    "caption": "Hình 1. Class Diagram miền nghiệp vụ",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 6,
+    "document": "06_BaoCao_LAB06_QuanLyBenhAn.docx",
+    "image_index": 1,
+    "source": "IMAGES/LAB_06/F02_MoHinh.puml",
+    "sha256": "e1f92c2bd2f19bac36722347a10a70bf3327c41f35a3da4a71bea5b0ba202a74",
+    "caption": "Hình 2. Use Case tổng quát",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 6,
+    "document": "06_BaoCao_LAB06_QuanLyBenhAn.docx",
+    "image_index": 2,
+    "source": "IMAGES/LAB_06/F03_MoHinh.puml",
+    "sha256": "d432c13390c4482ac5b06fe0f5c3c9d9ce278926d3e062a0d070be7ac14db0c2",
+    "caption": "Hình 3. Use Case chi tiết quá trình khám và nhận toa",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 6,
+    "document": "06_BaoCao_LAB06_QuanLyBenhAn.docx",
+    "image_index": 3,
+    "source": "IMAGES/LAB_06/F04_MoHinh.puml",
+    "sha256": "6c774abc2945fae6ea27171b0ed7b20bc1e7b442c0541864a3b28738b30ef9b9",
+    "caption": "Hình 4. Quy trình từ đăng ký đến nhận toa",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 6,
+    "document": "06_BaoCao_LAB06_QuanLyBenhAn.docx",
+    "image_index": 4,
+    "source": "IMAGES/LAB_06/F05_MoHinh.puml",
+    "sha256": "cf30d594101064816d3877ae5cd5ae41748804132d2a9aebc8be5ca2072fbd76",
+    "caption": "Hình 5. Tương tác khi bác sĩ kê toa",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 6,
+    "document": "06_BaoCao_LAB06_QuanLyBenhAn.docx",
+    "image_index": 5,
+    "source": "IMAGES/LAB_06/F06_MoHinh.puml",
+    "sha256": "5f60a30d33947acd9864605cc9a844d15c9821b71878adc500c4f0bb50acf578",
+    "caption": "Hình 6. State Diagram của lượt khám",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 6,
+    "document": "06_BaoCao_LAB06_QuanLyBenhAn.docx",
+    "image_index": 6,
+    "source": "IMAGES/LAB_06/F07_MoHinh.puml",
+    "sha256": "58b0676cf00f6cb29fd43e25580bd55721b4002751f2acdb953f2fdc5ee1225e",
+    "caption": "Hình 7. State Diagram của lịch hẹn",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 6,
+    "document": "06_BaoCao_LAB06_QuanLyBenhAn.docx",
+    "image_index": 7,
+    "source": "IMAGES/LAB_06/F08_MoHinh.puml",
+    "sha256": "12cb89f67e30a8c90a927b1c03189edfb98e1197340717c29a8d6a3e973211d8",
+    "caption": "Hình 8. Lớp giao diện, xử lý nghiệp vụ và truy cập dữ liệu",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 6,
+    "document": "06_BaoCao_LAB06_QuanLyBenhAn.docx",
+    "image_index": 8,
+    "source": "IMAGES/LAB_06/F09_MoHinh.puml",
+    "sha256": "c87551e1c3d7ebf096c4acf654d94f4c7c7433f3d904d41396a2ae6432efaef7",
+    "caption": "Hình 9. ERD của database QuanLyBenhAn",
+    "provenance": "Khôi phục mã PlantUML nhúng trong ảnh gốc của Word"
+  },
+  {
+    "lab": 7,
+    "document": "07_phan_tich_nghiep_vu_de_lab7.docx",
+    "image_index": 0,
+    "source": "IMAGES/LAB_07/Cau2_ClassDiagram.drawio",
+    "sha256": "38ad2e1694023bfc8954a2cf14d7f8d2d9e4ad4def9aba3b04889721463792bf",
+    "caption": "Sơ đồ 1. Class Diagram — Hệ thống quản lý nhân sự",
+    "provenance": "Nguồn draw.io đi kèm và PNG có nhúng đúng mô hình đó"
+  },
+  {
+    "lab": 7,
+    "document": "07_phan_tich_nghiep_vu_de_lab7.docx",
+    "image_index": 1,
+    "source": "IMAGES/LAB_07/Cau3_UseCaseTongQuat.drawio",
+    "sha256": "b27771bf4337b7dbd51beeb009144d86e7291ddd9a0e0a396265b49505169dcd",
+    "caption": "Sơ đồ 2. Use Case Diagram tổng quát — toàn bộ hệ thống",
+    "provenance": "Nguồn draw.io đi kèm và PNG có nhúng đúng mô hình đó"
+  },
+  {
+    "lab": 7,
+    "document": "07_phan_tich_nghiep_vu_de_lab7.docx",
+    "image_index": 2,
+    "source": "IMAGES/LAB_07/Cau4_UseCaseChiTiet.drawio",
+    "sha256": "2ca0a3502a83919050bd7459042bee9c4437d2b60ea7c4827556fa6c82ae989d",
+    "caption": "phan_tich_nghiep_vu_de_lab7 – hình 3",
+    "provenance": "Nguồn draw.io đi kèm và PNG có nhúng đúng mô hình đó"
+  },
+  {
+    "lab": 7,
+    "document": "07_phan_tich_nghiep_vu_de_lab7.docx",
+    "image_index": 3,
+    "source": "IMAGES/LAB_07/Cau5_ActivityDiagram.drawio",
+    "sha256": "784404a526c1117ddf8133c8638e635e85c4dabc411dd4222a932942236cb9d5",
+    "caption": "Sơ đồ 4. Activity Diagram — thử việc đến ký hợp đồng chính thức",
+    "provenance": "Nguồn draw.io đi kèm và PNG có nhúng đúng mô hình đó"
+  },
+  {
+    "lab": 7,
+    "document": "07_phan_tich_nghiep_vu_de_lab7.docx",
+    "image_index": 4,
+    "source": "IMAGES/LAB_07/Cau6_SequenceDiagram.drawio",
+    "sha256": "c448557e4f2caba835ed554975425ae2a9367f9d376f5462cb42d09a551ecc2b",
+    "caption": "Sơ đồ 5. Sequence Diagram — Lập quyết định khen thưởng",
+    "provenance": "Nguồn draw.io đi kèm và PNG có nhúng đúng mô hình đó"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 0,
+    "source": "IMAGES/LAB_08/F01_UseCase_TongQuat.puml",
+    "sha256": "1c9f64dea4315244cc51df4d72e6a8318f0e4987dfade2f502d82e76e286b0b1",
+    "caption": "Hình 1. F01_UseCase_TongQuat",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 1,
+    "source": "IMAGES/LAB_08/F02_UseCase_BanGiao.puml",
+    "sha256": "18f5c9ba329040ef48aa4504fc57e4483194f9c6a9164a4cefbba2444a2a0c04",
+    "caption": "Hình 2. F02_UseCase_BanGiao",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 2,
+    "source": "IMAGES/LAB_08/F03_UseCase_Nhap.puml",
+    "sha256": "c70dd05499da2ee735e3be68a1e5acc205c5d0c570200dc83268684b1a7c1d62",
+    "caption": "Hình 3. F03_UseCase_Nhap",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 3,
+    "source": "IMAGES/LAB_08/F04_UseCase_GhiNo.puml",
+    "sha256": "dda40e8e5e0460ff4f2a21366aa71f8458139f9fee92584dcf2e6f9af2f09d97",
+    "caption": "Hình 4. F04_UseCase_GhiNo",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 4,
+    "source": "IMAGES/LAB_08/F05_Activity_BanGiao.puml",
+    "sha256": "aa10179690f0112bf9d66c245d41137bf7a2517adec76f9a2d590fa2c4e9b5c4",
+    "caption": "Hình 5. F05_Activity_BanGiao",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 5,
+    "source": "IMAGES/LAB_08/F06_Class_PhanTich_Nhap.puml",
+    "sha256": "594ca917d242ccd524d621aa7b7f09aa362526152b1c0643cc565db0d93d5d94",
+    "caption": "Hình 6. F06_Class_PhanTich_Nhap",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 6,
+    "source": "IMAGES/LAB_08/F07_Class_PhanTich_Ban.puml",
+    "sha256": "f90c66f2697281097b907a98f4decf7ddbdc54bd0da360d60b99f3938c40a771",
+    "caption": "Hình 7. F07_Class_PhanTich_Ban",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 7,
+    "source": "IMAGES/LAB_08/F08_Class_ThietKe_DanhMuc.puml",
+    "sha256": "73979699965d939187b970ab15b7b3dd2d7b26be5ca640e95449b78bcfc34c3c",
+    "caption": "Hình 8. F08_Class_ThietKe_DanhMuc",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 8,
+    "source": "IMAGES/LAB_08/F09_Class_ThietKe_GhiNo.puml",
+    "sha256": "dca62527c80e6efab8457b31a2836ace13cc3a6af258c273f7fa5cd8f2a9f316",
+    "caption": "Hình 9. F09_Class_ThietKe_GhiNo",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 9,
+    "source": "IMAGES/LAB_08/F10_Class_ThietKe_Nhap.puml",
+    "sha256": "df3ebb06349c7520b7be412fc96e32088d44e1937eec75cf14e8e3abbc70320c",
+    "caption": "Hình 10. F10_Class_ThietKe_Nhap",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 10,
+    "source": "IMAGES/LAB_08/F11_Class_ThietKe_Ban.puml",
+    "sha256": "31aa82a3a4d8d162b0159d755441fcc704f284a019620f9a02aeda45fde4e830",
+    "caption": "Hình 11. F11_Class_ThietKe_Ban",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 11,
+    "source": "IMAGES/LAB_08/F12_Class_DichVu.puml",
+    "sha256": "453529b5a7adf6c9d02ec86f50687cb34bf1c18234f9e50c7e805ea5023fd60f",
+    "caption": "Hình 12. F12_Class_DichVu",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 12,
+    "source": "IMAGES/LAB_08/F13_Sequence_Nhap.puml",
+    "sha256": "8edcec5d34d6a31f059f24c927b64a516049c6361876a17f5a6e681f18fe52ba",
+    "caption": "Hình 13. F13_Sequence_Nhap",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 13,
+    "source": "IMAGES/LAB_08/F14_Sequence_Ban.puml",
+    "sha256": "ad6bc375e2ebfb00c0dd2e0b134ada609fdef477e04db4eec9bf7c15b8d7a388",
+    "caption": "Hình 14. F14_Sequence_Ban",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 14,
+    "source": "IMAGES/LAB_08/F15_Sequence_GhiNo.puml",
+    "sha256": "74ad0a2a6b79e947c9d4f10886489040186ffb4ac75d73241d39d6386d0a042b",
+    "caption": "Hình 15. F15_Sequence_GhiNo",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 15,
+    "source": "IMAGES/LAB_08/F16_Form_01.puml",
+    "sha256": "3158a92b6a5e6e522b3aa06b91f98c00ff2cb5595cc270da1cace7f02fbc9fb6",
+    "caption": "Hình 16. F16_Form_01",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 16,
+    "source": "IMAGES/LAB_08/F17_Form_02.puml",
+    "sha256": "1c28004a54da30ad8c703ab62c9bfa960c45136fa5406adf83555aef5c37b734",
+    "caption": "Hình 17. F17_Form_02",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 17,
+    "source": "IMAGES/LAB_08/F18_Form_03.puml",
+    "sha256": "fa5b66738a0e27ff37e3d37322134e233abe6fa42d6d569624244bf289878ce1",
+    "caption": "Hình 18. F18_Form_03",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 18,
+    "source": "IMAGES/LAB_08/F19_Form_04.puml",
+    "sha256": "a71099c11ef24df4ab98e5b73ddceb55eff2fb38aae57957b4b6201665d8e840",
+    "caption": "Hình 19. F19_Form_04",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 19,
+    "source": "IMAGES/LAB_08/F20_Form_05.puml",
+    "sha256": "6a4f1784de46e72e3c2376932cf0f10be180bc0dd51cbf2a23e011dcc543aabc",
+    "caption": "Hình 20. F20_Form_05",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 20,
+    "source": "IMAGES/LAB_08/F21_Form_06.puml",
+    "sha256": "92896ad1f78591cb8c862258a4acd16ceedcb299e6a6b56a3738ee32d40df7d4",
+    "caption": "Hình 21. F21_Form_06",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 21,
+    "source": "IMAGES/LAB_08/F22_ERD_Nhap.puml",
+    "sha256": "f86aafa82d7b08bbb90f3fe49c24b959a49b067c0649c04f34d793a29cc32eee",
+    "caption": "Hình 22. F22_ERD_Nhap",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  },
+  {
+    "lab": 8,
+    "document": "08_BoSung.docx",
+    "image_index": 22,
+    "source": "IMAGES/LAB_08/F23_ERD_Ban.puml",
+    "sha256": "30c5210a29a6b5d0c56ae4de2cbbc28e91b94101dda996279ff1406aa5ec514d",
+    "caption": "Hình 23. F23_ERD_Ban",
+    "provenance": "Bổ sung từ bài cùng đề theo sự cho phép; nguồn mô hình đi cùng"
+  }
+]

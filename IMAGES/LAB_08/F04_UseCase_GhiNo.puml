@@ -1,0 +1,25 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+left to right direction
+actor "Nhân viên cửa hàng" as NV
+rectangle "Ghi nhận khoản chưa trả" {
+usecase "Lập phiếu ghi nợ" as UC05
+usecase "Kiểm tra khách quen" as KH
+usecase "Tính phần chưa trả" as NO
+usecase "Lưu phiếu và nhân viên lập" as LUU
+}
+NV -- UC05
+UC05 ..> KH : <<include>>
+UC05 ..> NO : <<include>>
+UC05 ..> LUU : <<include>>
+note bottom of LUU
+Chưa có phiếu nợ cho hóa đơn
+Ngày trả >= ngày lập; lý do không rỗng
+end note
+@enduml

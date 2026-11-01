@@ -1,0 +1,15 @@
+@startuml
+title UC13 - Tra cuu tinh trang muon (Sequence)
+actor "Thu thu" as TT
+participant "Giao dien" as UI
+participant "Loan System" as LS
+database "CSDL" as DB
+
+TT -> UI : Yeu cau tra cuu
+UI -> LS : Gui truy van
+LS -> DB : Truy van phieu muon
+DB --> LS : Du lieu phieu muon
+LS -> LS : Phan loai (dang muon / qua han / han tra)
+LS --> UI : Ket qua
+UI --> TT : Hien thi ket qua
+@enduml

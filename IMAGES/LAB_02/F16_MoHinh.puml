@@ -1,0 +1,47 @@
+@startuml
+title UC12 - Ghi nhan tra sach (Sequence)
+actor "Thu thu" as TT
+participant "Giao dien tiep nhan tra sach" as UI
+participant "He thong quan ly muon tra" as HT
+database "CSDL" as DB
+participant "Module tinh phat" as MTP
+
+TT -> UI : Quet / nhap ma phieu, sach, the
+UI -> HT : Gui ma
+HT -> DB : Tra cuu phieu muon
+DB --> HT : Ket qua phieu
+
+alt Phieu khong hop le
+    HT --> UI : Bao loi du lieu
+    UI --> TT : Hien thi loi
+else Phieu hop le, dang "Dang muon"
+    HT --> UI : Thong tin doc gia, sach, ngay muon, han tra
+    UI --> TT : Hien thi thong tin
+    TT -> UI : Kiem tra sach vat ly + Xac nhan tra
+    UI -> HT : Xac nhan
+    HT -> HT : Lay ngay tra thuc te va so sanh han tra
+
+    alt Qua han
+        HT -> MTP : Tinh tien phat
+        MTP --> HT : So ngay qua han + tien phat
+        HT --> UI : Hien thi tien phat
+        UI --> TT : Yeu cau thu phi
+        TT -> UI : Xac nhan thu phi
+    else Dung han
+        HT -> HT : Phi phat = 0
+    end
+
+    alt Sach hong
+        HT --> UI : Hien thi muc boi thuong
+        UI --> TT : Yeu cau ghi bien ban
+        TT -> UI : Nhap bien ban den bu
+    else Sach binh thuong
+    end
+
+    HT -> DB : Cap nhat phieu "Da tra" + ngay gio tra
+    HT -> DB : Tang so ban kha dung
+    DB --> HT : Thanh cong
+    HT --> UI : Thong bao hoan tat
+    UI --> TT : Xac nhan hoan tat
+end
+@enduml

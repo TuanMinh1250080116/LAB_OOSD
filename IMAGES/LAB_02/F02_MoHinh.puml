@@ -1,0 +1,28 @@
+@startuml
+title UC01 - Tim kiem tai lieu (Sequence)
+actor "Doc gia / Khach vang lai" as DG
+participant "Giao dien tim kiem" as UI
+participant "He thong tim kiem" as HT
+database "CSDL" as DB
+
+DG -> UI : Nhap tu khoa / bo loc
+DG -> UI : Nhan "Tim kiem"
+UI -> HT : Gui yeu cau tim kiem
+HT -> HT : Kiem tra tinh hop le tu khoa
+
+alt Tu khoa khong hop le
+    HT --> UI : Thong bao nhap lai
+    UI --> DG : Hien thi loi
+else Tu khoa hop le
+    HT -> DB : Truy van tai lieu phu hop
+    DB --> HT : Ket qua truy van
+    alt Khong co ket qua
+        HT --> UI : "Khong tim thay ket qua" + goi y
+        UI --> DG : Hien thi thong bao + goi y
+    else Co ket qua
+        HT -> HT : Phan trang ket qua
+        HT --> UI : Danh sach tai lieu
+        UI --> DG : Hien thi danh sach
+    end
+end
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+title Biểu đồ trạng thái – Đơn đặt hàng
+hide empty description
+[*] --> DangLap : Khách chọn "Tính tiền"
+state "Đang lập" as DangLap : chọn loại phiếu, người nhận,\nnhập thẻ tín dụng
+state "Chờ xác thực thẻ" as ChoXT : entry / gửi yêu cầu tới\nHệ thống thanh toán
+state "Chờ xử lý" as ChoXL : entry / ghi đơn, trừ giỏ hàng,\ngửi email xác nhận
+state "Đang xử lý" as DangXL : đóng gói theo thời gian\nxử lý của loại phiếu
+state "Đang giao" as DangGiao
+state "Đã giao" as DaGiao
+state "Đã hủy" as DaHuy : entry / hoàn tiền qua\nHệ thống thanh toán
+DangLap --> ChoXT : Xác nhận đặt hàng\n[dữ liệu thẻ đúng định dạng]
+DangLap --> [*] : Khách hủy thao tác
+ChoXT --> DangLap : Bị từ chối\n[thẻ không hợp lệ / không đủ khả năng thanh toán]
+ChoXT --> ChoXL : Chấp thuận\n/ nhận mã giao dịch
+ChoXL --> DangXL : Nhân viên tiếp nhận
+ChoXL --> DaHuy : Khách hủy đơn
+DangXL --> DangGiao : Bàn giao đơn vị vận chuyển
+DangXL --> DaHuy : Nhân viên hủy\n[hết hàng]
+DangGiao --> DaGiao : Người nhận xác nhận
+DaGiao --> [*]
+DaHuy --> [*]
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+class FrmDatPhong <<boundary>>
+class DatPhongService <<control>>
+FrmDatPhong --> DatPhongService
+DatPhongService ..> Db
+class FrmDatPhong <<boundary>>
+class DatPhongService <<control>>
+FrmDatPhong --> DatPhongService
+DatPhongService ..> Db
+class FrmPhongTienNghi <<boundary>>
+class PhongTienNghiService <<control>>
+FrmPhongTienNghi --> PhongTienNghiService
+PhongTienNghiService ..> Db
+class FrmDichVu <<boundary>>
+class DichVuService <<control>>
+FrmDichVu --> DichVuService
+DichVuService ..> Db
+class FrmTraPhong <<boundary>>
+class TraPhongService <<control>>
+FrmTraPhong --> TraPhongService
+TraPhongService ..> Db
+class FrmThongKe <<boundary>>
+class ThongKeService <<control>>
+FrmThongKe --> ThongKeService
+ThongKeService ..> Db
+class Db {
+ +Query(sql, parameters)
+ +Execute(sql, parameters)
+ +Transaction(action)
+}
+
+@enduml

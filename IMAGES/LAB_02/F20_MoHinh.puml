@@ -1,0 +1,20 @@
+@startuml
+title UC07 - Dang ky tai khoan (Sequence)
+actor "Doc gia" as DG
+participant "UI" as UI
+participant "Account System" as AS
+database "CSDL" as DB
+
+DG -> UI : Yeu cau dang ky
+UI -> AS : Gui du lieu dang ky
+AS -> AS : Kiem tra tinh hop le
+alt Du lieu khong hop le
+    AS --> UI : Bao loi
+    UI --> DG : Yeu cau nhap lai
+else Du lieu hop le
+    AS -> DB : Kiem tra trung / luu tai khoan (mat khau ma hoa)
+    DB --> AS : Ket qua
+    AS --> UI : Dang ky thanh cong
+    UI --> DG : Thong bao thanh cong
+end
+@enduml

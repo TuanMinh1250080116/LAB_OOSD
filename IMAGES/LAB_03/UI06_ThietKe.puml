@@ -1,0 +1,16 @@
+@startuml
+skinparam dpi 180
+salt
+{+
+{* Trả phòng và thanh toán }
+{
+Phiếu đặt | "                        "
+Số ngày | "                        "
+Hóa đơn | "                        "
+Tổng tiền | "                        "
+Đã thu | "                        "
+Lần thu này | "                        "
+}
+{ [Đền bù] | [Lập hóa đơn] | [Thu tiền] | [Trả phòng] }
+}
+@enduml

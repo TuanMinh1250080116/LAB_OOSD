@@ -1,0 +1,37 @@
+@startuml
+title UC04 - Tai sach dien tu (Sequence)
+actor "Doc gia" as DG
+participant "Giao dien web" as UI
+participant "He thong quan ly sach dien tu" as HT
+database "CSDL" as DB
+participant "File Server" as FS
+participant "Thiet bi doc gia" as TB
+
+DG -> UI : Chon tai xuong
+UI -> HT : Gui yeu cau tai
+HT -> DB : Kiem tra trang thai tai khoan / quyen
+HT -> DB : Kiem tra trang thai tai lieu
+HT -> FS : Kiem tra file
+
+alt Chua dang nhap / tai khoan khong hop le
+    HT --> UI : Redirect login
+    UI --> DG : Yeu cau dang nhap
+else Chi duoc doc online
+    HT --> UI : Thong bao khong cho tai
+    UI --> DG : Hien thi thong bao
+else Du dieu kien
+    HT -> FS : Tao download stream
+    FS --> HT : Du lieu file
+    HT -> TB : Truyen du lieu
+    TB -> TB : Luu file
+    alt Mat ket noi
+        HT --> UI : Huy download + loi
+        UI --> DG : Thong bao loi (khong tang luot tai)
+    else Thanh cong
+        HT -> DB : Cap nhat luot tai
+        HT -> HT : Ghi log
+        HT --> UI : Thanh cong
+        UI --> DG : Xac nhan hoan tat
+    end
+end
+@enduml

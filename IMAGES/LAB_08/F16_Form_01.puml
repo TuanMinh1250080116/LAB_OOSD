@@ -1,0 +1,27 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+salt
+{+
+{* F01 · DANH MỤC }
+{
+Nhóm danh mục | ^Nước giải khát^
+Tìm mã / tên | "                    "
+Mã NGK | "NGK01"
+Tên NGK | "Nước ngọt lon"
+Đơn vị tính | "Lon"
+Loại | ^L01^
+}
+{#
+Mã | Tên | ĐVT | Loại
+NGK01 | Nước ngọt lon | Lon | L01
+}
+{ [Thêm] | [Lưu] | [Xóa] | [Tìm] }
+}
+
+@enduml

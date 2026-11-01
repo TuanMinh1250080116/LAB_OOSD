@@ -1,0 +1,85 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 180
+hide circle
+entity NhanVien {
+ MaNV : VARCHAR(20) <<PK>>
+ HoTen : NVARCHAR(120)
+ VaiTro : NVARCHAR(50)
+ SoDienThoai : VARCHAR(20)
+}
+entity KhuVuc {
+ MaKhuVuc : VARCHAR(20) <<PK>>
+ TenKhuVuc : NVARCHAR(100)
+}
+entity Phong {
+ SoPhong : VARCHAR(20) <<PK>>
+ MaKhuVuc : VARCHAR(20)
+ SoNguoiToiDa : INT
+ DonGiaNgay : DECIMAL(18,2)
+ TrangThai : NVARCHAR(30)
+}
+entity LoaiTienNghi {
+ MaLoaiTN : VARCHAR(20) <<PK>>
+ TenLoaiTN : NVARCHAR(100)
+}
+entity TienNghi {
+ MaTienNghi : VARCHAR(30) <<PK>>
+ MaLoaiTN : VARCHAR(20)
+ SoThuTu : INT
+ TinhTrangHienTai : NVARCHAR(100)
+}
+entity PhieuLapDat {
+ SoPhieuLapDat : VARCHAR(30) <<PK>>
+ MaTienNghi : VARCHAR(30)
+ SoPhong : VARCHAR(20)
+ NgayLap : DATETIME
+ TinhTrang : NVARCHAR(100)
+ MaNV : VARCHAR(20)
+ GhiChu : NVARCHAR(250)
+}
+entity KhachHang {
+ MaKhach : VARCHAR(20) <<PK>>
+ HoTen : NVARCHAR(120)
+ SoCMND : VARCHAR(30)
+ QuocTich : NVARCHAR(80)
+ SoDienThoai : VARCHAR(20)
+}
+entity PhieuDatPhong {
+ SoPhieuDat : VARCHAR(30) <<PK>>
+ MaKhach : VARCHAR(20)
+ MaNVLeTan : VARCHAR(20)
+ NgayLap : DATETIME
+ NgayNhan : DATETIME
+ NgayTraDuKien : DATETIME
+ TienCoc : DECIMAL(18,2)
+ KenhDat : NVARCHAR(20)
+ TrangThai : NVARCHAR(30)
+ NgayNhanThucTe : DATETIME
+ NgayTraThucTe : DATETIME
+}
+entity ChiTietDatPhong {
+ SoPhieuDat : VARCHAR(30) <<PK>>
+ SoPhong : VARCHAR(20) <<PK>>
+ SoNguoi : INT
+ DonGiaApDung : DECIMAL(18,2)
+}
+entity NguoiLuuTru {
+ MaNguoiLT : INT <<PK>>
+ SoPhieuDat : VARCHAR(30)
+ SoPhong : VARCHAR(20)
+ HoTen : NVARCHAR(120)
+ SoCMND : VARCHAR(30)
+ QuocTich : NVARCHAR(80)
+}
+KhuVuc "1" -- "0..*" Phong : MaKhuVuc
+LoaiTienNghi "1" -- "0..*" TienNghi : MaLoaiTN
+TienNghi "1" -- "0..*" PhieuLapDat : MaTienNghi
+Phong "1" -- "0..*" PhieuLapDat : SoPhong
+NhanVien "1" -- "0..*" PhieuLapDat : MaNV
+KhachHang "1" -- "0..*" PhieuDatPhong : MaKhach
+NhanVien "1" -- "0..*" PhieuDatPhong : MaNVLeTan
+PhieuDatPhong "1" -- "0..*" ChiTietDatPhong : SoPhieuDat
+Phong "1" -- "0..*" ChiTietDatPhong : SoPhong
+ChiTietDatPhong "1" -- "0..*" NguoiLuuTru : SoPhieuDat, SoPhong
+@enduml

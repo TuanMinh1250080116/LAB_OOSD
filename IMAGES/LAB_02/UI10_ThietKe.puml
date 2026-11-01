@@ -1,0 +1,15 @@
+@startuml
+skinparam dpi 180
+salt
+{+
+{* Tình trạng mượn }
+{
+Mã thẻ | "                         "
+Tên độc giả | "                         "
+Tình trạng | "                         "
+Từ ngày | "                         "
+Đến ngày | "                         "
+}
+{ [Tra cứu] | [Xem chi tiết] }
+}
+@enduml

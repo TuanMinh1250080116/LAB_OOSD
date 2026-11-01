@@ -1,0 +1,41 @@
+@startuml
+title UC14 - Cap nhat danh muc tai lieu (Activity)
+|Thu thu|
+start
+:Dang nhap voi quyen quan tri danh muc;
+:Truy cap trang quan ly danh muc;
+
+if (Chon thao tac?) then (Them)
+  :Hien thi form them;
+  :Nhap thong tin;
+elseif (Sua) then (Sua)
+  :Chon tai lieu;
+  :Hien thi thong tin hien tai;
+  :Chinh sua;
+else (Xoa)
+  :Chon tai lieu;
+  :Thuc hien yeu cau xoa;
+
+  if (Sach dang trong phieu muon "Dang muon"?) then (co)
+    :Khong cho xoa vat ly;
+    :Hien thi canh bao;
+    :De xuat "Ngung luu hanh / An";
+    stop
+  else (khong)
+  endif
+endif
+
+|He thong|
+:Kiem tra ISBN duy nhat, ten sach khong trung, rang buoc du lieu;
+
+if (Du lieu hop le?) then (khong)
+  :Hien thi loi cu the;
+  :Giu du lieu tren form;
+  stop
+else (co)
+  :Cap nhat CSDL;
+  :Ghi audit log (nguoi thuc hien, thoi gian, noi dung);
+  :Thong bao thanh cong;
+  stop
+endif
+@enduml

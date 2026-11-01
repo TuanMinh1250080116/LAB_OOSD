@@ -1,0 +1,49 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+title Biểu đồ tuần tự – UC04 Đăng ký tài khoản
+autonumber
+actor "Khách vãng lai" as U
+boundary "FrmDangKy" as F
+control "TaiKhoanService" as C
+entity "KhachHang" as KH
+database "SQL Server ESHOP" as DB
+U -> F : Nhập họ tên, ngày sinh, CMND/Passport,\nđịa chỉ, điện thoại, tên đăng nhập, mật khẩu, email
+U -> F : Bấm "Đăng ký"
+F -> C : DangKy(thongTin, matKhau, nhapLai)
+C -> C : KiemTraHopLe()\n(bắt buộc, định dạng email/ĐT,\nđủ 18 tuổi?, mật khẩu ≥ 6 ký tự)
+alt Dữ liệu sai
+  C --> F : KetQua.Fail(lý do)
+  F --> U : Báo lỗi tại ô nhập
+else Hợp lệ
+  C -> DB : SELECT COUNT(*) WHERE TenDangNhap = :t OR SoGiayTo = :g
+  DB --> C : n
+  alt n > 0
+    C --> F : Fail("Tên đăng nhập / giấy tờ đã tồn tại")
+    F --> U : Thông báo trùng
+  else n = 0
+    C -> C : BamMatKhau(SHA-256 + salt)
+    C -> KH ** : new KhachHang(...)
+    C -> DB : INSERT INTO KhachHang
+    DB --> C : OK
+    C --> F : KetQua.Ok(maKH)
+    F --> U : "Đăng ký thành công", chuyển sang Đăng nhập
+  end
+end
+@enduml

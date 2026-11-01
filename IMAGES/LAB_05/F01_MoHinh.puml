@@ -1,0 +1,140 @@
+@startuml
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam dpi 140
+skinparam shadowing true
+skinparam BackgroundColor #FFFFFF
+skinparam ArrowColor #8B0000
+skinparam ActorBorderColor #8B0000
+skinparam ActorBackgroundColor #FFFFCC
+skinparam UsecaseBackgroundColor #FFFFCC
+skinparam UsecaseBorderColor #8B0000
+skinparam ClassBackgroundColor #FFFFCC
+skinparam ClassBorderColor #8B0000
+skinparam ClassHeaderBackgroundColor #FFF2A8
+skinparam PackageBackgroundColor #FAFAF0
+skinparam PackageBorderColor #8B0000
+skinparam StateBackgroundColor #FFFFCC
+skinparam StateBorderColor #8B0000
+skinparam ActivityBackgroundColor #FFFFCC
+skinparam ActivityBorderColor #8B0000
+skinparam PartitionBorderColor #8B0000
+skinparam ParticipantBackgroundColor #FFFFCC
+skinparam ParticipantBorderColor #8B0000
+skinparam SequenceLifeLineBorderColor #8B0000
+skinparam NoteBackgroundColor #E8F4FF
+skinparam RectangleBorderColor #8B0000
+title Biểu đồ lớp - chia theo gói nghiệp vụ
+package "Danh mục tour" {
+  class Tour {
+    - maTour : String
+    - tenTour : String
+    - soNgay : int
+    - soDem : int
+    - donGia : long
+    + tinhKinhPhi(n : int) : long
+  }
+  class NoiDungChan {
+    - thuTu : int
+    - doiPhuongTien : bool
+    - coNoiAn : bool
+    - loaiKhachSan : int
+  }
+  class DiaDanh {
+    - maDiaDanh : String
+    - ten : String
+  }
+  class PhuongTien {
+    - maPT : String
+    - ten : String
+  }
+  class DiemThamQuan {
+    - maDTQ : String
+    - ten : String
+    - noiDung : String
+    - yNghia : String
+  }
+}
+package "Khách hàng" {
+  abstract class KhachHang {
+    - dienThoai : String
+    - diaChi : String
+  }
+  class KhachDoan {
+    - maKD : String
+    - tenCoQuan : String
+    - nguoiDaiDien : String
+  }
+  class KhachLe {
+    - maKL : String
+    - hoTen : String
+    - soGiayTo : String
+  }
+}
+package "Đăng ký" {
+  class PhieuDangKyDoan {
+    - soPhieu : String
+    - ngayDi : Date
+    - soNguoi : int
+    - tienCoc : long
+    - trangThai : String
+    + khoiHanh()
+    + ketThuc()
+    + huy()
+    + thanhToan()
+  }
+  class NguoiDiCung {
+    - hoTen : String
+    - ngaySinh : Date
+  }
+  class ChuyenDi {
+    - maChuyen : String
+    - ngayDi : Date
+    - soCho : int
+    + conCho() : int
+  }
+  class VeChuyen {
+    - soVe : String
+    - soNguoi : int
+    - thanhTien : long
+  }
+  class DiemBanVe
+  class DiemDon
+  class PhieuKhaoSat {
+    - mucHaiLong : int
+    - gopY : String
+  }
+}
+package "Nhân sự" {
+  class NhanVien {
+    - maNV : String
+    - hoTen : String
+    - luongCanBan : long
+    + luongThang(t, n) : long
+  }
+  class PhanCong {
+    - tuNgay : Date
+    - denNgay : Date
+    - luongTour : long
+  }
+}
+Tour "1" *-- "1..*" NoiDungChan
+NoiDungChan --> "1" DiaDanh
+NoiDungChan --> "1" PhuongTien
+Tour "*" o-- "*" DiemThamQuan
+KhachHang <|-- KhachDoan
+KhachHang <|-- KhachLe
+KhachDoan "1" -- "*" PhieuDangKyDoan
+PhieuDangKyDoan "*" --> "1" Tour
+PhieuDangKyDoan "1" *-- "*" NguoiDiCung
+Tour "1" -- "*" ChuyenDi
+ChuyenDi "1" -- "*" VeChuyen
+KhachLe "1" -- "*" VeChuyen
+VeChuyen --> DiemBanVe
+VeChuyen --> DiemDon
+NhanVien "1" -- "*" PhanCong
+PhanCong --> "0..1" PhieuDangKyDoan
+PhanCong --> "0..1" ChuyenDi
+PhieuDangKyDoan -- "0..1" PhieuKhaoSat
+VeChuyen -- "0..1" PhieuKhaoSat
+@enduml

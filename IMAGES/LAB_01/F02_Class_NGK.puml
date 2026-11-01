@@ -1,0 +1,149 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam classFontSize 13
+skinparam classHeaderBackgroundColor #4A90D9
+skinparam classHeaderFontColor #FFFFFF
+skinparam classBorderColor #2C6FA6
+skinparam classBackgroundColor #EEF4FB
+skinparam arrowColor #2C6FA6
+skinparam arrowFontSize 11
+skinparam noteBackgroundColor #FFFAE6
+skinparam noteBorderColor #CCAA00
+
+' ══════════════════════════════════════════════════
+'  DANH MỤC
+' ══════════════════════════════════════════════════
+class Brand {
+  + brandCode    : string  {PK}
+  + brandName    : string
+}
+
+class Beverage {
+  + beverageCode   : string  {PK}
+  + beverageName   : string
+  + packingUnit    : string
+  + sellingPrice   : decimal
+  + stockQuantity  : int
+}
+
+class Supplier {
+  + supplierCode : string  {PK}
+  + supplierName : string
+  + address      : string
+  + phoneNumber  : string
+}
+
+' ══════════════════════════════════════════════════
+'  MUA VÀO
+' ══════════════════════════════════════════════════
+class PurchaseOrder {
+  + orderNumber  : string  {PK}
+  + orderDate    : date
+  + expectedDate : date
+  + orderStatus  : enum
+}
+
+class PurchaseOrderLine {
+  + orderedQuantity : int
+}
+
+note bottom of PurchaseOrderLine
+  PK = (orderNumber, beverageCode)
+end note
+
+class DeliveryNote {
+  + noteNumber    : string  {PK}
+  + deliveredDate : date
+  + amountPayable : decimal
+  + batchNumber   : int
+}
+
+class DeliveryNoteLine {
+  + deliveredQuantity : int
+  + purchasePrice     : decimal
+}
+
+' ══════════════════════════════════════════════════
+'  BÁN RA
+' ══════════════════════════════════════════════════
+class Customer {
+  + customerCode : string  {PK}
+  + customerName : string
+  + address      : string
+  + phoneNumber  : string
+  + customerType : enum
+}
+
+class SalesInvoice {
+  + invoiceNumber  : string  {PK}
+  + issuedDate     : date
+  + totalAmount    : decimal
+  + paymentMethod  : enum
+}
+
+class SalesInvoiceLine {
+  + soldQuantity : int
+  + appliedPrice : decimal
+  + lineAmount   : decimal  {derived}
+}
+
+class DeliveryAppointment {
+  + appointmentNumber : string  {PK}
+  + appointedDate     : date
+  + pendingQuantity   : int
+  + appointmentStatus : enum
+}
+
+class DebtVoucher {
+  + voucherNumber : string  {PK}
+  + createdDate   : date
+  + debtAmount    : decimal
+  + dueDate       : date
+  + debtReason    : string
+}
+
+' ══════════════════════════════════════════════════
+'  NHÂN VIÊN
+' ══════════════════════════════════════════════════
+class Employee {
+  + employeeCode : string  {PK}
+  + employeeName : string
+  + position     : string
+}
+
+' ══════════════════════════════════════════════════
+'  LIÊN KẾT - DANH MỤC
+' ══════════════════════════════════════════════════
+Brand      "1"  -->  "0..*"  Beverage          : gồm >
+
+Supplier   "1"  -->  "0..*"  Beverage          : phân phối >
+
+' ══════════════════════════════════════════════════
+'  LIÊN KẾT - MUA VÀO
+' ══════════════════════════════════════════════════
+Supplier      "1"  -->  "0..*"  PurchaseOrder     : nhận >
+Employee      "1"  -->  "0..*"  PurchaseOrder     : lập >
+
+PurchaseOrder "1"  *--  "1..*"  PurchaseOrderLine : chứa >
+Beverage      "1"  -->  "0..*"  PurchaseOrderLine
+
+PurchaseOrder "1"  -->  "0..3"  DeliveryNote      : giao theo đợt >
+DeliveryNote  "1"  *--  "1..*"  DeliveryNoteLine  : chứa >
+Beverage      "1"  -->  "0..*"  DeliveryNoteLine
+
+' ══════════════════════════════════════════════════
+'  LIÊN KẾT - BÁN RA
+' ══════════════════════════════════════════════════
+Customer     "1"    -->  "0..*"  SalesInvoice         : mua >
+Employee     "1"    -->  "0..*"  SalesInvoice         : lập >
+
+SalesInvoice "1"    *--  "1..*"  SalesInvoiceLine     : chứa >
+Beverage     "1"    -->  "0..*"  SalesInvoiceLine
+
+SalesInvoice "1"    -->  "0..*"  DeliveryAppointment  : phát sinh >
+Employee     "1"    -->  "0..*"  DeliveryAppointment  : lập >
+
+SalesInvoice "0..1" -->  "0..1"  DebtVoucher          : kèm theo >
+Customer     "1"    -->  "0..*"  DebtVoucher          : nợ >
+Employee     "1"    -->  "0..*"  DebtVoucher          : lập >
+@enduml

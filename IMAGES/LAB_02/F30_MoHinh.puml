@@ -1,0 +1,35 @@
+@startuml
+title UC14 - Cap nhat danh muc tai lieu (Sequence)
+actor "Thu thu" as TT
+participant "Giao dien quan ly danh muc" as UI
+participant "Module danh muc" as MDM
+database "CSDL" as DB
+participant "Audit Log" as LOG
+
+TT -> UI : Truy cap quan ly danh muc
+TT -> UI : Chon Them / Sua / Xoa
+UI -> MDM : Yeu cau giao dien tuong ung
+MDM --> UI : Tra giao dien
+TT -> UI : Nhap / chon du lieu + Luu
+UI -> MDM : Gui du lieu
+
+alt Xoa nhung sach dang duoc muon
+    MDM -> DB : Kiem tra trang thai phieu muon
+    DB --> MDM : Dang muon
+    MDM --> UI : Tu choi xoa + de xuat an/ngung luu hanh
+    UI --> TT : Hien thi canh bao
+else Them / Sua / Xoa hop le
+    MDM -> DB : Kiem tra rang buoc (ISBN, ten trung...)
+    DB --> MDM : Ket qua kiem tra
+    alt ISBN trung / thieu tieu de / du lieu sai
+        MDM --> UI : Loi + giu du lieu tren form
+        UI --> TT : Yeu cau sua lai
+    else Du lieu hop le
+        MDM -> DB : Ghi thay doi
+        DB --> MDM : Thanh cong
+        MDM -> LOG : Ghi audit log
+        MDM --> UI : Thong bao thanh cong
+        UI --> TT : Xac nhan
+    end
+end
+@enduml

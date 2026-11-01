@@ -1,0 +1,45 @@
+@startuml
+title UC17 - Gui email nhac han tra sach (Activity)
+|Bo dinh thoi|
+start
+:Den thoi diem cau hinh;
+:Kich hoat tac vu;
+|He thong|
+:Truy van CSDL;
+:Loc phieu (Dang muon, con dung 3 ngay, chua gui nhac);
+
+if (Co phieu nao?) then (khong)
+  :Ghi log "khong co du lieu can nhac";
+  stop
+else (co)
+  while (Con phieu chua xu ly?) is (co)
+    :Lay ho ten, email, ten sach, han tra;
+
+    if (Khong co email / email sai?) then (co)
+      :Bo qua phieu;
+      :Ghi vao danh sach can thu thu lien he;
+    else (email hop le)
+      :Dung noi dung email;
+      :Gui sang mail server;
+      |Mail Server|
+      if (Mail server khong phan hoi?) then (co)
+        :Dua email vao hang doi;
+        :Retry sau 30 phut (toi da 3 lan);
+        if (That bai het 3 lan?) then (co)
+          :Ghi canh bao de thu thu xu ly;
+        else (thanh cong sau retry)
+          :Gui email cho doc gia;
+          |He thong|
+          :Danh dau phieu da duoc nhac;
+        endif
+      else (gui thanh cong)
+        :Gui email cho doc gia;
+        |He thong|
+        :Danh dau phieu da duoc nhac;
+      endif
+    endif
+  endwhile (het)
+  :Ghi log so email gui thanh cong;
+  stop
+endif
+@enduml

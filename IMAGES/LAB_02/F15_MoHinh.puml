@@ -1,0 +1,45 @@
+@startuml
+title UC12 - Ghi nhan tra sach (Activity)
+|Thu thu|
+start
+:Quet ma vach / nhap ma phieu, ma sach, ma the;
+|He thong|
+:Tim phieu muon;
+
+if (Tim thay phieu "Dang muon"?) then (khong)
+  :Bao loi du lieu;
+  stop
+else (co)
+  :Hien thi thong tin doc gia, sach, ngay muon, han tra;
+  |Thu thu|
+  :Kiem tra tinh trang vat ly;
+  :Xac nhan tiep nhan;
+  |He thong|
+  :So sanh ngay tra thuc te voi han tra;
+
+  if (Dung han?) then (co)
+    :Phi phat = 0d;
+  else (khong)
+    :Tinh so ngay qua han;
+    :Tinh tien phat;
+    :Hien thi khoan phat;
+    |Thu thu|
+    :Thu phi truoc khi hoan tat;
+    |He thong|
+  endif
+
+  if (Sach bi hong / rach / mat trang?) then (co)
+    :Hien thi bieu muc boi thuong;
+    |Thu thu|
+    :Ghi nhan bien ban den bu;
+    |He thong|
+  else (binh thuong)
+  endif
+
+  :Cap nhat phieu thanh "Da tra";
+  :Ghi nhan ngay gio tra;
+  :Tang so ban kha dung len 1;
+  :Hien thi hoan tat;
+  stop
+endif
+@enduml

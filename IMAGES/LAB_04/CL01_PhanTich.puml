@@ -1,0 +1,68 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+title Biểu đồ lớp phân tích (Boundary – Control – Entity) cho UC03 và UC07
+left to right direction
+hide empty members
+skinparam linetype ortho
+class FrmSanPham <<boundary>>
+class FrmGioHang <<boundary>>
+class FrmDatHang <<boundary>>
+class FrmDangNhap <<boundary>>
+class "Cổng HTQLSP" as GwSP <<boundary>>
+class "Cổng thanh toán" as GwTT <<boundary>>
+class "Cổng Email" as GwMail <<boundary>>
+
+class GioHangController <<control>>
+class DatHangController <<control>>
+class TaiKhoanController <<control>>
+class PhiGiaoHangCalculator <<control>>
+
+class SanPham <<entity>>
+class GioHang <<entity>>
+class ChiTietGioHang <<entity>>
+class KhachHang <<entity>>
+class DonDatHang <<entity>>
+class ChiTietDonHang <<entity>>
+class LoaiPhieuDatHang <<entity>>
+class BangPhiGiaoHang <<entity>>
+class TheTinDung <<entity>>
+class LoaiThe <<entity>>
+
+FrmSanPham --> GioHangController
+FrmGioHang --> GioHangController
+FrmGioHang --> DatHangController
+FrmDatHang --> DatHangController
+FrmDangNhap --> TaiKhoanController
+GioHangController --> GwSP
+GioHangController --> GioHang
+GioHangController --> ChiTietGioHang
+GwSP --> SanPham
+TaiKhoanController --> KhachHang
+DatHangController --> PhiGiaoHangCalculator
+DatHangController --> GwTT
+DatHangController --> GwMail
+DatHangController --> DonDatHang
+DatHangController --> ChiTietDonHang
+DatHangController --> TheTinDung
+DatHangController --> GioHang
+PhiGiaoHangCalculator --> LoaiPhieuDatHang
+PhiGiaoHangCalculator --> BangPhiGiaoHang
+TheTinDung --> LoaiThe
+@enduml

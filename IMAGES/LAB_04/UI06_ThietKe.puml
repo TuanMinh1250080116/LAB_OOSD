@@ -1,0 +1,14 @@
+@startuml
+skinparam dpi 180
+salt
+{+
+{* Tra cứu đơn hàng }
+{
+Mã đơn | "                        "
+Ngày đặt | "                        "
+Trạng thái | "                        "
+Tổng trị giá | "                        "
+}
+{ [Tra cứu] | [Xem chi tiết] }
+}
+@enduml

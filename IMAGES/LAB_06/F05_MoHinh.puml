@@ -1,0 +1,32 @@
+@startuml
+skinparam backgroundColor white
+actor "Bác sĩ" as BS
+boundary "Form lập toa" as Form
+control "ClinicService" as Service
+database "SQL Server" as DB
+actor "Bệnh nhân" as BN
+BS -> Form : Nhập mã lượt khám, thuốc, số lượng, liều, ngày
+Form -> Service : Prescribe(maKham,maBS,maThuoc,...)
+Service -> DB : BEGIN TRANSACTION
+Service -> DB : Khóa lượt khám, kiểm tra trạng thái và bác sĩ
+DB --> Service : Lượt khám hợp lệ / không hợp lệ
+alt Không hợp lệ
+  Service -> DB : ROLLBACK
+  Service --> Form : Thông báo lỗi
+  Form --> BS : Yêu cầu sửa thông tin
+else Hợp lệ
+  Service -> DB : Kiểm tra mọi xét nghiệm đã có kết quả
+  alt Còn kết quả chờ
+    Service -> DB : ROLLBACK
+    Service --> Form : Chưa thể kê toa
+  else Đã đủ kết quả
+    Service -> DB : INSERT ToaThuoc, ChiTietToa
+    Service -> DB : UPDATE LuotKham = CHO_THANH_TOAN
+    Service -> DB : COMMIT
+    DB --> Service : Mã toa
+    Service --> Form : Mã toa đã ký
+    Form --> BS : Hiển thị toa
+    BS --> BN : Giao toa, hướng dẫn dùng thuốc
+  end
+end
+@enduml

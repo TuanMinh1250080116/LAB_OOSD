@@ -1,0 +1,27 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+left to right direction
+actor "Nhân viên cửa hàng" as NV
+rectangle "Bán hàng và giao hẹn" {
+usecase "Bán và giao hàng" as UC04
+usecase "Kiểm tra tồn" as TON
+usecase "Lập hóa đơn" as HD
+usecase "Ghi nhận tiền ban đầu" as TIEN
+usecase "Lập phiếu hẹn" as HEN
+usecase "Xác nhận giao theo hẹn" as UC04B
+}
+NV -- UC04
+NV -- UC04B
+UC04 ..> TON : <<include>>
+UC04 ..> HD : <<include>>
+UC04 ..> TIEN : <<include>>
+HEN ..> UC04 : <<extend>>
+ note right of HEN : Khách quen, còn thiếu hàng
+note bottom of UC04B : Thực hiện độc lập ở lần giao sau
+@enduml

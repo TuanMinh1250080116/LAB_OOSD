@@ -1,0 +1,15 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+[*] --> ChuaTT : Lập hóa đơn
+state "Chưa thanh toán" as ChuaTT
+state "Đã thanh toán" as DaTT
+ChuaTT --> ChuaTT : Thu một phần (< tổng tiền)
+ChuaTT --> DaTT : Tổng thu = tổng hóa đơn
+DaTT --> [*]
+@enduml

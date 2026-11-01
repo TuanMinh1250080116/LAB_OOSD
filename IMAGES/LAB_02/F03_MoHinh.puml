@@ -1,0 +1,11 @@
+@startuml
+title UC02 - Xem chi tiet tai lieu (Activity)
+|Doc gia|
+start
+:Chon mot tai lieu;
+|He thong|
+:Lay thong tin tai lieu;
+:Lay so ban kha dung;
+:Hien thi chi tiet tai lieu;
+stop
+@enduml

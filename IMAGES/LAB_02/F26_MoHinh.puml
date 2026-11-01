@@ -1,0 +1,18 @@
+@startuml
+title UC10 - Theo doi yeu cau dat mua (Sequence)
+actor "Doc gia" as DG
+participant "UI" as UI
+participant "Request System" as RS
+database "CSDL" as DB
+
+DG -> UI : Yeu cau danh sach
+UI -> RS : Lay yeu cau cua nguoi dung
+RS -> DB : Query
+DB --> RS : Du lieu
+RS --> UI : Danh sach + trang thai
+UI --> DG : Hien thi danh sach
+DG -> UI : Chon 1 yeu cau
+UI -> RS : Lay chi tiet
+RS --> UI : Chi tiet yeu cau
+UI --> DG : Hien thi chi tiet
+@enduml

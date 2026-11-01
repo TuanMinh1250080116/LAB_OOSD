@@ -1,0 +1,11 @@
+@startuml
+title UC13 - Tra cuu tinh trang muon (Activity)
+|Thu thu|
+start
+:Nhap / chon thong tin tra cuu;
+|He thong|
+:Truy van phieu muon;
+:Phan loai (dang muon, qua han, nguoi dang muon, han tra);
+:Hien thi ket qua;
+stop
+@enduml

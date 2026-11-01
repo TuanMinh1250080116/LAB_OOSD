@@ -1,0 +1,146 @@
+<mxfile>
+  <diagram id="Cau6_SequenceDiagram" name="Câu 6 - Sequence Diagram">
+    <mxGraphModel dx="1479" dy="1151" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1480" pageHeight="1060" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sd" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=220;height=30;fontStyle=1;" value="sd Lập quyết định khen thưởng" vertex="1">
+          <mxGeometry height="1010" width="1440" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="life_TP" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};size=50;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Trưởng phòng/ban" vertex="1">
+          <mxGeometry height="920" width="150" x="85" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bTP" parent="life_TP" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="40" width="10" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="life_GD" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};size=50;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Giám đốc" vertex="1">
+          <mxGeometry height="920" width="150" x="325" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bGD" parent="life_GD" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="70" width="10" x="70" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="life_PNS" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};size=50;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Phòng nhân sự" vertex="1">
+          <mxGeometry height="920" width="150" x="565" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bPNS1" parent="life_PNS" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="320" width="10" x="70" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="bPNS2" parent="life_PNS" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="35" width="10" x="70" y="845" as="geometry" />
+        </mxCell>
+        <mxCell id="life_HT" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};size=50;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Hệ thống QLNS" vertex="1">
+          <mxGeometry height="920" width="150" x="805" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bHT1" parent="life_HT" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="70" width="10" x="70" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bHT2" parent="life_HT" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="80" width="10" x="70" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="bHT3" parent="life_HT" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="160" width="10" x="70" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="life_KT" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};size=50;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Phòng kế toán" vertex="1">
+          <mxGeometry height="920" width="150" x="1045" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bKT" parent="life_KT" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="370" width="10" x="70" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="life_CN" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};size=50;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Cá nhân/tập thể&lt;br&gt;được khen thưởng" vertex="1">
+          <mxGeometry height="920" width="150" x="1285" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bCN" parent="life_CN" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="75" width="10" x="70" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="bTP" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.2500;exitDx=0;exitDy=0;entryX=0;entryY=0.0156;entryDx=0;entryDy=0;" target="bPNS1" value="1. Gửi đề xuất khen thưởng&lt;br&gt;(danh sách, lý do, mức đề xuất)">
+          <mxGeometry relative="1" x="-0.5" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="165" y="170" as="sourcePoint" />
+            <mxPoint x="635" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="bPNS1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.2031;exitDx=0;exitDy=0;entryX=0;entryY=0.1429;entryDx=0;entryDy=0;" target="bHT1" value="2. Nhập đề xuất, lập dự thảo&lt;br&gt;quyết định khen thưởng">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="645" y="230" as="sourcePoint" />
+            <mxPoint x="875" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="bHT1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=0.8571;exitDx=0;exitDy=0;entryX=1;entryY=0.3594;entryDx=0;entryDy=0;" target="bPNS1" value="3. Trả dự thảo quyết định">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="875" y="280" as="sourcePoint" />
+            <mxPoint x="645" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="bPNS1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=0;exitY=0.5781;exitDx=0;exitDy=0;entryX=1;entryY=0.1429;entryDx=0;entryDy=0;" target="bGD" value="4. Trình duyệt dự thảo&lt;br&gt;quyết định">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="635" y="350" as="sourcePoint" />
+            <mxPoint x="405" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="bGD" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=1;exitY=0.8571;exitDx=0;exitDy=0;entryX=0;entryY=0.7344;entryDx=0;entryDy=0;" target="bPNS1" value="5. Phê duyệt, ký quyết định">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="405" y="400" as="sourcePoint" />
+            <mxPoint x="635" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="bPNS1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.9531;exitDx=0;exitDy=0;entryX=0;entryY=0.1875;entryDx=0;entryDy=0;" target="bHT2" value="6. Cập nhật, lưu quyết định&lt;br&gt;khen thưởng chính thức">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="645" y="470" as="sourcePoint" />
+            <mxPoint x="875" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="bHT2" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.8750;exitDx=0;exitDy=0;entryX=0;entryY=0.0270;entryDx=0;entryDy=0;" target="bKT" value="7. Chuyển quyết định&lt;br&gt;đã duyệt">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="885" y="525" as="sourcePoint" />
+            <mxPoint x="1115" y="525" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="alt" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=50;height=25;" value="alt" vertex="1">
+          <mxGeometry height="270" width="640" x="810" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="g1" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=2;" value="[Chi tiền mặt]" vertex="1">
+          <mxGeometry height="22" width="120" x="894" y="563" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="720" as="sourcePoint" />
+            <mxPoint x="1450" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g2" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=2;" value="[Cộng vào lương]" vertex="1">
+          <mxGeometry height="22" width="130" x="894" y="724" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="bKT" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.3108;exitDx=0;exitDy=0;entryX=0;entryY=0.2000;entryDx=0;entryDy=0;" target="bCN" value="8a. Lập phiếu chi,&lt;br&gt;chi tiền thưởng">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1125" y="630" as="sourcePoint" />
+            <mxPoint x="1355" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="bCN" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=0.8667;exitDx=0;exitDy=0;entryX=1;entryY=0.4459;entryDx=0;entryDy=0;" target="bKT" value="9a. Ký xác nhận đã nhận thưởng">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1355" y="680" as="sourcePoint" />
+            <mxPoint x="1125" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="bKT" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=0;exitY=0.7703;exitDx=0;exitDy=0;entryX=1;entryY=0.0938;entryDx=0;entryDy=0;" target="bHT3" value="8b. Cộng tiền thưởng&lt;br&gt;vào bảng lương">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1115" y="800" as="sourcePoint" />
+            <mxPoint x="885" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="bKT" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=0;exitY=0.9730;exitDx=0;exitDy=0;entryX=1;entryY=0.5625;entryDx=0;entryDy=0;" target="bHT3" value="10. Lưu phiếu chi /&lt;br&gt;cập nhật bảng lương">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1115" y="875" as="sourcePoint" />
+            <mxPoint x="885" y="875" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="bHT3" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=0.9375;exitDx=0;exitDy=0;entryX=1;entryY=0.2857;entryDx=0;entryDy=0;" target="bPNS2" value="11. Báo hoàn tất, lưu hồ sơ">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="875" y="935" as="sourcePoint" />
+            <mxPoint x="645" y="935" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

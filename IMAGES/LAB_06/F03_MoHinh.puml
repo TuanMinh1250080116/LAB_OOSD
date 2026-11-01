@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+skinparam backgroundColor white
+actor "Bệnh nhân" as BN
+actor "Tiếp nhận" as TN
+actor "Bác sĩ" as BS
+actor "Kỹ thuật viên XN" as KTV
+rectangle "Từ đăng ký khám đến nhận toa" {
+ usecase "Đăng ký khám" as A
+ usecase "Tra cứu / cấp hồ sơ" as B
+ usecase "Kiểm tra lệ phí năm\nnếu khám định kỳ" as C
+ usecase "Tạo lượt khám" as D
+ usecase "Xem lịch sử bệnh án" as E
+ usecase "Ghi triệu chứng và chẩn đoán" as F
+ usecase "Chỉ định xét nghiệm" as G
+ usecase "Thực hiện / trả kết quả" as H
+ usecase "Lập và ký toa thuốc" as I
+ usecase "Nhận toa thuốc" as J
+}
+BN -- A
+BN -- J
+TN -- A
+TN -- D
+BS -- E
+BS -- F
+BS -- G
+BS -- I
+KTV -- H
+A ..> B : <<include>>
+D ..> A : <<include>>
+C ..> A : <<extend>>\n[định kỳ]
+G ..> F : <<extend>>\n[cần xét nghiệm]
+H ..> G : <<include>>
+I ..> E : <<include>>
+J ..> I : <<include>>
+@enduml

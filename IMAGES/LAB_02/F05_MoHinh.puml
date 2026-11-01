@@ -1,0 +1,14 @@
+@startuml
+title UC03 - Doc truc tuyen sach dien tu (Activity)
+|Doc gia|
+start
+:Chon sach dien tu;
+:Chon "Doc truc tuyen";
+|He thong|
+:Kiem tra tai lieu;
+:Mo noi dung;
+:Hien thi tren trinh duyet;
+|Doc gia|
+:Doc noi dung;
+stop
+@enduml

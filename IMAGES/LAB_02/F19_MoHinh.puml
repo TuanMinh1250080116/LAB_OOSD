@@ -1,0 +1,19 @@
+@startuml
+title UC07 - Dang ky tai khoan (Activity)
+|Doc gia|
+start
+:Mo trang dang ky;
+:Nhap thong tin;
+|He thong|
+:Kiem tra du lieu;
+if (Hop le?) then (khong)
+  :Bao loi;
+  |Doc gia|
+  :Nhap lai;
+  stop
+else (co)
+  :Tao tai khoan (mat khau ma hoa);
+  :Thong bao thanh cong;
+  stop
+endif
+@enduml

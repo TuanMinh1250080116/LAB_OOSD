@@ -1,0 +1,70 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+left to right direction
+title Biểu đồ use case tổng quát – Hệ thống e-SHOPPING
+actor "Khách vãng lai" as KVL
+actor "Khách hàng\n(thành viên)" as KH
+actor "Nhân viên\ncửa hàng" as NV
+actor "Hệ thống quản lý\nsản phẩm" <<Hệ thống ngoài>> as HTSP
+actor "Hệ thống dịch vụ\nthanh toán trực tuyến" <<Hệ thống ngoài>> as HTTT
+actor "Hệ thống Email" <<Hệ thống ngoài>> as MAIL
+KVL <|-- KH
+
+rectangle "e-SHOPPING" {
+  package "Chọn hàng" {
+    usecase "UC01 Xem danh sách\nsản phẩm theo nhóm" as UC01
+    usecase "UC02 Xem chi tiết\nsản phẩm" as UC02
+    usecase "UC03 Quản lý giỏ hàng" as UC03
+  }
+  package "Tài khoản" {
+    usecase "UC04 Đăng ký\ntài khoản" as UC04
+    usecase "UC05 Đăng nhập" as UC05
+    usecase "UC06 Đăng xuất" as UC06
+  }
+  package "Đặt hàng" {
+    usecase "UC07 Đặt hàng và\nthanh toán (Tính tiền)" as UC07
+    usecase "UC08 Theo dõi /\nhủy đơn hàng" as UC08
+  }
+  package "Quản trị" {
+    usecase "UC09 Xử lý đơn hàng" as UC09
+    usecase "UC10 Quản lý biểu phí\ngiao hàng" as UC10
+    usecase "UC11 Quản lý loại thẻ\nvà lệ phí" as UC11
+    usecase "UC12 Xem nhật ký\nthanh toán & email" as UC12
+  }
+}
+KVL --> UC01
+KVL --> UC02
+KVL --> UC03
+KVL --> UC04
+KH --> UC05
+KH --> UC06
+KH --> UC07
+KH --> UC08
+UC05 <-- NV
+UC09 <-- NV
+UC10 <-- NV
+UC11 <-- NV
+UC12 <-- NV
+UC01 --> HTSP
+UC02 --> HTSP
+UC07 --> HTTT
+UC07 --> MAIL
+UC07 ..> UC05 : <<include>>
+@enduml

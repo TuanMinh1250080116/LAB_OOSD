@@ -1,0 +1,34 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+start
+:NV: Tiếp nhận khách và hàng mua;
+:HT: Đọc loại khách, tính tồn;
+if (Khách vãng lai thiếu hàng?) then (Có)
+ :HT: Từ chối hẹn giao; stop
+else (Không)
+ :NV: Nhập lượng giao ngay và tiền thực nhận;
+endif
+if (Vãng lai chưa trả đủ?) then (Có)
+ :HT: Từ chối lưu; stop
+endif
+:HT: Kiểm tra không giao vượt tồn / mua;
+:HT: Lưu hóa đơn và giao ngay trong transaction;
+while (Còn hàng chưa giao?) is (Có)
+ :NV: Lập phiếu hẹn cho khách quen;
+ :NV: Đến hẹn, yêu cầu xác nhận giao;
+ :HT: Khóa NGK và kiểm tra tồn;
+ if (Đủ tồn?) then (Có)
+  :HT: Chuyển phiếu hẹn sang DA_GIAO một lần;
+ else (Không)
+  :NV: Thỏa thuận đổi ngày khi CHO_GIAO;
+ endif
+endwhile (Không)
+:HT: Hiển thị đã giao đủ;
+stop
+@enduml

@@ -1,0 +1,129 @@
+@startuml
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+left to right direction
+class BenhNhan {
+  +MaBN : String <<ID>>
+  +HoTen : String
+  +DiaChi : String
+  +NgaySinh : Date
+  +DienThoai : String
+  +Anh3x4 : String
+  +dangKy()
+}
+class PhieuDangKy {
+  +MaDK : String <<ID>>
+  +NgayDangKy : Date
+  +NamApDung : int
+  +TrangThai : String
+  +thuPhi()
+}
+class PhiThu {
+  +MaThu : String <<ID>>
+  +SoTien : decimal
+  +NgayThu : Date
+  +xacNhan()
+}
+class HoSoBenhAn {
+  +MaHS : String <<ID>>
+  +NgayCap : Date
+  +TrangThai : String
+  +traCuu()
+  +xemLichSu()
+}
+class LichHen {
+  +MaHen : String <<ID>>
+  +ThoiGian : DateTime
+  +LoaiKham : String
+  +TrangThai : String
+  +datLich()
+  +huy()
+}
+class LuotKham {
+  +MaKham : String <<ID>>
+  +NgayGio : DateTime
+  +LoaiKham : String
+  +ChanDoan : String
+  +KetLuan : String
+  +VienPhi : decimal
+  +TrangThai : String
+  +batDau()
+  +hoanTat()
+}
+class BacSi {
+  +MaBS : String <<ID>>
+  +HoTen : String
+  +kham()
+  +chiDinh()
+  +keToa()
+}
+class Khoa {
+  +MaKhoa : String <<ID>>
+  +TenKhoa : String
+}
+class TrieuChung {
+  +MaTrieuChung : String <<ID>>
+  +MoTa : String
+  +ThanNhiet : decimal
+  +HuyetAp : String
+}
+class LoaiXetNghiem {
+  +MaXN : String <<ID>>
+  +TenXN : String
+}
+class ChiDinhXetNghiem {
+  +MaCD : String <<ID>>
+  +NgayChiDinh : DateTime
+  +TrangThai : String
+  +lap()
+}
+class KetQuaXetNghiem {
+  +MaKQ : String <<ID>>
+  +KetQua : String
+  +NgayCoKQ : DateTime
+  +traKetQua()
+}
+class ToaThuoc {
+  +MaToa : String <<ID>>
+  +NgayKe : DateTime
+  +LoiDan : String
+  +TrangThai : String
+  +kyToa()
+}
+class ChiTietToa {
+  +MaCT : String <<ID>>
+  +SoLuong : int
+  +LieuDung : String
+  +SoNgay : int
+}
+class Thuoc {
+  +MaThuoc : String <<ID>>
+  +TenThuoc : String
+  +DonVi : String
+  +HuongDan : String
+}
+class PhanUngThuoc {
+  +MaPU : String <<ID>>
+  +NgayGhiNhan : DateTime
+  +MoTa : String
+  +MucDo : String
+}
+BenhNhan "1" -- "0..*" PhieuDangKy
+PhieuDangKy "1" -- "0..1" PhiThu
+BenhNhan "1" -- "0..1" HoSoBenhAn
+HoSoBenhAn "1" *-- "0..*" LuotKham
+HoSoBenhAn "1" -- "0..*" LichHen
+LichHen "0..1" -- "0..1" LuotKham
+Khoa "1" -- "0..*" BacSi
+Khoa "1" -- "0..*" LuotKham
+BacSi "1" -- "0..*" LuotKham
+LuotKham "1" *-- "0..*" TrieuChung
+LuotKham "1" *-- "0..*" ChiDinhXetNghiem
+LoaiXetNghiem "1" -- "0..*" ChiDinhXetNghiem
+ChiDinhXetNghiem "1" -- "0..1" KetQuaXetNghiem
+LuotKham "1" -- "0..1" ToaThuoc
+ToaThuoc "1" *-- "1..*" ChiTietToa
+Thuoc "1" -- "0..*" ChiTietToa
+HoSoBenhAn "1" -- "0..*" PhanUngThuoc
+Thuoc "1" -- "0..*" PhanUngThuoc
+@enduml

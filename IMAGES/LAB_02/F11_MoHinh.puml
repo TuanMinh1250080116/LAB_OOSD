@@ -1,0 +1,20 @@
+@startuml
+title UC06 - Kiem tra ma the thu vien (Activity)
+|Doc gia|
+start
+:Nhap ma the;
+|He thong|
+:Tra cuu du lieu the;
+if (The ton tai?) then (khong)
+  :Tra ve Invalid;
+  stop
+else (co)
+  if (The con hieu luc?) then (khong)
+    :Tra ve Invalid;
+    stop
+  else (co)
+    :Tra ve Valid;
+    stop
+  endif
+endif
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+title UC16 - Lap bao cao - thong ke (Sequence)
+actor "Thu thu" as TT
+participant "UI" as UI
+participant "Report System" as RS
+database "CSDL" as DB
+
+TT -> UI : Chon loai bao cao + khoang thoi gian
+UI -> RS : Yeu cau bao cao
+RS -> DB : Query du lieu
+DB --> RS : Du lieu tho
+RS -> RS : Tong hop, tao bao cao
+RS --> UI : Bao cao
+UI --> TT : Hien thi / ket xuat
+@enduml

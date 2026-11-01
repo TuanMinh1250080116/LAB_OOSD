@@ -1,0 +1,25 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+start
+:NV: Nhập khách, ngày và phòng;
+:HT: Kiểm tra ngày, tiền cọc và danh sách phòng;
+if (Dữ liệu đầy đủ?) then (Không)
+ :HT: Báo lỗi; stop
+endif
+:HT: Kiểm tra sức chứa và lịch chồng lấn;
+if (Phòng hợp lệ?) then (Có)
+ :HT: Bắt đầu transaction;
+ :HT: Lưu phiếu, chi tiết và đơn giá áp dụng;
+ :HT: Cập nhật trạng thái phòng;
+ :HT: Commit và trả mã phiếu;
+else (Không)
+ :HT: Từ chối lưu, nêu lý do;
+endif
+stop
+@enduml

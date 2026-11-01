@@ -15,3 +15,8 @@ obj/
 *.log
 *.cache
 *.sqlite
+# Báo cáo tổng hợp và nguồn mô hình
+!IMAGES/
+!IMAGES/**
+_build/
+~$*.docx

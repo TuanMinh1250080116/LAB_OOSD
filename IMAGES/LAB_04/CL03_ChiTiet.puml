@@ -1,0 +1,140 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+title Biểu đồ lớp chi tiết – tầng nghiệp vụ (Services) và các giao diện hệ thống ngoài
+left to right direction
+hide circle
+skinparam classAttributeIconSize 0
+package "Services" {
+  class TaiKhoanService {
+    + DangKy(kh : KhachHangDto, matKhau : string, nhapLai : string) : KetQuaXuLy
+    + DangNhap(ten : string, matKhau : string) : KetQuaXuLy
+    + DoiMatKhau(maKH : string, cu : string, moi : string) : KetQuaXuLy
+    ~ BamMatKhau(matKhau : string, salt : string) : string
+  }
+  class GioHangService {
+    - _sp : IHeThongQuanLySanPham
+    + LayHoacTaoGio(maKH : string) : long
+    + ThemVaoGio(maGio : long, maSP : string, sl : int) : KetQuaXuLy
+    + CapNhatSoLuong(maGio : long, maSP : string, sl : int) : KetQuaXuLy
+    + LoaiBo(maGio : long, maSP : string) : KetQuaXuLy
+    + LayChiTiet(maGio : long) : DataTable
+    + GopGioHang(maGioTam : long, maKH : string) : long
+  }
+  class DatHangService {
+    - _thanhToan : IThanhToanTrucTuyen
+    - _email : IEmailSender
+    + TinhTien(maGio : long, loaiPhieu : string, maTinh : string, loaiThe : string) : BangTinhTien
+    + DatHang(yc : YeuCauDatHang) : KetQuaXuLy
+    - SoanEmail(soDon : string) : string
+  }
+  class DonHangService {
+    + LayDonCuaKhach(maKH : string) : DataTable
+    + LayTatCa(trangThai : string) : DataTable
+    + LayChiTiet(soDon : string) : DataTable
+    + ChuyenTrangThai(soDon : string, moi : string) : KetQuaXuLy
+    + HuyDon(soDon : string, maKH : string) : KetQuaXuLy
+  }
+  class KiemTraThe <<static>> {
+    + KiemTra(loai : LoaiTheDto, soThe : string, csv : string, thang : int, nam : int) : string
+    + Luhn(soThe : string) : bool
+    + AnSoThe(soThe : string) : string
+  }
+  class KetQuaXuLy {
+    + ThanhCong : bool
+    + ThongBao : string
+    + DuLieu : object
+    + {static} Ok(tb : string, dl : object) : KetQuaXuLy
+    + {static} Fail(tb : string) : KetQuaXuLy
+  }
+  class PhienLamViec <<static>> {
+    + MaNguoiDung : string
+    + HoTen : string
+    + VaiTro : string
+    + MaGioHang : long
+    + LaKhachHang() : bool
+  }
+  class BangTinhTien {
+    + TongTienHang : decimal
+    + PhiGiaoHang : decimal
+    + LePhiThe : decimal
+    + DuocMienPhi : bool
+    + TongTriGia : decimal
+  }
+  class YeuCauDatHang {
+    + MaKH : string
+    + MaGioHang : long
+    + MaLoaiPhieu : string
+    + NguoiNhan, DiaChi, DienThoai, MaTinh : string
+    + MaLoaiThe, SoThe, Csv, TenChuThe : string
+    + ThangHetHan, NamHetHan : int
+  }
+}
+package "Cổng hệ thống ngoài" {
+  interface IHeThongQuanLySanPham {
+    + LayNhom() : DataTable
+    + LayDanhSach(maNhom : string, tuKhoa : string) : DataTable
+    + LaySanPham(maSP : string) : DataRow
+    + LayHinhAnh(maSP : string) : DataTable
+    + LayThongSo(maSP : string) : DataTable
+  }
+  interface IThanhToanTrucTuyen {
+    + XacThucVaThanhToan(loaiThe, soThe, csv, thang, nam, chuThe, soTien) : KetQuaThanhToan
+    + HoanTien(maGiaoDich : string, soTien : decimal) : bool
+  }
+  interface IEmailSender {
+    + Gui(den : string, tieuDe : string, noiDung : string) : bool
+  }
+  class HtqlspSqlServer
+  class ThanhToanGiaLap
+  class EmailFileSender
+  class KetQuaThanhToan {
+    + ChapThuan : bool
+    + MaGiaoDich : string
+    + Token : string
+    + LyDo : string
+  }
+}
+package "Data" {
+  class Db <<static>> {
+    + Query(sql, params) : DataTable
+    + Execute(sql, params) : int
+    + Scalar(sql, params) : object
+    + Transaction(congViec : Action) : void
+  }
+}
+HtqlspSqlServer ..|> IHeThongQuanLySanPham
+ThanhToanGiaLap ..|> IThanhToanTrucTuyen
+EmailFileSender ..|> IEmailSender
+GioHangService --> IHeThongQuanLySanPham
+DatHangService --> IThanhToanTrucTuyen
+DatHangService --> IEmailSender
+DatHangService ..> KiemTraThe
+DatHangService ..> BangTinhTien
+DatHangService ..> YeuCauDatHang
+IThanhToanTrucTuyen ..> KetQuaThanhToan
+TaiKhoanService ..> PhienLamViec
+TaiKhoanService ..> GioHangService
+TaiKhoanService ..> Db
+GioHangService ..> Db
+DatHangService ..> Db
+DonHangService ..> Db
+HtqlspSqlServer ..> Db
+DonHangService --> IThanhToanTrucTuyen
+@enduml

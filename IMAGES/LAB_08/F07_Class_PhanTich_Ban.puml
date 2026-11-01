@@ -1,0 +1,66 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide circle
+class KhachHang {
+  MaKH <<PK>>
+  HoTen
+  LoaiKhach
+  DiaChi
+  DienThoai
+}
+class NhanVien {
+  MaNV <<PK>>
+  HoTen
+}
+class HoaDon {
+  MaHD <<PK>>
+  NgayLap
+  SoTienDaTra
+}
+class CTHoaDon {
+  MaHD <<PK/FK>>
+  MaNGK <<PK/FK>>
+  SoLuongMua
+  DonGiaBan
+  SoLuongGiaoNgay
+}
+class NuocGiaiKhat {
+  MaNGK <<PK>>
+  TenNGK
+  DonViTinh
+}
+class PhieuHen {
+  MaPH <<PK>>
+  NgayHen
+  NgayGiaoThucTe
+  TrangThai
+}
+class CTPhieuHen {
+  MaPH <<PK/FK>>
+  MaNGK <<PK/FK>>
+  SoLuongHen
+}
+class PhieuGhiNo {
+  MaPGN <<PK>>
+  NgayLap
+  SoTienNo
+  NgayDuKienTra
+  LyDo
+}
+KhachHang "1" -- "0..*" HoaDon
+NhanVien "1" -- "0..*" HoaDon
+HoaDon "1" -- "1..*" CTHoaDon
+NuocGiaiKhat "1" -- "0..*" CTHoaDon
+HoaDon "1" -- "0..*" PhieuHen
+PhieuHen "1" -- "1..*" CTPhieuHen
+CTHoaDon "1" -- "0..*" CTPhieuHen
+HoaDon "1" -- "0..1" PhieuGhiNo
+NhanVien "1" -- "0..*" PhieuGhiNo
+
+@enduml

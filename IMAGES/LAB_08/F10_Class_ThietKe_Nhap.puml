@@ -1,0 +1,49 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide circle
+class DonDatHang {
+  MaDDH : VARCHAR(12) <<PK>>
+  MaNCU : VARCHAR(12) <<FK>>
+  MaNV : VARCHAR(12) <<FK>>
+  NgayDat : DATE
+  NgayNhanDuKien : DATE
+  --
+  +kiemTraNgay() : boolean
+}
+class CTDonDatHang {
+  MaDDH : VARCHAR(12) <<PK/FK>>
+  MaNGK : VARCHAR(12) <<PK/FK>>
+  SoLuongDat : INT
+  --
+  +kiemTraSoLuong() : boolean
+}
+class PhieuGiaoHang {
+  MaPGH : VARCHAR(12) <<PK>>
+  MaDDH : VARCHAR(12) <<FK>>
+  MaNV : VARCHAR(12) <<FK>>
+  NgayGiao : DATE
+  SoTienPhaiTra : DECIMAL(18,2)
+  --
+  +kiemTraNgay() : boolean
+  +kiemTraSoTien() : boolean
+}
+class CTPhieuGiaoHang {
+  MaPGH : VARCHAR(12) <<PK/FK>>
+  MaNGK : VARCHAR(12) <<PK/FK>>
+  MaDDH : VARCHAR(12) <<FK>>
+  SoLuongGiao : INT
+  --
+  +kiemTraSoLuong() : boolean
+}
+DonDatHang "1" -- "1..*" CTDonDatHang
+DonDatHang "1" -- "0..3" PhieuGiaoHang
+PhieuGiaoHang "1" -- "1..*" CTPhieuGiaoHang
+CTDonDatHang "1" -- "0..3" CTPhieuGiaoHang
+
+@enduml

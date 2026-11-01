@@ -1,0 +1,21 @@
+@startuml
+skinparam backgroundColor white
+[*] --> DANG_KHAM : Tiếp nhận / tạo lượt khám
+DANG_KHAM --> CHO_XET_NGHIEM : Chỉ định xét nghiệm
+DANG_KHAM --> CHO_THANH_TOAN : Ký toa
+DANG_KHAM --> HOAN_TAT : Không cần thuốc; thanh toán, xuất viện
+CHO_XET_NGHIEM --> CHO_TOA : Đủ mọi kết quả
+CHO_TOA --> CHO_THANH_TOAN : Ký toa
+CHO_TOA --> HOAN_TAT : Không kê thuốc; thanh toán
+CHO_THANH_TOAN --> HOAN_TAT : Xác nhận viện phí, xuất viện
+HOAN_TAT --> [*]
+note right of CHO_XET_NGHIEM
+  Không kê toa khi còn chỉ định
+  chưa có kết quả.
+end note
+note right of HOAN_TAT
+  DaThanhToan = Y
+  NgayXuatVien khác NULL
+  Khám định kỳ: VienPhi = 0
+end note
+@enduml

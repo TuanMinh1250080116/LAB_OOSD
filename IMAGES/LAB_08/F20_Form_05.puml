@@ -1,0 +1,28 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+salt
+{+
+{* F05 · LẬP PHIẾU GHI NỢ }
+{
+Hóa đơn | ^HD001^
+Khách hàng | KH001 - khách quen
+Tiền nợ (chỉ đọc) | 600.000
+Người lập | NV01
+Ngày lập | "01/11/2026"
+Ngày dự kiến trả | "05/11/2026"
+Lý do | "Khách đề nghị trả chậm"
+}
+{#
+Hóa đơn | Tổng | Đã trả | Còn nợ
+HD001 | 1000000 | 400000 | 600000
+}
+{ [Kiểm tra] | [Lưu phiếu] | [In] }
+}
+
+@enduml

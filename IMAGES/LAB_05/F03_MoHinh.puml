@@ -1,0 +1,61 @@
+@startuml
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam dpi 140
+skinparam shadowing true
+skinparam BackgroundColor #FFFFFF
+skinparam ArrowColor #8B0000
+skinparam ActorBorderColor #8B0000
+skinparam ActorBackgroundColor #FFFFCC
+skinparam UsecaseBackgroundColor #FFFFCC
+skinparam UsecaseBorderColor #8B0000
+skinparam ClassBackgroundColor #FFFFCC
+skinparam ClassBorderColor #8B0000
+skinparam ClassHeaderBackgroundColor #FFF2A8
+skinparam PackageBackgroundColor #FAFAF0
+skinparam PackageBorderColor #8B0000
+skinparam StateBackgroundColor #FFFFCC
+skinparam StateBorderColor #8B0000
+skinparam ActivityBackgroundColor #FFFFCC
+skinparam ActivityBorderColor #8B0000
+skinparam PartitionBorderColor #8B0000
+skinparam ParticipantBackgroundColor #FFFFCC
+skinparam ParticipantBorderColor #8B0000
+skinparam SequenceLifeLineBorderColor #8B0000
+skinparam NoteBackgroundColor #E8F4FF
+skinparam RectangleBorderColor #8B0000
+left to right direction
+title Phân rã "Đăng ký tour" đến "Kết thúc tour" (tổng quát hóa use case)
+actor "NV kinh doanh" as KD
+actor "NV điều hành" as DH
+actor "Kế toán" as KT
+usecase "Đăng ký tour" as DK
+usecase "Đăng ký theo đoàn\n(> 12 người)" as DKD
+usecase "Đăng ký theo chuyến\n(1-12 người)" as DKC
+usecase "Đặt cọc" as COC
+usecase "Mua bảo hiểm\nkèm danh sách" as BH
+usecase "Chọn chuyến\ncòn chỗ" as CC
+usecase "Thanh toán vé" as TTV
+usecase "Thực hiện tour" as TH
+usecase "Phân công HDV" as PC
+usecase "Khởi hành" as KH
+usecase "Kết thúc tour" as KT1
+usecase "Hủy, mất cọc" as HUY
+usecase "Gửi khảo sát" as KS
+usecase "Thanh toán\nkinh phí đoàn" as TT
+DK <|-- DKD
+DK <|-- DKC
+KD --> DK
+DH --> TH
+KT --> TT
+DKD ..> COC : <<include>>
+BH ..> DKD : <<extend>>
+DKC ..> CC : <<include>>
+DKC ..> TTV : <<include>>
+TH ..> PC : <<include>>
+TH ..> KH : <<include>>
+TH ..> KT1 : <<include>>
+HUY ..> KH : <<extend>>
+KT1 ..> KS : <<include>>
+TT ..> KT1 : <<extend>>\n[khách đoàn]
+@enduml

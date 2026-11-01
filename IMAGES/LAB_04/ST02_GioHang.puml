@@ -1,0 +1,34 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+title Biểu đồ trạng thái – Giỏ hàng
+hide empty description
+state "Rỗng" as Rong
+state "Có hàng" as CoHang : do / tính tổng tạm tính\ntheo giá hiện hành
+state "Đang thanh toán" as DangTT
+state "Đã chuyển thành đơn" as DaChuyen
+[*] --> Rong : Khách mở phiên mua sắm
+Rong --> CoHang : Thêm sản phẩm\n[sản phẩm còn hàng]
+CoHang --> CoHang : Thêm / cập nhật số lượng /\nloại bỏ [còn ≥ 1 sản phẩm]
+CoHang --> Rong : Loại bỏ sản phẩm cuối cùng
+CoHang --> DangTT : Tính tiền\n[đã đăng nhập]
+DangTT --> CoHang : Hủy thanh toán /\nthẻ bị từ chối
+DangTT --> DaChuyen : Đơn đặt hàng được ghi nhận
+DaChuyen --> [*]
+@enduml

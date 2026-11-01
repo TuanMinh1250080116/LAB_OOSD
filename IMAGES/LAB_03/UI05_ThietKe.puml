@@ -1,0 +1,15 @@
+@startuml
+skinparam dpi 180
+salt
+{+
+{* Ghi nhận dịch vụ }
+{
+Phiếu đặt | "                        "
+Phòng | "                        "
+Ngày | "                        "
+Dịch vụ | "                        "
+Số lượng | "                        "
+}
+{ [Ghi nhận] | [Xem phiếu] }
+}
+@enduml

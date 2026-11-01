@@ -1,0 +1,29 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide circle
+class NhanVien {
+  MaNV : VARCHAR(12) <<PK>>
+  HoTen : NVARCHAR(100)
+  --
+  +capNhatHoTen(ten)
+}
+class PhieuGhiNo {
+  MaPGN : VARCHAR(12) <<PK>>
+  MaHD : VARCHAR(12) <<FK/UQ>>
+  MaNV : VARCHAR(12) <<FK>>
+  NgayLap : DATE
+  SoTienNo : DECIMAL(18,2)
+  NgayDuKienTra : DATE
+  LyDo : NVARCHAR(250)
+  --
+  +kiemTraNgay() : boolean
+}
+NhanVien "1" -- "0..*" PhieuGhiNo
+
+@enduml

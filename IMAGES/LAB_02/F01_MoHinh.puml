@@ -1,0 +1,26 @@
+@startuml
+title UC01 - Tim kiem tai lieu (Activity)
+|Doc gia / Khach vang lai|
+start
+:Nhap tu khoa / chon bo loc;
+:Nhan "Tim kiem";
+|He thong|
+:Kiem tra tinh hop le cua tu khoa;
+if (Tu khoa hop le?) then (khong)
+  :Hien thi thong bao yeu cau nhap lai;
+  -> Doc gia / Khach vang lai;
+  detach
+else (co)
+  :Truy van co so du lieu;
+  :Tim tai lieu phu hop;
+  if (Co ket qua?) then (khong)
+    :Hien thi "Khong tim thay ket qua phu hop";
+    :Goi y tai lieu lien quan / tu khoa pho bien;
+    stop
+  else (co)
+    :Phan trang ket qua;
+    :Hien thi danh sach tai lieu (anh bia, tieu de, tac gia, tinh trang);
+    stop
+  endif
+endif
+@enduml

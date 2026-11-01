@@ -1,0 +1,26 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+salt
+{+
+{* F06 · TRA CỨU VÀ THỐNG KÊ }
+{
+Loại dữ liệu | ^Hóa đơn^
+Từ ngày | "01/11/2026"
+Đến ngày | "30/11/2026"
+Mã khách / NGK | "                    "
+Trạng thái | ^Tất cả^
+}
+{#
+Mã | Ngày | Khách | Tổng tiền
+HD001 | 01/11/2026 | KH001 | 1000000
+}
+{ [Tra cứu] | [Xem chi tiết] | [In] }
+}
+
+@enduml

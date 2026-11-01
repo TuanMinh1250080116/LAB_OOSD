@@ -1,0 +1,42 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+left to right direction
+title Phân rã use case UC03 – Quản lý giỏ hàng
+actor "Khách vãng lai" as KVL
+actor "Khách hàng" as KH
+actor "Hệ thống quản lý\nsản phẩm" <<Hệ thống ngoài>> as HTSP
+KVL <|-- KH
+rectangle "UC03 Quản lý giỏ hàng" {
+  usecase "UC03.1 Thêm sản phẩm\nvào giỏ hàng" as A
+  usecase "UC03.2 Xem giỏ hàng" as B
+  usecase "UC03.3 Cập nhật số lượng" as C
+  usecase "UC03.4 Loại bỏ sản phẩm\nkhỏi giỏ" as D
+  usecase "Kiểm tra tình trạng\nvà giá hiện hành" as K
+  usecase "Gộp giỏ hàng khi\nđăng nhập" as G
+}
+KVL --> A
+KVL --> B
+B <.. C : <<extend>>
+B <.. D : <<extend>>
+A ..> K : <<include>>
+C ..> K : <<include>>
+K --> HTSP
+KH --> G
+@enduml

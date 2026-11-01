@@ -1,0 +1,71 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 180
+hide circle
+entity NhomSanPham {
+ MaNhom : VARCHAR(10) <<PK>>
+ TenNhom : NVARCHAR(100)
+ MoTa : NVARCHAR(300)
+}
+entity SanPham {
+ MaSP : VARCHAR(20) <<PK>>
+ TenSP : NVARCHAR(200)
+ MaNhom : VARCHAR(10)
+ NhaSanXuat : NVARCHAR(100)
+ MoTa : NVARCHAR(MAX)
+ GiaBan : BIGINT
+ TinhTrang : NVARCHAR(20)
+ NgayCapNhat : DATETIME
+}
+entity HinhAnhSanPham {
+ MaHinh : INT <<PK>>
+ MaSP : VARCHAR(20)
+ DuongDan : VARCHAR(300)
+ ThuTu : INT
+}
+entity ThongSoKyThuat {
+ MaSP : VARCHAR(20) <<PK>>
+ TenThongSo : NVARCHAR(100) <<PK>>
+ GiaTri : NVARCHAR(300)
+}
+entity KhachHang {
+ MaKH : VARCHAR(10) <<PK>>
+ HoTen : NVARCHAR(100)
+ NgaySinh : DATETIME
+ SoGiayTo : VARCHAR(20)
+ DiaChi : NVARCHAR(250)
+ DienThoai : VARCHAR(15)
+ TenDangNhap : VARCHAR(50)
+ MatKhauHash : VARCHAR(64)
+ Salt : VARCHAR(32)
+ Email : VARCHAR(100)
+ NgayDangKy : DATETIME
+ TrangThai : NVARCHAR(20)
+}
+entity NhanVien {
+ MaNV : VARCHAR(10) <<PK>>
+ HoTen : NVARCHAR(100)
+ TenDangNhap : VARCHAR(50)
+ MatKhauHash : VARCHAR(64)
+ Salt : VARCHAR(32)
+ VaiTro : NVARCHAR(30)
+}
+entity GioHang {
+ MaGioHang : INT <<PK>>
+ MaKH : VARCHAR(10)
+ NgayTao : DATETIME
+ TrangThai : NVARCHAR(30)
+}
+entity ChiTietGioHang {
+ MaGioHang : INT <<PK>>
+ MaSP : VARCHAR(20) <<PK>>
+ SoLuong : INT
+ NgayThem : DATETIME
+}
+NhomSanPham "1" -- "0..*" SanPham : MaNhom
+SanPham "1" -- "0..*" HinhAnhSanPham : MaSP
+SanPham "1" -- "0..*" ThongSoKyThuat : MaSP
+KhachHang "1" -- "0..*" GioHang : MaKH
+GioHang "1" -- "0..*" ChiTietGioHang : MaGioHang
+SanPham "1" -- "0..*" ChiTietGioHang : MaSP
+@enduml

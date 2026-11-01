@@ -1,0 +1,14 @@
+@startuml
+title UC10 - Theo doi yeu cau dat mua (Activity)
+|Doc gia|
+start
+:Mo danh sach yeu cau;
+|He thong|
+:Truy van cac yeu cau cua nguoi dung;
+:Hien thi danh sach + trang thai;
+|Doc gia|
+:Chon mot yeu cau;
+|He thong|
+:Hien thi chi tiet;
+stop
+@enduml

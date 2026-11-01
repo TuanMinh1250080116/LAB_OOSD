@@ -1,0 +1,96 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 180
+hide circle
+entity PhieuDatPhong {
+ SoPhieuDat : VARCHAR(30) <<PK>>
+ MaKhach : VARCHAR(20)
+ MaNVLeTan : VARCHAR(20)
+ NgayLap : DATETIME
+ NgayNhan : DATETIME
+ NgayTraDuKien : DATETIME
+ TienCoc : DECIMAL(18,2)
+ KenhDat : NVARCHAR(20)
+ TrangThai : NVARCHAR(30)
+ NgayNhanThucTe : DATETIME
+ NgayTraThucTe : DATETIME
+}
+entity DichVu {
+ MaDV : VARCHAR(20) <<PK>>
+ TenDV : NVARCHAR(120)
+ DonViTinh : NVARCHAR(40)
+ DonGia : DECIMAL(18,2)
+}
+entity PhieuSuDungDV {
+ SoPhieuSDDV : VARCHAR(30) <<PK>>
+ SoPhieuDat : VARCHAR(30)
+ SoPhong : VARCHAR(20)
+ NgaySuDung : DATETIME
+ MaNV : VARCHAR(20)
+}
+entity ChiTietPhieuSuDungDV {
+ SoPhieuSDDV : VARCHAR(30) <<PK>>
+ MaDV : VARCHAR(20) <<PK>>
+ SoLuong : INT
+ DonGia : DECIMAL(18,2)
+}
+entity QuyDinhDenBu {
+ MaQuyDinh : VARCHAR(30) <<PK>>
+ MaLoaiTN : VARCHAR(20)
+ MucDoThietHai : NVARCHAR(80)
+ MucDenBu : DECIMAL(18,2)
+}
+entity PhieuDenBu {
+ SoPhieuDenBu : VARCHAR(30) <<PK>>
+ SoPhieuDat : VARCHAR(30)
+ SoPhong : VARCHAR(20)
+ NgayLap : DATETIME
+ MaNV : VARCHAR(20)
+ TongTien : DECIMAL(18,2)
+}
+entity ChiTietPhieuDenBu {
+ SoPhieuDenBu : VARCHAR(30) <<PK>>
+ MaTienNghi : VARCHAR(30) <<PK>>
+ MucDoThietHai : NVARCHAR(80)
+ SoTien : DECIMAL(18,2)
+}
+entity HoaDon {
+ SoHoaDon : VARCHAR(30) <<PK>>
+ SoPhieuDat : VARCHAR(30)
+ NgayLap : DATETIME
+ MaNV : VARCHAR(20)
+ SoNgayTinhTien : INT
+ TienPhong : DECIMAL(18,2)
+ TienDichVu : DECIMAL(18,2)
+ TrangThai : NVARCHAR(30)
+}
+entity ThanhToan {
+ MaThanhToan : VARCHAR(30) <<PK>>
+ SoHoaDon : VARCHAR(30)
+ NgayThanhToan : DATETIME
+ HinhThuc : NVARCHAR(30)
+ SoTien : DECIMAL(18,2)
+}
+entity TienNghi {
+ MaTienNghi : VARCHAR(30) <<PK>>
+ MaLoaiTN : VARCHAR(20)
+ SoThuTu : INT
+ TinhTrangHienTai : NVARCHAR(100)
+}
+entity NhanVien {
+ MaNV : VARCHAR(20) <<PK>>
+ HoTen : NVARCHAR(120)
+ VaiTro : NVARCHAR(50)
+ SoDienThoai : VARCHAR(20)
+}
+NhanVien "1" -- "0..*" PhieuDatPhong : MaNVLeTan
+NhanVien "1" -- "0..*" PhieuSuDungDV : MaNV
+PhieuSuDungDV "1" -- "0..*" ChiTietPhieuSuDungDV : SoPhieuSDDV
+DichVu "1" -- "0..*" ChiTietPhieuSuDungDV : MaDV
+NhanVien "1" -- "0..*" PhieuDenBu : MaNV
+PhieuDenBu "1" -- "0..*" ChiTietPhieuDenBu : SoPhieuDenBu
+TienNghi "1" -- "0..*" ChiTietPhieuDenBu : MaTienNghi
+PhieuDatPhong "1" -- "0..1" HoaDon : SoPhieuDat
+NhanVien "1" -- "0..*" HoaDon : MaNV
+HoaDon "1" -- "0..*" ThanhToan : SoHoaDon
+@enduml

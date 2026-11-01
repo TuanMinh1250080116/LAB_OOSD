@@ -1,0 +1,48 @@
+@startuml
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam dpi 140
+skinparam shadowing true
+skinparam BackgroundColor #FFFFFF
+skinparam ArrowColor #8B0000
+skinparam ActorBorderColor #8B0000
+skinparam ActorBackgroundColor #FFFFCC
+skinparam UsecaseBackgroundColor #FFFFCC
+skinparam UsecaseBorderColor #8B0000
+skinparam ClassBackgroundColor #FFFFCC
+skinparam ClassBorderColor #8B0000
+skinparam ClassHeaderBackgroundColor #FFF2A8
+skinparam PackageBackgroundColor #FAFAF0
+skinparam PackageBorderColor #8B0000
+skinparam StateBackgroundColor #FFFFCC
+skinparam StateBorderColor #8B0000
+skinparam ActivityBackgroundColor #FFFFCC
+skinparam ActivityBorderColor #8B0000
+skinparam PartitionBorderColor #8B0000
+skinparam ParticipantBackgroundColor #FFFFCC
+skinparam ParticipantBorderColor #8B0000
+skinparam SequenceLifeLineBorderColor #8B0000
+skinparam NoteBackgroundColor #E8F4FF
+skinparam RectangleBorderColor #8B0000
+title System Sequence Diagram - Lập phiếu đăng ký theo đoàn
+actor "Khách đoàn" as K
+actor "NV kinh doanh" as NV
+participant "Hệ thống\nquản lý du lịch" as HT
+participant "Oracle\nDULICH" as DB
+K -> NV : yêu cầu đăng ký (tour, ngày, số người)
+NV -> HT : nhapKhachDoan(thongTin)
+HT --> NV : khách đoàn (cũ hoặc mới)
+NV -> HT : chonTour(maTour, ngayDi, soNguoi)
+HT -> HT : ngày về = ngày đi + số ngày − 1
+HT --> NV : tổng kinh phí, cọc tối thiểu
+opt mua bảo hiểm
+  K -> NV : danh sách người đi cùng
+  NV -> HT : nhapDanhSach(ds)
+end
+K -> NV : nộp tiền cọc
+NV -> HT : lapPhieu(tienCoc)
+HT -> DB : lưu khách + phiếu + danh sách (1 transaction)
+DB --> HT : OK / lỗi ràng buộc
+HT --> NV : số phiếu PDxxxxxx
+NV --> K : giao phiếu đăng ký
+@enduml

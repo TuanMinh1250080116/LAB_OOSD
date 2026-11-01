@@ -1,0 +1,16 @@
+@startuml
+skinparam dpi 180
+salt
+{+
+{* Đặt và nhận phòng }
+{
+Khách | "                        "
+Ngày nhận | "                        "
+Ngày trả | "                        "
+Tiền cọc | "                        "
+Phòng | "                        "
+Số người | "                        "
+}
+{ [Tìm phòng] | [Đặt phòng] | [Nhận phòng] }
+}
+@enduml

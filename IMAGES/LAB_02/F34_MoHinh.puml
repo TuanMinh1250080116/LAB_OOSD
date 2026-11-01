@@ -1,0 +1,45 @@
+@startuml
+title UC17 - Gui email nhac han tra sach (Sequence)
+participant "Bo dinh thoi" as SCHED
+participant "Reminder Service" as RS
+database "CSDL" as DB
+participant "Dich vu Email" as EMAIL
+participant "Mail Server" as MAIL
+actor "Doc gia" as DG
+
+SCHED -> RS : Kich hoat tac vu (hang ngay)
+RS -> DB : Truy van phieu can nhac
+DB --> RS : Danh sach phieu (dang muon, con 3 ngay, chua nhac)
+
+alt Khong co phieu nao
+    RS -> RS : Ghi log "khong co du lieu can nhac"
+else Co phieu can nhac
+    loop for each phieu trong danh sach
+        RS -> DB : Lay thong tin doc gia + sach + han tra
+        DB --> RS : Thong tin chi tiet
+
+        alt Email khong hop le
+            RS -> RS : Bo qua phieu + ghi danh sach xu ly thu cong
+        else Email hop le
+            RS -> RS : Tao noi dung email
+            RS -> EMAIL : Gui yeu cau email
+            EMAIL -> MAIL : Chuyen email
+            alt Mail server khong phan hoi
+                MAIL --> EMAIL : Loi / timeout
+                EMAIL -> EMAIL : Dua vao hang doi, retry (30p, toi da 3 lan)
+                alt That bai sau 3 lan
+                    EMAIL -> RS : Bao that bai
+                    RS -> RS : Ghi canh bao cho thu thu
+                else Retry thanh cong
+                    MAIL -> DG : Gui email
+                    RS -> DB : Danh dau phieu da nhac
+                end
+            else Gui thanh cong
+                MAIL -> DG : Gui email
+                RS -> DB : Danh dau phieu da nhac
+            end
+        end
+    end
+    RS -> RS : Ghi log so email gui thanh cong
+end
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+actor "Nhân viên" as NV
+boundary FrmNhapHang as F
+control NhapHangService as S
+entity CuaHangRepository as R
+NV -> F : Nhập dữ liệu và lưu
+F -> S : nhanHang(dto)
+S -> R : begin()
+S -> R : lock(chứng từ, mã)
+S -> R : lock(NGK theo thứ tự mã)
+S -> R : load / query dữ liệu liên quan
+R --> S : Dữ liệu đã nạp
+S -> S : Đếm PGH < 3; đúng dòng; nhận dồn <= đặt
+alt Hợp lệ
+ S -> R : save(PGH và các dòng)
+ S -> R : commit()
+ R --> S : Mã chứng từ / kết quả
+ S --> F : Thành công
+else Vi phạm điều kiện hoặc lỗi lưu
+ S -> R : rollback()
+ S --> F : Lỗi; giữ dữ liệu đang nhập
+end
+F --> NV : Hiển thị kết quả
+@enduml

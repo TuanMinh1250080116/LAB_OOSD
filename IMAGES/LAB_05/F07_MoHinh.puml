@@ -1,0 +1,46 @@
+@startuml
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam dpi 140
+skinparam shadowing true
+skinparam BackgroundColor #FFFFFF
+skinparam ArrowColor #8B0000
+skinparam ActorBorderColor #8B0000
+skinparam ActorBackgroundColor #FFFFCC
+skinparam UsecaseBackgroundColor #FFFFCC
+skinparam UsecaseBorderColor #8B0000
+skinparam ClassBackgroundColor #FFFFCC
+skinparam ClassBorderColor #8B0000
+skinparam ClassHeaderBackgroundColor #FFF2A8
+skinparam PackageBackgroundColor #FAFAF0
+skinparam PackageBorderColor #8B0000
+skinparam StateBackgroundColor #FFFFCC
+skinparam StateBorderColor #8B0000
+skinparam ActivityBackgroundColor #FFFFCC
+skinparam ActivityBorderColor #8B0000
+skinparam PartitionBorderColor #8B0000
+skinparam ParticipantBackgroundColor #FFFFCC
+skinparam ParticipantBorderColor #8B0000
+skinparam SequenceLifeLineBorderColor #8B0000
+skinparam NoteBackgroundColor #E8F4FF
+skinparam RectangleBorderColor #8B0000
+title Sequence - Kết thúc tour, khảo sát và thanh toán đoàn
+actor "NV điều hành" as DH
+actor "Kế toán" as KT
+boundary "FrmPhieuDoan" as F
+control "PhieuDoanService" as S
+database "Oracle" as DB
+DH -> F : chọn phiếu "Đang đi", bấm Kết thúc
+F -> S : ChuyenTrangThai(so, "Chờ thanh toán")
+S -> DB : UPDATE PhieuDangKyDoan
+DB -> DB : TRG_Phieu_TrangThai kiểm tra
+S -> DB : INSERT PhieuKhaoSat
+S --> F : thành công
+...
+KT -> F : bấm Thanh toán kinh phí
+F --> KT : số tiền còn lại = kinh phí − cọc
+KT -> F : xác nhận
+F -> S : ChuyenTrangThai(so, "Đã thanh toán")
+S -> DB : UPDATE (trigger ghi NgayThanhToan)
+S --> F : thành công
+@enduml

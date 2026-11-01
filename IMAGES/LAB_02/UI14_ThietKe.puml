@@ -1,0 +1,14 @@
+@startuml
+skinparam dpi 180
+salt
+{+
+{* Duyệt yêu cầu đặt mua }
+{
+Mã yêu cầu | "                         "
+Tên tài liệu | "                         "
+Người đề xuất | "                         "
+Lý do từ chối | "                         "
+}
+{ [Chấp nhận] | [Từ chối] | [Để sau] }
+}
+@enduml

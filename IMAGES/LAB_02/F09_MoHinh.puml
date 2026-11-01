@@ -1,0 +1,61 @@
+@startuml
+title UC05 - Dang ky muon sach (Activity)
+|Doc gia|
+start
+:Dang o trang chi tiet sach ban in;
+:Chon "Dang ky muon";
+|He thong|
+:Kiem tra lai so ban kha dung;
+
+if (Con sach?) then (khong)
+  :Thong bao sach da het;
+  :Goi y dang ky lai sau;
+  stop
+else (co)
+  :Hien thi form dang ky;
+  :Yeu cau ma the;
+  |Doc gia|
+  :Nhap ma the;
+  :Nhan Xac nhan;
+  |He thong|
+  :Include UC06 - Kiem tra ma the thu vien;
+
+  if (Ma the hop le?) then (khong)
+    :Hien thi "Ma the thu vien khong hop le";
+    if (Sai qua 3 lan?) then (co)
+      :Khoa thao tac dang ky 15 phut;
+      stop
+    else (khong)
+      :Quay lai nhap ma the;
+      stop
+    endif
+  else (co)
+    :Kiem tra so sach dang muon;
+    :Kiem tra phieu qua han;
+
+    if (Da dat han muc muon?) then (co)
+      :Tu choi dang ky;
+      stop
+    elseif (Co phieu qua han?) then (co)
+      :Tu choi + nhac tra sach;
+      stop
+    else (du dieu kien)
+      :Tao yeu cau muon;
+      if (Loi ghi du lieu?) then (co)
+        :Huy thao tac;
+        :Khoi phuc so ban kha dung;
+        :Hien thi thong bao loi;
+        stop
+      else (thanh cong)
+        :Giam so ban kha dung di 1;
+        :Tao ma dang ky;
+        :Tao thoi han den nhan sach;
+        :Hien thi ma dang ky;
+        |Doc gia|
+        :Ghi lai ma dang ky;
+        stop
+      endif
+    endif
+  endif
+endif
+@enduml

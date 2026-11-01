@@ -1,0 +1,14 @@
+@startuml
+title UC03 - Doc truc tuyen sach dien tu (Sequence)
+actor "Doc gia" as DG
+participant "Giao dien / Browser" as UI
+participant "He thong" as HT
+database "Kho tai lieu" as KHO
+
+DG -> UI : Chon doc online
+UI -> HT : Yeu cau noi dung
+HT -> KHO : Lay file / noi dung
+KHO --> HT : Tra noi dung
+HT --> UI : Noi dung sach
+UI --> DG : Hien thi noi dung
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+[*] --> DaDat : Lập phiếu
+state "Đã đặt" as DaDat
+state "Đang ở" as DangO
+state "Đã trả" as DaTra
+state "No-show" as NoShow
+DaDat --> DangO : Nhận phòng
+DaDat --> NoShow : Đánh dấu không đến
+DangO --> DaTra : Hóa đơn đã thanh toán đủ
+DaTra --> [*]
+NoShow --> [*]
+@enduml

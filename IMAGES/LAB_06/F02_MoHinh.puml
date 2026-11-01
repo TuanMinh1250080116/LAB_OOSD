@@ -1,0 +1,43 @@
+@startuml
+left to right direction
+skinparam backgroundColor white
+actor "Bệnh nhân" as BN
+actor "Nhân viên tiếp nhận" as TN
+actor "Nhân viên CSKH" as CS
+actor "Bác sĩ" as BS
+actor "Kỹ thuật viên XN" as KTV
+actor "Thu ngân" as TNg
+rectangle "Hệ thống quản lý hồ sơ bệnh án" {
+ usecase "Đăng ký / cập nhật\nbệnh nhân" as UC1
+ usecase "Thu lệ phí năm /\ncấp hồ sơ" as UC2
+ usecase "Tra cứu bệnh án" as UC3
+ usecase "Đặt / hủy lịch hẹn" as UC4
+ usecase "Tiếp nhận lượt khám" as UC5
+ usecase "Ghi triệu chứng /\nchẩn đoán" as UC6
+ usecase "Chỉ định xét nghiệm" as UC7
+ usecase "Trả kết quả xét nghiệm" as UC8
+ usecase "Lập toa thuốc" as UC9
+ usecase "Thanh toán / xuất viện" as UC10
+ usecase "Ghi nhận phản ứng thuốc" as UC11
+ usecase "Quản lý khoa, bác sĩ,\nthuốc, loại xét nghiệm" as UC12
+}
+BN -- UC1
+BN -- UC4
+TN -- UC1
+TN -- UC2
+TN -- UC5
+CS -- UC3
+CS -- UC4
+CS -- UC11
+BS -- UC3
+BS -- UC6
+BS -- UC7
+BS -- UC9
+KTV -- UC8
+TNg -- UC2
+TNg -- UC10
+TN -- UC12
+UC2 ..> UC1 : <<include>>
+UC5 ..> UC3 : <<include>>
+UC9 ..> UC3 : <<include>>
+@enduml

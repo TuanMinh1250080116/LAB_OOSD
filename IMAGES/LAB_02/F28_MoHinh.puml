@@ -1,0 +1,51 @@
+@startuml
+title UC15 - Duyet yeu cau dat mua (Sequence)
+actor "Thu thu / Quan ly thu vien" as TT
+participant "Giao dien quan ly yeu cau" as UI
+participant "Module yeu cau dat mua" as MYC
+database "CSDL" as DB
+participant "Dich vu Email" as EMAIL
+participant "Mail Server" as MAIL
+actor "Doc gia" as DG
+
+TT -> UI : Mo danh sach yeu cau
+UI -> MYC : Lay danh sach "Cho duyet"
+MYC -> DB : Query
+DB --> MYC : Danh sach
+MYC --> UI : Hien thi danh sach
+TT -> UI : Chon 1 yeu cau
+UI -> MYC : Lay chi tiet
+MYC --> UI : Chi tiet yeu cau
+TT -> UI : Chon Chap nhan / Tu choi
+
+alt Chap nhan
+    UI -> MYC : Xac nhan chap nhan
+    MYC -> DB : Cap nhat trang thai "Chap nhan" + ma thu thu duyet
+    MYC -> EMAIL : Goi dich vu email
+    EMAIL -> MAIL : Chuyen mail
+    MAIL -> DG : Gui email thong bao
+    alt Mail server loi
+        MAIL --> EMAIL : Loi gui
+        EMAIL -> EMAIL : Dua vao hang doi, retry
+        MYC --> UI : Da luu duyet (email dang xu ly nen)
+    else Gui thanh cong
+        MYC --> UI : Thong bao thanh cong
+    end
+    UI --> TT : Xac nhan hoan tat
+else Tu choi
+    UI -> TT : Yeu cau nhap ly do
+    TT -> UI : Nhap ly do + Xac nhan tu choi
+    UI -> MYC : Gui ly do
+    MYC -> DB : Cap nhat trang thai "Tu choi" + luu ly do
+    MYC -> EMAIL : Goi dich vu email (kem ly do)
+    EMAIL -> MAIL : Chuyen mail
+    MAIL -> DG : Gui email tu choi
+    alt Mail server loi
+        MAIL --> EMAIL : Loi gui
+        EMAIL -> EMAIL : Dua vao hang doi, retry
+    else Gui thanh cong
+    end
+    MYC --> UI : Hoan tat
+    UI --> TT : Xac nhan
+end
+@enduml

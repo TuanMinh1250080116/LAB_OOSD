@@ -1,0 +1,33 @@
+@startuml
+title UC09 - Gui yeu cau dat mua (Sequence)
+actor "Doc gia" as DG
+participant "Giao dien yeu cau dat mua" as UI
+participant "Module yeu cau dat mua" as MYC
+database "CSDL / Danh muc tai lieu" as DB
+
+DG -> UI : Mo form de xuat
+UI -> MYC : Yeu cau form
+MYC --> UI : Tra form
+UI --> DG : Hien thi form
+DG -> UI : Nhap du lieu + Gui yeu cau
+UI -> MYC : Gui du lieu
+MYC -> MYC : Validate du lieu
+
+alt Thieu / sai du lieu
+    MYC --> UI : Loi validate
+    UI --> DG : Yeu cau nhap lai
+else Du lieu hop le
+    MYC -> DB : Kiem tra sach da ton tai chua
+    DB --> MYC : Ket qua ton tai / khong ton tai
+
+    alt Da ton tai
+        MYC --> UI : Canh bao + lien ket tai lieu co san
+        UI --> DG : Hoi tiep tuc gui de xuat hay khong
+    else Chua ton tai
+        MYC -> DB : Tao yeu cau, trang thai "Cho duyet"
+        MYC -> MYC : Sinh ma theo doi
+        MYC --> UI : Thong bao thanh cong + ma theo doi
+        UI --> DG : Hien thi thanh cong
+    end
+end
+@enduml

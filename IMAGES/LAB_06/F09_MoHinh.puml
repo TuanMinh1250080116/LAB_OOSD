@@ -1,0 +1,118 @@
+@startuml
+skinparam backgroundColor white
+hide circle
+left to right direction
+entity BENHNHAN {
+  * MaBN : VARCHAR(12) <<PK>>
+  --
+  HoTen, DiaChi, NgaySinh
+  DienThoai, Anh3x4
+}
+entity PHIEUDANGKY {
+  * MaDK : VARCHAR(12) <<PK>>
+  --
+  MaBN <<FK>>
+  NamApDung <<UK>>
+  TrangThai
+}
+entity PHITHU {
+  * MaThu : VARCHAR(12) <<PK>>
+  --
+  MaDK <<FK,UK>>
+  SoTien, NgayThu
+}
+entity HOSOBENHAN {
+  * MaHS : VARCHAR(12) <<PK>>
+  --
+  MaBN <<FK,UK>>
+  NgayCap, TrangThai
+}
+entity LICHHEN {
+  * MaHen : VARCHAR(12) <<PK>>
+  --
+  MaHS, MaBS <<FK>>
+  ThoiGian, LoaiKham, TrangThai
+}
+entity LUOTKHAM {
+  * MaKham : VARCHAR(12) <<PK>>
+  --
+  MaHS, MaHen, MaBS, MaKhoa <<FK>>
+  NgayGio, LoaiKham, TrangThai
+  VienPhi, DaThanhToan
+}
+entity TRIEUCHUNG {
+  * MaTrieuChung : VARCHAR(12) <<PK>>
+  --
+  MaKham <<FK>>
+  MoTa, ThanNhiet, HuyetAp
+}
+entity KHOA {
+  * MaKhoa : VARCHAR(10) <<PK>>
+  --
+  TenKhoa
+}
+entity BACSI {
+  * MaBS : VARCHAR(10) <<PK>>
+  --
+  MaKhoa <<FK>>
+  HoTen
+}
+entity LOAIXETNGHIEM {
+  * MaXN : VARCHAR(10) <<PK>>
+  --
+  TenXN
+}
+entity CHIDINHXETNGHIEM {
+  * MaCD : VARCHAR(12) <<PK>>
+  --
+  MaKham, MaXN, MaBS <<FK>>
+  TrangThai
+}
+entity KETQUAXETNGHIEM {
+  * MaKQ : VARCHAR(12) <<PK>>
+  --
+  MaCD <<FK,UK>>
+  KetQua, NgayCoKQ
+}
+entity THUOC {
+  * MaThuoc : VARCHAR(10) <<PK>>
+  --
+  TenThuoc, DonVi, HuongDan
+}
+entity TOATHUOC {
+  * MaToa : VARCHAR(12) <<PK>>
+  --
+  MaKham <<FK,UK>>
+  MaBS <<FK>>, NgayKe, TrangThai
+}
+entity CHITIETTOA {
+  * MaCT : VARCHAR(12) <<PK>>
+  --
+  MaToa, MaThuoc <<FK>>
+  SoLuong, LieuDung, SoNgay
+}
+entity PHANUNGTHUOC {
+  * MaPU : VARCHAR(12) <<PK>>
+  --
+  MaHS, MaThuoc <<FK>>
+  MoTa, MucDo
+}
+BENHNHAN ||--o{ PHIEUDANGKY
+PHIEUDANGKY ||--o| PHITHU
+BENHNHAN ||--o| HOSOBENHAN
+HOSOBENHAN ||--o{ LICHHEN
+HOSOBENHAN ||--o{ LUOTKHAM
+HOSOBENHAN ||--o{ PHANUNGTHUOC
+LICHHEN |o--o| LUOTKHAM
+KHOA ||--o{ BACSI
+KHOA ||--o{ LUOTKHAM
+BACSI ||--o{ LUOTKHAM
+LUOTKHAM ||--o{ TRIEUCHUNG
+LUOTKHAM ||--o{ CHIDINHXETNGHIEM
+LOAIXETNGHIEM ||--o{ CHIDINHXETNGHIEM
+CHIDINHXETNGHIEM ||--o| KETQUAXETNGHIEM
+LUOTKHAM ||--o| TOATHUOC
+TOATHUOC ||--|{ CHITIETTOA
+THUOC ||--o{ CHITIETTOA
+THUOC ||--o{ PHANUNGTHUOC
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+salt
+{+
+{* F03 · TIẾP NHẬN HÀNG }
+{
+Đơn đặt | ^DDH001^
+Đợt đã nhận | 1 / 3
+Số phiếu NCU | "PGH002"
+Ngày giao | "02/11/2026"
+Số tiền phải trả | "200000"
+Người nhận | NV01
+}
+{#
+NGK | Đặt | Đã nhận | Nhận đợt này
+NGK01 | 100 | 80 | 20
+}
+{ [Đối chiếu] | [Lưu phiếu] }
+}
+
+@enduml

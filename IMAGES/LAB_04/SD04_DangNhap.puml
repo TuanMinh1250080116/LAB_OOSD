@@ -1,0 +1,44 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+title Biểu đồ tuần tự – UC05 Đăng nhập (kèm gộp giỏ hàng)
+autonumber
+actor "Khách hàng" as U
+boundary "FrmDangNhap" as F
+control "TaiKhoanService" as C
+control "GioHangService" as G
+database "SQL Server ESHOP" as DB
+participant "PhienLamViec" as S
+U -> F : Nhập tên đăng nhập, mật khẩu
+F -> C : DangNhap(ten, matKhau)
+C -> DB : SELECT KhachHang / NhanVien theo TenDangNhap
+DB --> C : bản ghi (MatKhauHash, TrangThai)
+alt Không tồn tại hoặc sai mật khẩu
+  C --> F : Fail("Sai tên đăng nhập hoặc mật khẩu")
+  F --> U : Thông báo, cho nhập lại
+else Đúng
+  C -> S : DatNguoiDung(maKH, hoTen, vaiTro)
+  opt Là khách hàng và đang có giỏ của khách vãng lai
+    C -> G : GopGioHang(maGioHangTam, maKH)
+    G -> DB : MERGE ChiTietGioHang vào giỏ của khách,\nxóa giỏ tạm
+  end
+  C --> F : Ok
+  F --> U : Đóng form, cập nhật màn hình chính
+end
+@enduml

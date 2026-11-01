@@ -1,0 +1,12 @@
+@startuml
+skinparam dpi 180
+salt
+{+
+{* Trang chủ }
+{
+Người dùng | "                         "
+Vai trò | "                         "
+}
+{ [Tra cứu] | [Mượn trả] | [Danh mục] | [Đặt mua] | [Báo cáo] | [Đăng xuất] }
+}
+@enduml

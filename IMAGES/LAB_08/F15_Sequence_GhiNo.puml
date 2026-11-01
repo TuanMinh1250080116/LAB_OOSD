@@ -1,0 +1,32 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+actor "Nhân viên" as NV
+boundary FrmGhiNo as F
+control CongNoService as S
+entity CuaHangRepository as R
+NV -> F : Nhập dữ liệu và lưu
+F -> S : lapPhieu(dto)
+S -> R : begin()
+S -> R : lock(chứng từ, mã)
+S -> R : load / query dữ liệu liên quan
+R --> S : Dữ liệu đã nạp
+S -> S : kiemTraNo(hd): khách quen, nợ > 0, chưa có PGN; ngày/lý do hợp lệ
+alt Hợp lệ
+ S -> S : tong = SUM(CTHoaDon.thanhTien())
+ S -> S : no = HoaDon.conPhaiTra(tong)
+ S -> R : save(PhieuGhiNo)
+ S -> R : commit()
+ R --> S : Mã chứng từ / kết quả
+ S --> F : Thành công
+else Vi phạm điều kiện hoặc lỗi lưu
+ S -> R : rollback()
+ S --> F : Lỗi; giữ dữ liệu đang nhập
+end
+F --> NV : Hiển thị kết quả
+@enduml

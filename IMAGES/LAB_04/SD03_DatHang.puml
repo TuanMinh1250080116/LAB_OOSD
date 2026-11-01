@@ -1,0 +1,65 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+title Biểu đồ tuần tự – UC07 Đặt hàng và thanh toán
+autonumber
+actor "Khách hàng" as U
+boundary "FrmGioHang" as FG
+boundary "FrmDatHang" as F
+control "DatHangService" as C
+control "PhiGiaoHang\n(FN_TinhPhiGiao)" as P
+boundary "IThanhToanTrucTuyen" as TT
+boundary "IEmailSender" as M
+database "SQL Server ESHOP" as DB
+U -> FG : Bấm "Tính tiền"
+alt Chưa đăng nhập
+  FG -> U : Mở FrmDangNhap (UC05)\nhoặc FrmDangKy (UC04)
+end
+FG -> F : Mở form với giỏ hàng hiện tại
+U -> F : Chọn loại phiếu, tỉnh/thành nhận,\nnhập người nhận
+F -> C : TinhTien(maGioHang, loaiPhieu, maTinh, loaiThe)
+C -> DB : Tổng tiền hàng theo giá hiện hành
+C -> P : FN_TinhPhiGiao(maTinh, loaiPhieu, tongTienHang)
+P --> C : phí giao (0 nếu đạt ngưỡng miễn phí)
+C --> F : BangTinhTien(tiền hàng, phí giao, lệ phí thẻ, tổng)
+U -> F : Nhập loại thẻ, số thẻ, hạn, chủ thẻ, CSV;\nbấm "Đặt hàng"
+F -> C : DatHang(yeuCau)
+C -> C : KiemTraThe()\n(độ dài số thẻ/CSV theo loại, Luhn, còn hạn)
+C -> TT : XacThucVaThanhToan(thẻ, tổng trị giá)
+alt Từ chối
+  TT --> C : KetQuaThanhToan(false, lý do)
+  C -> DB : INSERT NhatKyThanhToan(Từ chối)
+  C --> F : Fail(lý do)
+  F --> U : Yêu cầu nhập thẻ khác
+else Chấp thuận
+  TT --> C : KetQuaThanhToan(true, maGiaoDich, token)
+  C -> DB : BEGIN TRANSACTION
+  C -> DB : INSERT/REUSE TheTinDung (chỉ 4 số cuối + token)
+  C -> DB : INSERT DonDatHang (trạng thái "Chờ xử lý")
+  C -> DB : INSERT ChiTietDonHang (đơn giá tại thời điểm đặt)
+  C -> DB : UPDATE GioHang = "Đã chuyển thành đơn"
+  C -> DB : INSERT NhatKyThanhToan(Thành công) ; COMMIT
+  opt Khách có email
+    C -> M : Gui(email, nội dung đơn KHÔNG có thông tin thẻ)
+    C -> DB : INSERT NhatKyEmail
+  end
+  C --> F : Ok(soDonHang)
+  F --> U : "Đặt hàng thành công – mã đơn ..."
+end
+@enduml

@@ -1,0 +1,126 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 140
+skinparam shadowing false
+skinparam ArrowColor #1F4E79
+skinparam ActorBorderColor #1F4E79
+skinparam UsecaseBorderColor #1F4E79
+skinparam UsecaseBackgroundColor #F3F6FA
+skinparam PackageBorderColor #7F7F7F
+skinparam RectangleBorderColor #1F4E79
+skinparam SequenceLifeLineBorderColor #7F7F7F
+skinparam ParticipantBackgroundColor #F3F6FA
+skinparam ParticipantBorderColor #1F4E79
+skinparam StateBackgroundColor #F3F6FA
+skinparam StateBorderColor #1F4E79
+skinparam ClassBackgroundColor #F3F6FA
+skinparam ClassBorderColor #1F4E79
+skinparam EntityBackgroundColor #F3F6FA
+skinparam NoteBackgroundColor #FFF8DC
+title Biểu đồ lớp thực thể (mô hình miền) – e-SHOPPING
+hide circle
+skinparam linetype ortho
+class NhomSanPham {
+  maNhom
+  tenNhom
+}
+class SanPham {
+  maSP
+  tenSP
+  nhaSanXuat
+  moTa
+  giaBan
+  tinhTrang
+}
+class HinhAnhSanPham {
+  duongDan
+  thuTu
+}
+class ThongSoKyThuat {
+  tenThongSo
+  giaTri
+}
+class KhachHang {
+  maKH
+  hoTen
+  ngaySinh
+  soGiayTo
+  diaChi
+  dienThoai
+  tenDangNhap
+  matKhau
+  email [0..1]
+}
+class GioHang {
+  maGioHang
+  ngayTao
+  trangThai
+}
+class ChiTietGioHang {
+  soLuong
+}
+class DonDatHang {
+  soDonHang
+  thoiDiemDat
+  tongTienHang
+  phiGiaoHang
+  lePhiThe
+  tongTriGia
+  trangThai
+}
+class ChiTietDonHang {
+  soLuong
+  donGia
+}
+class NguoiNhan {
+  hoTen
+  diaChi
+  dienThoai
+}
+class LoaiPhieuDatHang {
+  maLoai
+  tenLoai
+  soGioXuLy
+  nguongMienPhi
+}
+class KhuVucGiaoHang {
+  maKhuVuc
+  tenKhuVuc
+}
+class TinhThanh {
+  maTinh
+  tenTinh
+}
+class BangPhiGiaoHang {
+  phiGiao
+}
+class LoaiThe {
+  maLoaiThe
+  doDaiSoThe
+  doDaiCSV
+  lePhiGiaoDich
+}
+class TheTinDung {
+  soTheAn
+  hanSuDung
+  tenChuThe
+  token
+}
+NhomSanPham "1" -- "0..*" SanPham
+SanPham "1" *-- "0..*" HinhAnhSanPham
+SanPham "1" *-- "0..*" ThongSoKyThuat
+KhachHang "0..1" -- "0..1" GioHang : sở hữu
+GioHang "1" *-- "0..*" ChiTietGioHang
+ChiTietGioHang "0..*" -- "1" SanPham
+KhachHang "1" -- "0..*" DonDatHang : đặt
+DonDatHang "1" *-- "1..*" ChiTietDonHang
+ChiTietDonHang "0..*" -- "1" SanPham
+DonDatHang "1" *-- "1" NguoiNhan
+NguoiNhan "0..*" -- "1" TinhThanh
+TinhThanh "0..*" -- "1" KhuVucGiaoHang
+DonDatHang "0..*" -- "1" LoaiPhieuDatHang
+(KhuVucGiaoHang, LoaiPhieuDatHang) .. BangPhiGiaoHang
+KhachHang "1" -- "0..*" TheTinDung
+TheTinDung "0..*" -- "1" LoaiThe
+DonDatHang "0..*" -- "1" TheTinDung : thanh toán bằng
+@enduml

@@ -1,0 +1,122 @@
+@startuml
+skinparam defaultFontName Arial
+skinparam dpi 180
+hide circle
+entity KhachHang {
+ MaKH : VARCHAR(10) <<PK>>
+ HoTen : NVARCHAR(100)
+ NgaySinh : DATETIME
+ SoGiayTo : VARCHAR(20)
+ DiaChi : NVARCHAR(250)
+ DienThoai : VARCHAR(15)
+ TenDangNhap : VARCHAR(50)
+ MatKhauHash : VARCHAR(64)
+ Salt : VARCHAR(32)
+ Email : VARCHAR(100)
+ NgayDangKy : DATETIME
+ TrangThai : NVARCHAR(20)
+}
+entity SanPham {
+ MaSP : VARCHAR(20) <<PK>>
+ TenSP : NVARCHAR(200)
+ MaNhom : VARCHAR(10)
+ NhaSanXuat : NVARCHAR(100)
+ MoTa : NVARCHAR(MAX)
+ GiaBan : BIGINT
+ TinhTrang : NVARCHAR(20)
+ NgayCapNhat : DATETIME
+}
+entity LoaiPhieuDatHang {
+ MaLoaiPhieu : VARCHAR(10) <<PK>>
+ TenLoai : NVARCHAR(60)
+ SoGioXuLy : INT
+ NguongMienPhi : BIGINT
+}
+entity KhuVucGiaoHang {
+ MaKhuVuc : VARCHAR(10) <<PK>>
+ TenKhuVuc : NVARCHAR(100)
+}
+entity TinhThanh {
+ MaTinh : VARCHAR(10) <<PK>>
+ TenTinh : NVARCHAR(100)
+ MaKhuVuc : VARCHAR(10)
+}
+entity BangPhiGiaoHang {
+ MaKhuVuc : VARCHAR(10) <<PK>>
+ MaLoaiPhieu : VARCHAR(10) <<PK>>
+ PhiGiao : BIGINT
+}
+entity LoaiThe {
+ MaLoaiThe : VARCHAR(10) <<PK>>
+ TenLoaiThe : NVARCHAR(50)
+ DoDaiSoThe : INT
+ DoDaiCSV : INT
+ LePhiGiaoDich : BIGINT
+}
+entity TheTinDung {
+ MaThe : INT <<PK>>
+ MaKH : VARCHAR(10)
+ MaLoaiThe : VARCHAR(10)
+ SoTheAn : VARCHAR(25)
+ ThangHetHan : INT
+ NamHetHan : INT
+ TenChuThe : NVARCHAR(100)
+ TokenThanhToan : VARCHAR(64)
+}
+entity DonDatHang {
+ SoDonHang : VARCHAR(12) <<PK>>
+ MaKH : VARCHAR(10)
+ MaLoaiPhieu : VARCHAR(10)
+ ThoiDiemDat : DATETIME
+ TenNguoiNhan : NVARCHAR(100)
+ DiaChiNhan : NVARCHAR(250)
+ MaTinh : VARCHAR(10)
+ DienThoaiNhan : VARCHAR(15)
+ TongTienHang : BIGINT
+ PhiGiaoHang : BIGINT
+ LePhiThe : BIGINT
+ MaThe : INT
+ MaGiaoDich : VARCHAR(40)
+ TrangThai : NVARCHAR(20)
+ DaGuiEmail : CHAR(1)
+}
+entity ChiTietDonHang {
+ SoDonHang : VARCHAR(12) <<PK>>
+ MaSP : VARCHAR(20) <<PK>>
+ SoLuong : INT
+ DonGia : BIGINT
+}
+entity NhatKyThanhToan {
+ MaNhatKy : INT <<PK>>
+ MaKH : VARCHAR(10)
+ MaLoaiThe : VARCHAR(10)
+ SoTheAn : VARCHAR(25)
+ SoTien : BIGINT
+ KetQua : NVARCHAR(20)
+ MaGiaoDich : VARCHAR(40)
+ LyDo : NVARCHAR(200)
+ ThoiDiem : DATETIME
+}
+entity NhatKyEmail {
+ MaEmail : INT <<PK>>
+ SoDonHang : VARCHAR(12)
+ DiaChiEmail : VARCHAR(100)
+ TieuDe : NVARCHAR(200)
+ NoiDung : NVARCHAR(MAX)
+ ThoiDiemGui : DATETIME
+}
+KhuVucGiaoHang "1" -- "0..*" TinhThanh : MaKhuVuc
+KhuVucGiaoHang "1" -- "0..*" BangPhiGiaoHang : MaKhuVuc
+LoaiPhieuDatHang "1" -- "0..*" BangPhiGiaoHang : MaLoaiPhieu
+KhachHang "1" -- "0..*" TheTinDung : MaKH
+LoaiThe "1" -- "0..*" TheTinDung : MaLoaiThe
+KhachHang "1" -- "0..*" DonDatHang : MaKH
+LoaiPhieuDatHang "1" -- "0..*" DonDatHang : MaLoaiPhieu
+TinhThanh "1" -- "0..*" DonDatHang : MaTinh
+TheTinDung "1" -- "0..*" DonDatHang : MaThe
+DonDatHang "1" -- "0..*" ChiTietDonHang : SoDonHang
+SanPham "1" -- "0..*" ChiTietDonHang : MaSP
+KhachHang "1" -- "0..*" NhatKyThanhToan : MaKH
+LoaiThe "1" -- "0..*" NhatKyThanhToan : MaLoaiThe
+DonDatHang "1" -- "0..*" NhatKyEmail : SoDonHang
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+title UC08 - Dang nhap (Activity)
+|Nguoi dung (Doc gia / Thu thu)|
+start
+:Nhap username / password;
+:Gui dang nhap;
+|He thong|
+:Kiem tra tai khoan;
+:Kiem tra mat khau;
+if (Hop le?) then (co)
+  :Tao phien dang nhap;
+  :Cho phep truy cap;
+  stop
+else (khong)
+  :Bao loi;
+  stop
+endif
+@enduml

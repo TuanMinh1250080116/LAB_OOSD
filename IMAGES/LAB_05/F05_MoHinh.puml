@@ -1,0 +1,64 @@
+@startuml
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam dpi 140
+skinparam shadowing true
+skinparam BackgroundColor #FFFFFF
+skinparam ArrowColor #8B0000
+skinparam ActorBorderColor #8B0000
+skinparam ActorBackgroundColor #FFFFCC
+skinparam UsecaseBackgroundColor #FFFFCC
+skinparam UsecaseBorderColor #8B0000
+skinparam ClassBackgroundColor #FFFFCC
+skinparam ClassBorderColor #8B0000
+skinparam ClassHeaderBackgroundColor #FFF2A8
+skinparam PackageBackgroundColor #FAFAF0
+skinparam PackageBorderColor #8B0000
+skinparam StateBackgroundColor #FFFFCC
+skinparam StateBorderColor #8B0000
+skinparam ActivityBackgroundColor #FFFFCC
+skinparam ActivityBorderColor #8B0000
+skinparam PartitionBorderColor #8B0000
+skinparam ParticipantBackgroundColor #FFFFCC
+skinparam ParticipantBorderColor #8B0000
+skinparam SequenceLifeLineBorderColor #8B0000
+skinparam NoteBackgroundColor #E8F4FF
+skinparam RectangleBorderColor #8B0000
+title Activity diagram - vòng đời một lần đi tour
+start
+partition "1. Đăng ký" {
+  :Khách chọn tour và báo số người;
+  if (số người > 12) then (đoàn)
+    :Lập phiếu đăng ký theo đoàn;
+    if (mua bảo hiểm) then (có)
+      :Nhập danh sách người đi cùng;
+    endif
+    :Thu tiền cọc;
+  else (khách lẻ)
+    repeat
+      :Chọn chuyến theo lịch;
+    repeat while (chuyến còn đủ chỗ?) is (không) not (có)
+    :Thu tiền vé, xuất vé;
+  endif
+}
+partition "2. Chuẩn bị" {
+  :Phân công hướng dẫn viên rảnh;
+  if (đoàn báo hủy?) then (có)
+    :Hủy phiếu, công ty giữ cọc;
+    end
+  endif
+}
+partition "3. Thực hiện" {
+  :Khởi hành từ TP.HCM;
+  :Tham quan các điểm, nghỉ tại nơi dừng chân;
+  :Về lại TP.HCM;
+}
+partition "4. Sau tour" {
+  :Gửi phiếu khảo sát;
+  if (khách đoàn?) then (có)
+    :Quyết toán phần kinh phí còn lại;
+  endif
+  :Ghi nhận góp ý;
+}
+stop
+@enduml

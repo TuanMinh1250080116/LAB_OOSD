@@ -1,0 +1,13 @@
+@startuml
+title UC16 - Lap bao cao - thong ke (Activity)
+|Thu thu|
+start
+:Chon loai bao cao;
+:Chon khoang thoi gian;
+|He thong|
+:Truy van du lieu;
+:Tong hop;
+:Tao bao cao;
+:Hien thi / ket xuat;
+stop
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+skinparam dpi 180
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+left to right direction
+actor "Nhân viên cửa hàng" as NV
+rectangle "Quản lý cửa hàng nước giải khát" {
+usecase "Quản lý danh mục" as UC01
+usecase "Lập đơn đặt hàng" as UC02
+usecase "Tiếp nhận hàng nhập" as UC03
+usecase "Bán và giao hàng" as UC04
+usecase "Lập phiếu ghi nợ" as UC05
+usecase "Tra cứu và thống kê" as UC06
+}
+NV -- UC01
+NV -- UC02
+NV -- UC03
+NV -- UC04
+NV -- UC05
+NV -- UC06
+
+@enduml
